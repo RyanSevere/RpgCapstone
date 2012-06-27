@@ -1,3 +1,3 @@
-Project for Cs290
-By Ryan Severe
-& Sean Forman
+Project for CS290
+By Sean Forman
+& Ryan Severe
