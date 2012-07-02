@@ -19,7 +19,7 @@ public class SetPlayerInfo extends JFrame {
     //Delcared Array for Player Names and Stats
     ArrayList<Player> players = new ArrayList<Player>();
     Player player;
-    Player setInfo = new Player();
+    Player setInfo = new Player(); //point of this line of code? does not seem to be used other then to initalize an instance of player but is not used else were
     int battleCounter = 0;
 
     //initalizes an instance of Player() (constructor? error control?)
@@ -228,7 +228,7 @@ public class SetPlayerInfo extends JFrame {
         battle.addActionListener(a);
 
     }
-
+    
     public class Event implements ActionListener {
 
         public void actionPerformed(ActionEvent a) {
@@ -428,7 +428,7 @@ public class SetPlayerInfo extends JFrame {
             listBox.updateUI();
         }
         
-        //resets all feilds
+        //resets all fields
         //makes the edit and create buttons visable
         //makes the listbox that holds the players visable
 
@@ -482,7 +482,7 @@ public class SetPlayerInfo extends JFrame {
             int w = Integer.parseInt(wisTotal.getText());
             int p = Integer.parseInt(pointsLeftField.getText());
             playerName = nameField.getText();
-            MiniRPG.players.add(new Player(playerName, s, d, e, w, p));
+            MiniRPG.players.add(new Player(playerName, s, d, e, w, p)); //additional information needed
             name.setText(nameField.getText());
             listBox.addItem(playerName);
             listBox.setVisible(true);
