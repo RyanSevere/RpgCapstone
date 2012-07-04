@@ -38,7 +38,7 @@ public class SetPlayerInfo extends JFrame {
         //top title       
         name = new JLabel("Character Setup");
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.insets = new Insets(2, 2, 2, 2);
+        //c.insets = new Insets(2, 2, 2, 2);
         c.gridx = 1;
         c.gridy = 0;
         c.gridwidth = 3; //centering title
