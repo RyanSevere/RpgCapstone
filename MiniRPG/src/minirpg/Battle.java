@@ -5,6 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.Random;
@@ -37,17 +41,8 @@ public class Battle extends JFrame {
     //SetPlayerInfo spi = new SetPlayerInfo();
 
     public Battle() {
-        JOptionPane.showMessageDialog(rootPane,
-                  "This would be the alpha of the game I guess. All you can do \n"
-                + "at this time is move/attack with player 1. Click on the move \n"
-                + "button for player one then click the cell you would like to \n"
-                + "move Player 1 to. Attack works in the same way but you have \n"
-                + "to be standing next to the monster you want to attack. Once \n"
-                + "all the monsters have been killed you get a message in the \n"
-                + "green JTextArea telling you you win!");
         table.setRowHeight(50);
         table.setBorder(BorderFactory.createLineBorder(Color.black));
-
         monsters.add(new Monster("Orc", 1, 0, 3));
         monsters.add(new Monster("Troll", 1, 0, 7));
         monsters.add(new Monster("Troll", 1, 1, 0));
@@ -57,150 +52,35 @@ public class Battle extends JFrame {
         setMap();
 
         JPanel p = new JPanel();
-        JPanel p2 = new JPanel();
-        p2.setLayout(new GridBagLayout());
-        Dimension minimumSize = new Dimension(800, 400);
+        //JPanel p2 = new JPanel();
+        //p2.setLayout(new GridBagLayout());
+        Dimension minimumSize = new Dimension(800, 600);
 
         p.setMinimumSize(minimumSize);
         p.add(table);
-
-        setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-
-        infoBox = new JTextArea(5, 15);
-        infoBox.setEditable(false);
-        infoBox.setLineWrap(true);
-        infoBox.setWrapStyleWord(true);
-        infoBox.setBackground(Color.green);
-        c.insets = new Insets(0, 5, 20, 5);
-        c.gridx = 0;
-        c.gridy = 0;
-        c.gridwidth = 2;
-        p2.add(infoBox, c);
-
-//      Player 1 stuff
-        p1Name = new JLabel(minirpg.MiniRPG.players.get(0).getName());
-        c.insets = new Insets(5, 5, 5, 5);
-        c.gridx = 0;
-        c.gridy = 1;
-        c.gridwidth = 2;
-        p2.add(p1Name, c);
-
-        movesLeft = new JLabel("Moves left:");
-        c.gridx = 0;
-        c.gridy = 2;
-        c.gridwidth = 1;
-        p2.add(movesLeft, c);
-
-        p1MovesLeft = new JLabel("3");
-        c.gridx = 1;
-        c.gridy = 2;
-        c.gridwidth = 1;
-        p2.add(p1MovesLeft, c);
-
-        moveP1 = new JButton("Move");
-        c.gridx = 0;
-        c.gridy = 3;
-        p2.add(moveP1, c);
-
-        attackP1 = new JButton("Attack");
-        c.gridx = 1;
-        c.gridy = 3;
-        p2.add(attackP1, c);
-
-        //Player 2 stuff
-        p2Name = new JLabel(minirpg.MiniRPG.players.get(1).getName());
-        c.insets = new Insets(30, 5, 5, 5);
-        c.gridx = 0;
-        c.gridy = 4;
-        c.gridwidth = 2;
-        p2.add(p2Name, c);
-
-        movesLeft = new JLabel("Moves left:");
-        c.insets = new Insets(2, 2, 2, 2);
-        c.gridx = 0;
-        c.gridy = 5;
-        c.gridwidth = 1;
-        p2.add(movesLeft, c);
-
-        p2MovesLeft = new JLabel("3");
-        c.gridx = 1;
-        c.gridy = 5;
-        c.gridwidth = 1;
-        p2.add(p2MovesLeft, c);
-
-        moveP2 = new JButton("Move");
-        c.gridx = 0;
-        c.gridy = 6;
-        p2.add(moveP2, c);
-
-        attackP2 = new JButton("Attack");
-        c.gridx = 1;
-        c.gridy = 6;
-        p2.add(attackP2, c);
-
-        //Player 3 stuff
-        p3Name = new JLabel(minirpg.MiniRPG.players.get(2).getName());
-        c.insets = new Insets(30, 2, 2, 2);
-        c.gridx = 0;
-        c.gridy = 7;
-        c.gridwidth = 2;
-        p2.add(p3Name, c);
-
-        movesLeft = new JLabel("Moves left:");
-        c.insets = new Insets(2, 2, 2, 2);
-        c.gridx = 0;
-        c.gridy = 8;
-        c.gridwidth = 1;
-        p2.add(movesLeft, c);
-
-        p3MovesLeft = new JLabel("3");
-        c.gridx = 1;
-        c.gridy = 8;
-        c.gridwidth = 1;
-        p2.add(p3MovesLeft, c);
-
-        moveP3 = new JButton("Move");
-        c.gridx = 0;
-        c.gridy = 9;
-        p2.add(moveP3, c);
-
-        attackP3 = new JButton("Attack");
-        c.gridx = 1;
-        c.gridy = 9;
-        p2.add(attackP3, c);
-
-        //Player 4 stuff
-        p4Name = new JLabel(minirpg.MiniRPG.players.get(3).getName());
-        c.insets = new Insets(30, 2, 2, 2);
-        c.gridx = 0;
-        c.gridy = 10;
-        c.gridwidth = 2;
-        p2.add(p4Name, c);
-
-        movesLeft = new JLabel("Moves left:");
-        c.insets = new Insets(2, 2, 2, 2);
-        c.gridx = 0;
-        c.gridy = 11;
-        c.gridwidth = 1;
-        p2.add(movesLeft, c);
-
-        p4MovesLeft = new JLabel("3");
-        c.gridx = 1;
-        c.gridy = 11;
-        c.gridwidth = 1;
-        p2.add(p4MovesLeft, c);
-
-        moveP4 = new JButton("Move");
-        c.gridx = 0;
-        c.gridy = 12;
-        p2.add(moveP4, c);
-
-        attackP4 = new JButton("Attack");
-        c.gridx = 1;
-        c.gridy = 12;
-        p2.add(attackP4, c);
-
+//add tabs!!
+        
+        JTabbedPane p2 = new JTabbedPane();
+         
+        JComponent panel1 = makeTextPanel("");
+        p2.addTab("P1",null, panel1,
+                "Does nothing");
+        
+        JComponent panel2 = makeTextPanel("");
+        p2.addTab("P2",null, panel2,
+                "Does nothing");
+        
+        JComponent panel3 = makeTextPanel("");
+        p2.addTab("P3",null, panel3,
+                "Does nothing");
+        
+        JComponent panel4 = makeTextPanel("");
+        p2.addTab("P4",null, panel4,
+                "Does nothing");
+        
+        //tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
+        //above is how to setup a hot key to change players
+        
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
                 true, p, p2);
 
@@ -208,8 +88,8 @@ public class Battle extends JFrame {
         getContentPane().add(splitPane);
 
         Event a = new Event();
-        moveP1.addActionListener(a);
-        attackP1.addActionListener(a);
+//        moveP1.addActionListener(a);
+//        attackP1.addActionListener(a);
 
 
         table.addMouseListener(new MouseAdapter() {
@@ -389,14 +269,84 @@ public class Battle extends JFrame {
             i++;
             Object meow = li.next();
             if (monsters.get(i).isIsDead() == true) {
-                monsterskilled ++;
-            }  
+                monsterskilled++;
+            }
         }
-        if (monsterskilled == i+1) {
+        if (monsterskilled == i + 1) {
             infoBox.setText("");
             infoBox.append("All Monsters have been defeated \n YOU WIN!");
             JOptionPane.showMessageDialog(rootPane, "SHOWS OVER!");
             this.dispose();
         }
+    }
+
+    public void damageEvent(String file, String moveName) {
+  //Sets up varibles for damage      
+        String isRanged;
+        String range;
+        String damage;
+        String output;
+        try{
+  // Open the file that is the first 
+  // command line parameter
+            FileInputStream fstream = new FileInputStream(file);
+  // Get the object of DataInputStream
+            DataInputStream in = new DataInputStream(fstream);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            String strLine;
+  //Read File Line By Line
+  while ((strLine = br.readLine()) != null)   {
+  // Print the content on the console
+          if(strLine.equals(moveName)){
+              isRanged = br.readLine();
+              range = br.readLine();
+              damage = br.readLine();
+              output = br.readLine();
+          }
+  }
+  //Close the input stream
+  in.close();
+    }catch (Exception e){//Catch exception if any
+  System.err.println("Error: " + e.getMessage());
+  }
+    }
+    
+    protected JComponent makeTextPanel(String text, int playerID) {
+        JPanel panel = new JPanel(false);
+        //panel.add(filler);
+        setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+
+//      Player 1 stuff
+        p1Name = new JLabel(minirpg.MiniRPG.players.get(playerID).getName());
+        c.insets = new Insets(5, 5, 5, 5);
+        c.gridx = 0;
+        c.gridy = 1;
+        c.gridwidth = 2;
+        panel.add(p1Name, c);
+
+        movesLeft = new JLabel("Moves left:");
+        c.gridx = 0;
+        c.gridy = 2;
+        c.gridwidth = 1;
+        panel.add(movesLeft, c);
+
+        p1MovesLeft = new JLabel("3");
+        c.gridx = 1;
+        c.gridy = 2;
+        c.gridwidth = 1;
+        panel.add(p1MovesLeft, c);
+
+        moveP1 = new JButton("Move");
+        c.gridx = 0;
+        c.gridy = 3;
+        panel.add(moveP1, c);
+
+        attackP1 = new JButton("Attack");
+        c.gridx = 1;
+        c.gridy = 3;
+        panel.add(attackP1, c);
+        
+        return panel;
     }
 }
