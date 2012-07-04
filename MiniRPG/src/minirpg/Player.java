@@ -8,18 +8,21 @@ public class Player {
     private int end;
     private int wis;
     private int pointsLeft = 0;
+    private int playerID;
 
     public Player() {
-        this("Bob", 0, 0, 0, 0, 15);
+        this("Bob", 0, 0, 0, 0, 15, 0);
     }
 //SetPlayerInfo m = new SetPlayerInfo();
-    public Player(String name, int str, int dex, int end, int wis, int pointsLeft) {
+    public Player(String name, int str, int dex, int end, int wis, 
+            int pointsLeft,int playerID) {
         setName(name);
         setStr(str);
         setDex(dex);
         setEnd(end);
         setWis(wis);
         setPointsLeft(pointsLeft);
+        setPlayerID(playerID);
 
     }
 //GET and SET for name
@@ -70,8 +73,15 @@ public class Player {
     public int getPointsLeft() {
         return pointsLeft;
     }
-//GET Set for pointsLeft
+//GET for pointsLeft
     public void setPointsLeft(int pointsLeft) {
         this.pointsLeft = pointsLeft;
     }
+///GET and SET for playerID
+    public int getPlayerID(){
+        return playerID;
+    }
+    public void setPlayerID(int playerID){
+        this.playerID = playerID;
+    }    
 }

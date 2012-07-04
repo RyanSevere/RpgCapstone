@@ -2,13 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1">
         <file>
-            <url>src/minirpg/SetPlayerInfo.java</url>
-            <line>272</line>
-            <line>284</line>
-        </file>
-        <file>
             <url>src/minirpg/ViewPlayerInfo.java</url>
             <line>132</line>
+        </file>
+        <file>
+            <url>src/minirpg/SetPlayerInfo.java</url>
+            <line>273</line>
+            <line>285</line>
         </file>
     </editor-bookmarks>
 </project-private>

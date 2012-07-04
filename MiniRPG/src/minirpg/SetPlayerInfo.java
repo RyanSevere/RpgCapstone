@@ -21,6 +21,7 @@ public class SetPlayerInfo extends JFrame {
     Player player;
     Player setInfo = new Player();
     int battleCounter = 0;
+    int pID = 0;
 
     //initalizes an instance of Player() (constructor? error control?)
     public SetPlayerInfo() {
@@ -481,8 +482,10 @@ public class SetPlayerInfo extends JFrame {
             int e = Integer.parseInt(endTotal.getText());
             int w = Integer.parseInt(wisTotal.getText());
             int p = Integer.parseInt(pointsLeftField.getText());
+            int playerID = pID;
             playerName = nameField.getText();
-            MiniRPG.players.add(new Player(playerName, s, d, e, w, p));
+            MiniRPG.players.add(new Player(playerName, s, d, e, w, p, playerID));
+            pID++;
             name.setText(nameField.getText());
             listBox.addItem(playerName);
             listBox.setVisible(true);
