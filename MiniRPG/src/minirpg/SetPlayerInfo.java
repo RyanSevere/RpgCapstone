@@ -36,7 +36,7 @@ public class SetPlayerInfo extends JPanel {
         GridBagConstraints c = new GridBagConstraints();
         
         //top title       
-        name = new JLabel("Character Setup");
+        name = new JLabel("Character Stat's");
         c.fill = GridBagConstraints.HORIZONTAL;
         //c.insets = new Insets(2, 2, 2, 2);
         c.gridx = 1;
@@ -159,7 +159,7 @@ public class SetPlayerInfo extends JPanel {
         
         nameField = new JTextField();
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.insets = new Insets(2, 7, 2, 2);
+        //c.insets = new Insets(2, 7, 2, 2);
         c.gridx = 0;
         c.gridy = 7;
         c.gridwidth = 3;
