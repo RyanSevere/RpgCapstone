@@ -18,8 +18,8 @@ public class SetPlayerInfo extends JFrame {
     
     //Delcared Array for Player Names and Stats
     ArrayList<Player> players = new ArrayList<Player>();
-    Player player;
-    Player setInfo = new Player(); //point of this line of code? does not seem to be used other then to initalize an instance of player but is not used else were
+    //Player player; // unneeded code for current set up
+    //Player setInfo = new Player(); //point of this line of code? does not seem to be used other then to initalize an instance of player but is not used else were
     int battleCounter = 0;
 
     //initalizes an instance of Player() (constructor? error control?)
