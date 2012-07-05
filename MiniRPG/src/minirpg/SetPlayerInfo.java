@@ -5,7 +5,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
-public class SetPlayerInfo extends JFrame {
+public class SetPlayerInfo extends JPanel {
     //all gui buttons,Labels....ect
     JButton addStr, subStr, addDex, subDex, addEnd, subEnd, addWis,
             subWis, create, edit, done, battle;
@@ -30,7 +30,7 @@ public class SetPlayerInfo extends JFrame {
     //sets up and inializes layout of GUI for Stats entry
     public SetPlayerInfo(Player newGuy) {
         //inital instructions message before game menu
-        JOptionPane.showMessageDialog(rootPane, "Create 4 Players then the battle button will become visable");
+        //JOptionPane.showMessageDialog(rootPane, "Create 4 Players then the battle button will become visable");
         //uses gridbag layout to setup gui
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -244,8 +244,8 @@ public class SetPlayerInfo extends JFrame {
                     pointsLeftField.setText(Integer.toString(total)); //update Points left
                     strTotal.setText(Integer.toString(num));    //update Str total
                 } else if (total == 0) {   //prevents user from having negative amount of Str
-                    JOptionPane.showMessageDialog(rootPane,
-                            "You can not go below zero");
+                    JOptionPane.showMessageDialog(create, "You can not go below zero"); //no popup happens to display message but user cannot go below 0
+                    
                 }
             } else if (a.getSource() == subStr) {
                 total = Integer.parseInt(pointsLeftField.getText());
@@ -256,8 +256,7 @@ public class SetPlayerInfo extends JFrame {
                     strTotal.setText(Integer.toString(num));
                     pointsLeftField.setText(Integer.toString(total));
                 } else if (num == 0) {
-                    JOptionPane.showMessageDialog(rootPane,
-                            "You can not go below zero");
+                    JOptionPane.showMessageDialog(create, "You can not go below zero"); //no popup happens to display message but user cannot go below 0
                 }
             } //Setup for + and - for dex
             else if (a.getSource() == addDex) {
@@ -269,8 +268,7 @@ public class SetPlayerInfo extends JFrame {
                     pointsLeftField.setText(Integer.toString(total));
                     dexTotal.setText(Integer.toString(num));
                 } else if (total == 0) {
-                    JOptionPane.showMessageDialog(rootPane,
-                            "You can not go below zero");
+                    JOptionPane.showMessageDialog(create, "You can not go below zero"); //no popup happens to display message but user cannot go below 0
                 }
             } else if (a.getSource() == subDex) {
                 total = Integer.parseInt(pointsLeftField.getText());
@@ -281,8 +279,7 @@ public class SetPlayerInfo extends JFrame {
                     dexTotal.setText(Integer.toString(num));
                     pointsLeftField.setText(Integer.toString(total));
                 } else if (num == 0) {
-                    JOptionPane.showMessageDialog(rootPane,
-                            "You can not go below zero");
+                    JOptionPane.showMessageDialog(create, "You can not go below zero"); //no popup happens to display message but user cannot go below 0
                 }
             }
             //Setup for + and - for end
@@ -295,8 +292,7 @@ public class SetPlayerInfo extends JFrame {
                     pointsLeftField.setText(Integer.toString(total));
                     endTotal.setText(Integer.toString(num));
                 } else if (total == 0) {
-                    JOptionPane.showMessageDialog(rootPane,
-                            "You can not go below zero");
+                    JOptionPane.showMessageDialog(create, "You can not go below zero"); //no popup happens to display message but user cannot go below 0
                 }
             } else if (a.getSource() == subEnd) {
                 total = Integer.parseInt(pointsLeftField.getText());
@@ -307,8 +303,7 @@ public class SetPlayerInfo extends JFrame {
                     endTotal.setText(Integer.toString(num));
                     pointsLeftField.setText(Integer.toString(total));
                 } else if (num == 0) {
-                    JOptionPane.showMessageDialog(rootPane,
-                            "You can not go below zero");
+                    JOptionPane.showMessageDialog(create, "You can not go below zero"); //no popup happens to display message but user cannot go below 0
                 }
             }
             //Setup for + and - for wis
@@ -321,8 +316,8 @@ public class SetPlayerInfo extends JFrame {
                     pointsLeftField.setText(Integer.toString(total));
                     wisTotal.setText(Integer.toString(num));
                 } else if (total == 0) {
-                    JOptionPane.showMessageDialog(rootPane,
-                            "You can not go below zero");
+                    //JOptionPane.showMessageDialog(rootPane,
+                      //      "You can not go below zero");
                 }
             } else if (a.getSource() == subWis) {
                 total = Integer.parseInt(pointsLeftField.getText());
@@ -333,8 +328,8 @@ public class SetPlayerInfo extends JFrame {
                     wisTotal.setText(Integer.toString(num));
                     pointsLeftField.setText(Integer.toString(total));
                 } else if (num == 0) {
-                    JOptionPane.showMessageDialog(rootPane,
-                            "You can not go below zero");
+                    //JOptionPane.showMessageDialog(rootPane,
+                      //      "You can not go below zero");
                 }
             } 
             //create listener

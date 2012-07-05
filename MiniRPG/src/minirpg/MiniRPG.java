@@ -12,10 +12,11 @@ public class MiniRPG {
     //Player playerList = new Player();
     public static void main(String[] args) {
         
-        SetPlayerInfo gui = new SetPlayerInfo();
+        TabGUI gui = new TabGUI();      
+        //SetPlayerInfo gui = new SetPlayerInfo();
         gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        gui.setVisible(true);
-        gui.setSize(275, 315);
+        //gui.setVisible(true); //now set in NewTabGUI
+        //gui.setSize(275, 315); //now set in NewTabGUI
             
     }
 
