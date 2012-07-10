@@ -28,11 +28,12 @@ public class Battle extends JFrame {
     int p1CurretRow;
     int p1CurretCol;
     int monsterIndex;
+    int playerIndex = 0;
     JTable table = new JTable(10, 10);
-    JButton moveP1, moveP2, moveP3, moveP4,
-            attackP1, attackP2, attackP3, attackP4;
-    JLabel p1Name, p2Name, p3Name, p4Name, movesLeft,
-            p1MovesLeft, p2MovesLeft, p3MovesLeft, p4MovesLeft;
+    JButton none;//add buttons as needed
+    JLabel lblClass,pClass,lblRole,role,lblStr,lblDex,lblEnd,lblwiz,str,dex,end,
+            wiz,movesLeft,lblHp,hp,skills,name,icon,dash,lblSkill1,skill1,
+            lblSkill2,skill2,lblSkill3,skill3,lblSkill4,skill4;
     JTextArea infoBox;
     String empty = "";
     //int rowInt = (int)table.getSelectedRow();
@@ -60,23 +61,16 @@ public class Battle extends JFrame {
         p.add(table);
 //add tabs!!
         
+        
         JTabbedPane p2 = new JTabbedPane();
-         
-        JComponent panel1 = makeTextPanel("");
-        p2.addTab("P1",null, panel1,
+        //p2.setLayout(new GridBagLayout());
+        while (playerIndex < 4){
+        JComponent panel = makeTextPanel("");
+        p2.addTab(minirpg.MiniRPG.players.get(playerIndex).getName(),null, panel,
                 "Does nothing");
+        playerIndex++;
+        }
         
-        JComponent panel2 = makeTextPanel("");
-        p2.addTab("P2",null, panel2,
-                "Does nothing");
-        
-        JComponent panel3 = makeTextPanel("");
-        p2.addTab("P3",null, panel3,
-                "Does nothing");
-        
-        JComponent panel4 = makeTextPanel("");
-        p2.addTab("P4",null, panel4,
-                "Does nothing");
         
         //tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
         //above is how to setup a hot key to change players
@@ -87,7 +81,7 @@ public class Battle extends JFrame {
         splitPane.setOneTouchExpandable(false);
         getContentPane().add(splitPane);
 
-        Event a = new Event();
+       // Event a = new Event();
 //        moveP1.addActionListener(a);
 //        attackP1.addActionListener(a);
 
@@ -111,8 +105,9 @@ public class Battle extends JFrame {
             }
         });
     }
-
-    public class Event implements ActionListener {
+    //deals with player attack use later also uncomment event
+    
+    /*public class Event implements ActionListener {
 
         public void actionPerformed(ActionEvent a) {
             if (a.getSource() == moveP1) {
@@ -121,7 +116,7 @@ public class Battle extends JFrame {
                 p1AttackCheck = true;
             }
         }
-    }
+    }*/
 
     public void moveCheck() {
         if (p1MoveCheck == true && nc() == null) {
@@ -311,41 +306,161 @@ public class Battle extends JFrame {
   }
     }
     
-    protected JComponent makeTextPanel(String text, int playerID) {
+    protected JComponent makeTextPanel(String text) {
         JPanel panel = new JPanel(false);
         //panel.add(filler);
-        setLayout(new GridBagLayout());
+        panel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
-//      Player 1 stuff
-        p1Name = new JLabel(minirpg.MiniRPG.players.get(playerID).getName());
+        name = new JLabel(minirpg.MiniRPG.players.get(playerIndex).getName());
         c.insets = new Insets(5, 5, 5, 5);
         c.gridx = 0;
         c.gridy = 1;
         c.gridwidth = 2;
-        panel.add(p1Name, c);
-
-        movesLeft = new JLabel("Moves left:");
-        c.gridx = 0;
-        c.gridy = 2;
-        c.gridwidth = 1;
-        panel.add(movesLeft, c);
-
-        p1MovesLeft = new JLabel("3");
+        panel.add(name, c);
+        
+        icon = new JLabel("icon");
         c.gridx = 1;
         c.gridy = 2;
-        c.gridwidth = 1;
-        panel.add(p1MovesLeft, c);
-
-        moveP1 = new JButton("Move");
-        c.gridx = 0;
-        c.gridy = 3;
-        panel.add(moveP1, c);
-
-        attackP1 = new JButton("Attack");
+        panel.add(icon, c);
+        
+        lblClass = new JLabel("Class:");
         c.gridx = 1;
         c.gridy = 3;
-        panel.add(attackP1, c);
+        c.gridwidth = 1;
+        panel.add(lblClass, c);
+        
+        pClass = new JLabel("Wizard");
+        c.gridx = 2;
+        c.gridy = 3;
+        panel.add(pClass, c);
+        
+        lblRole = new JLabel("Role:");
+        c.gridx = 1;
+        c.gridy = 4;
+        panel.add(lblRole, c);
+        
+        role = new JLabel("CatMage");
+        c.gridx = 2;
+        c.gridy = 4;
+        panel.add(role, c);
+        
+        dash = new JLabel("--------------------STATS--------------------");
+        c.gridwidth = 4;
+        c.gridx = 1;
+        c.gridy = 5;
+        panel.add(dash, c);
+        
+        lblStr = new JLabel("Strengh:");
+        c.gridwidth = 2;
+        c.gridx = 1;
+        c.gridy = 6;
+        panel.add(lblStr, c);
+        
+        str = new JLabel(Integer.toString(
+                minirpg.MiniRPG.players.get(playerIndex).getStr()));
+        //c.insets = new Insets(5, 5, 5, 5);
+        c.gridwidth = 1;
+        c.gridx = 3;
+        c.gridy = 6;
+        panel.add(str, c);
+        
+        lblDex = new JLabel("Dexterity:");
+        c.gridwidth = 2;
+        c.gridx = 1;
+        c.gridy = 7;
+        panel.add(lblDex, c);
+        
+        dex = new JLabel(Integer.toString(
+                minirpg.MiniRPG.players.get(playerIndex).getDex()));
+        c.gridwidth = 1;
+        c.gridx = 3;
+        c.gridy = 7;
+        panel.add(dex, c);
+        
+        lblEnd = new JLabel("Endurance:");
+        c.gridwidth = 2;
+        c.gridx = 1;
+        c.gridy = 8;
+        panel.add(lblEnd, c);
+        
+        end = new JLabel(Integer.toString(
+                minirpg.MiniRPG.players.get(playerIndex).getEnd()));
+        c.gridwidth = 1;
+        c.gridx = 3;
+        c.gridy = 8;
+        panel.add(end, c);
+        
+        lblDex = new JLabel("Wisdom:");
+        c.gridwidth = 2;
+        c.gridx = 1;
+        c.gridy = 9;
+        panel.add(lblDex, c);
+        
+        wiz = new JLabel(Integer.toString(
+                minirpg.MiniRPG.players.get(playerIndex).getWis()));
+        c.gridwidth = 1;
+        c.gridx = 3;
+        c.gridy = 9;
+        panel.add(wiz, c);
+        
+        lblHp = new JLabel("HP");
+        c.gridx = 1;
+        c.gridy = 10;
+        panel.add(lblHp, c);
+        
+        hp = new JLabel("27");
+        c.gridx = 2;
+        c.gridy = 10;
+        panel.add(hp, c);
+        
+        dash = new JLabel("--------------------SKILLS--------------------");
+        c.gridwidth = 4;
+        c.gridx = 1;
+        c.gridy = 11;
+        panel.add(dash, c);
+        
+        lblSkill1 = new JLabel("Skill 1:");
+        c.gridwidth = 1;
+        c.gridx = 1;
+        c.gridy = 12;
+        panel.add(lblSkill1, c);
+        
+        skill1 = new JLabel("Scrach");
+        c.gridx = 2;
+        c.gridy = 12;
+        panel.add(skill1, c);
+        
+        lblSkill2 = new JLabel("Skill 2:");
+        c.gridx = 1;
+        c.gridy = 13;
+        panel.add(lblSkill2, c);
+        
+        skill2 = new JLabel("Bite");
+        c.gridx = 2;
+        c.gridy = 13;
+        panel.add(skill2, c);
+        
+        lblSkill3 = new JLabel("Skill 3:");
+        c.gridx = 1;
+        c.gridy = 14;
+        panel.add(lblSkill3, c);
+        
+        skill3 = new JLabel("Meow");
+        c.gridx = 2;
+        c.gridy = 14;
+        panel.add(skill3, c);
+        
+        lblSkill4 = new JLabel("Skill 4:");
+        c.gridx = 1;
+        c.gridy = 15;
+        panel.add(lblSkill4, c);
+        
+        skill4 = new JLabel("Hair Ball");
+        c.gridx = 2;
+        c.gridy = 15;
+        panel.add(skill4, c);
+        
         
         return panel;
     }

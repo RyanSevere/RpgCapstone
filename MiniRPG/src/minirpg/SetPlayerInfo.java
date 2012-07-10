@@ -484,7 +484,7 @@ public class SetPlayerInfo extends JFrame {
             int p = Integer.parseInt(pointsLeftField.getText());
             int playerID = pID;
             playerName = nameField.getText();
-            MiniRPG.players.add(new Player(playerName, s, d, e, w, p, playerID));
+            MiniRPG.players.add(new Player(playerName, s, d, e, w, p));
             pID++;
             name.setText(nameField.getText());
             listBox.addItem(playerName);
