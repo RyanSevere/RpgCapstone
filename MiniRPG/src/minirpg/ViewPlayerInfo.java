@@ -131,13 +131,13 @@ public class ViewPlayerInfo extends JFrame {
                 listBox.remove(listBox.getSelectedIndex());
                 MiniRPG.players.remove(listBox.getSelectedIndex());
                 SetPlayerInfo gui2 = new SetPlayerInfo(MiniRPG.players.get(listBox.getSelectedIndex()));
-                gui2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                //gui2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 gui2.setVisible(true);
                 gui2.setSize(250,250);
             }
             else if(a.getSource() == add){
                 SetPlayerInfo gui = new SetPlayerInfo();
-                gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                //gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 gui.setVisible(true);
                 gui.setSize(250,250);
             }
