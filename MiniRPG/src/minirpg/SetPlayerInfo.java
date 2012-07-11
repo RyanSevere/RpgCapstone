@@ -21,6 +21,7 @@ public class SetPlayerInfo extends JPanel {
     //Player player; // unneeded code for current set up
     //Player setInfo = new Player(); //point of this line of code? does not seem to be used other then to initalize an instance of player but is not used else were
     int battleCounter = 0;
+    int pID = 0;
 
     //initalizes an instance of Player() (constructor? error control?)
     public SetPlayerInfo() {
@@ -476,8 +477,11 @@ public class SetPlayerInfo extends JPanel {
             int e = Integer.parseInt(endTotal.getText());
             int w = Integer.parseInt(wisTotal.getText());
             int p = Integer.parseInt(pointsLeftField.getText());
+            int playerID = pID;
             playerName = nameField.getText();
+
             MiniRPG.players.add(new Player(playerName, s, d, e, w, p)); //additional information needed
+            pID++;
             name.setText(nameField.getText());
             listBox.addItem(playerName);
             listBox.setVisible(true);

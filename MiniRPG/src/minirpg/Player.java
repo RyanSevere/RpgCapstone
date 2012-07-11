@@ -8,12 +8,14 @@ public class Player {
     private int end;
     private int wis;
     private int pointsLeft = 0;
+    private int playerID;
 
     public Player() {
         this("Bob", 0, 0, 0, 0, 15);
     }
 //SetPlayerInfo m = new SetPlayerInfo();
-    public Player(String name, int str, int dex, int end, int wis, int pointsLeft) {
+    public Player(String name, int str, int dex, int end, int wis, 
+            int pointsLeft) {
         setName(name);
         setStr(str);
         setDex(dex);
@@ -74,4 +76,5 @@ public class Player {
     public void setPointsLeft(int pointsLeft) {
         this.pointsLeft = pointsLeft;
     }
+    
 }
