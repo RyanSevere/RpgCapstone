@@ -70,7 +70,7 @@ public class Player {
     public int getPointsLeft() {
         return pointsLeft;
     }
-//GET Set for pointsLeft
+//GET for pointsLeft
     public void setPointsLeft(int pointsLeft) {
         this.pointsLeft = pointsLeft;
     }

@@ -232,8 +232,8 @@ public class Battle extends JFrame {
         });
     }
 
-    public class Event implements ActionListener {
-
+    /*public class Event implements ActionListener {
+    
         public void actionPerformed(ActionEvent a) {
             if (a.getSource() == moveP1) {
                 p1MoveCheck = true;
@@ -241,7 +241,7 @@ public class Battle extends JFrame {
                 p1AttackCheck = true;
             }
         }
-    }
+    }*/
 
     public void moveCheck() {
         if (p1MoveCheck == true && nc() == null) {
@@ -392,7 +392,7 @@ public class Battle extends JFrame {
                 monsterskilled ++;
             }  
         }
-        if (monsterskilled == i+1) {
+        if (monsterskilled == i + 1) {
             infoBox.setText("");
             infoBox.append("All Monsters have been defeated \n YOU WIN!");
             JOptionPane.showMessageDialog(rootPane, "SHOWS OVER!");
