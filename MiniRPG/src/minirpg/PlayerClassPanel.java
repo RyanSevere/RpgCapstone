@@ -82,7 +82,7 @@ public class PlayerClassPanel extends JPanel {
         add(lblClass, c);
         
         //Class Combo Box
-        comboClass = new JComboBox(SelectedClass); //popluate based on selection from roles combo box
+        comboClass = new JComboBox(); //popluate based on selection from roles combo box
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 3;
         c.gridy = 2;
@@ -143,6 +143,112 @@ public class PlayerClassPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent a)
         {
+            String selectedRole = (String) comboRole.getSelectedItem();
+            if ("Tank".equals(selectedRole))
+            {
+                comboClass.removeAllItems(); //cleans out any data currently in comboClass
+                comboClass.setModel(new DefaultComboBoxModel(TankClass)); //populates comboclass with selected classes
+                
+            }
+            else if ("Healer".equals(selectedRole))
+            {
+                comboClass.removeAllItems();
+                comboClass.setModel(new DefaultComboBoxModel(HealerClass));
+            } 
+            else if ("Caster".equals(selectedRole))
+            {
+                comboClass.removeAllItems();
+                comboClass.setModel(new DefaultComboBoxModel(CasterClass));
+            }
+            else if ("Damage".equals(selectedRole))
+            {
+                comboClass.removeAllItems();
+                comboClass.setModel(new DefaultComboBoxModel(DpsClass));
+
+            }
+                
+            String selectedClass = (String) comboClass.getSelectedItem();
+            if("Barbarian".equals(selectedClass))
+            {
+                System.out.println(selectedClass);
+                comboSkills.removeAllItems();
+                comboSkills.setModel(new DefaultComboBoxModel(BarbaianSkills));
+            }
+            else if("Monk".equals(selectedClass))
+            {
+                comboSkills.removeAllItems();
+                comboSkills.setModel(new DefaultComboBoxModel(MonkSkills));
+            }
+            else if("Paladin".equals(selectedClass))
+            {
+                comboSkills.removeAllItems();
+                comboSkills.setModel(new DefaultComboBoxModel(PaladinSkills));
+            }
+            else if("Warrior".equals(selectedClass))
+            {
+                comboSkills.removeAllItems();
+                comboSkills.setModel(new DefaultComboBoxModel(WarriorSkills));
+            }
+            else if("Claric".equals(selectedClass))
+            {
+                comboSkills.removeAllItems();
+                comboSkills.setModel(new DefaultComboBoxModel(ClaricSkills));
+            }
+            else if("Priest".equals(selectedClass))
+            {
+                comboSkills.removeAllItems();
+                comboSkills.setModel(new DefaultComboBoxModel(PriestSkills));
+            }
+            else if("Shaman".equals(selectedClass))
+            {
+                comboSkills.removeAllItems();
+                comboSkills.setModel(new DefaultComboBoxModel(ShamanSkills));
+            }
+            else if("Bard".equals(selectedClass))
+            {
+                comboSkills.removeAllItems();
+                comboSkills.setModel(new DefaultComboBoxModel(BardSkills));
+            }
+            else if("Wizard".equals(selectedClass))
+            {
+                comboSkills.removeAllItems();
+                comboSkills.setModel(new DefaultComboBoxModel(WizardSkills));
+            }
+            else if("Druid".equals(selectedClass))
+            {
+                comboSkills.removeAllItems();
+                comboSkills.setModel(new DefaultComboBoxModel(DruidSkills));
+            }
+            else if("Warlock".equals(selectedClass))
+            {
+                comboSkills.removeAllItems();
+                comboSkills.setModel(new DefaultComboBoxModel(WarlockSkills));
+            }
+            else if("Pyromancer".equals(selectedClass))
+            {
+                comboSkills.removeAllItems();
+                comboSkills.setModel(new DefaultComboBoxModel(PyroSkills));
+            }
+            else if("Swashbuckler".equals(selectedClass))
+            {
+                comboSkills.removeAllItems();
+                comboSkills.setModel(new DefaultComboBoxModel(SwashSkills));
+            }
+            else if("Thief".equals(selectedClass))
+            {
+                comboSkills.removeAllItems();
+                comboSkills.setModel(new DefaultComboBoxModel(ThiefSkills));
+            }
+            else if("Ranger".equals(selectedClass))
+            {
+                comboSkills.removeAllItems();
+                comboSkills.setModel(new DefaultComboBoxModel(RangerSkills));
+            }
+            else if("Assassin".equals(selectedClass))
+            {
+                comboSkills.removeAllItems();
+                comboSkills.setModel(new DefaultComboBoxModel(AssassinSkills));
+            }
             
         }
     }
@@ -211,7 +317,7 @@ public class PlayerClassPanel extends JPanel {
     String[] AssassinSkills = {"", "Garrote", "Throwing Knife", "Kidney Stab", "Assassinate"};
     
     //array to fill Class Combo box with either nothing or selected class's once role is selected
-    String[] SelectedClass ={"", "", "", "", "         "};
+    //String[] SelectedClass ={"         "};
     
     
 }
