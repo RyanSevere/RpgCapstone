@@ -4,6 +4,9 @@
  */
 package minirpg;
 
+
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -11,5 +14,8 @@ import javax.swing.JPanel;
  * @author LordShadow
  */
 public class PlayerSummeryPanel extends JPanel{
+    
+    JLabel Name, Class, Role, Str, Dex, End, Wis, Skill;
+    JComboBox PlayerList;
     
 }

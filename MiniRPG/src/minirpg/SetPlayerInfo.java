@@ -479,6 +479,10 @@ public class SetPlayerInfo extends JPanel {
             int p = Integer.parseInt(pointsLeftField.getText());
             int lvl = 1;
             playerName = nameField.getText();
+            //String Role = MiniRPG.PlayerClassPanel.getPlayerClass();
+            
+            
+            
             
             //adds all the information from the menus into the player array creating the player info
             MiniRPG.players.add(new Player(playerName, s, d, e, w, p, 
