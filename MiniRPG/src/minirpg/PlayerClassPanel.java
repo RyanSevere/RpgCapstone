@@ -292,34 +292,23 @@ public class PlayerClassPanel extends JPanel {
    
     
     //attempts to do get information from role, class, skill to SetPlayerInfo 
-//    String Class = (String) comboClass.getSelectedItem();
-//    String Role = (String) comboRole.getSelectedItem();
-//    String Skill = (String) comboSkills.getSelectedItem();
-//    
-//    public void defaultconstructor()
-//    {
-//        Class = "";
-//        Role = "";
-//        Skill = "";
-//    }
-//           
-//    
-//    public String getPlayerClass()
-//        {             
-//            return Class;
-//        }
-//    public String getPlayerRole()
-//        {   
-//            return Role;
-//        }
-//    public String getPlayerSkill()
-//        {   
-//            return Skill;
-//        }
-//    public void setPlayerClass()
-//    {
-//        
-//    }
+    
+    public String getPlayerClass()
+        {             
+            String Class = (String) comboClass.getSelectedItem();
+            return Class;
+        }
+    public String getPlayerRole()
+        {   
+            String Role = (String) comboRole.getSelectedItem();
+            return Role;
+        }
+    public String getPlayerSkill()
+        {   
+            String Skill = (String) comboSkills.getSelectedItem();
+            return Skill;
+        }
+   
     
     
    //<editor-fold defaultstate="collapsed" desc="read file method to get the skill discription">

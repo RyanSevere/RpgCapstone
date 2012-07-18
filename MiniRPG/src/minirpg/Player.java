@@ -2,6 +2,8 @@ package minirpg;
 
 public class Player {
 
+    PlayerClassPanel PCP = new PlayerClassPanel();
+    
     private String name;
     private int str;
     private int dex;

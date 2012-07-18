@@ -3,6 +3,7 @@ package minirpg;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.ListIterator;
 import javax.swing.*;
 
 public class SetPlayerInfo extends JPanel {
@@ -15,9 +16,11 @@ public class SetPlayerInfo extends JPanel {
     String playerName = "meow";
     JComboBox listBox;
     
+    PlayerClassPanel pcp = new PlayerClassPanel();
     
     //Delcared Array for Player Names and Stats
     ArrayList<Player> players = new ArrayList<Player>();
+    ListIterator<Player> namelist = players.listIterator();
     //Player player; // unneeded code for current set up
     //Player setInfo = new Player(); //point of this line of code? does not seem to be used other then to initalize an instance of player but is not used else were
     int battleCounter = 0;
@@ -35,7 +38,7 @@ public class SetPlayerInfo extends JPanel {
         //uses gridbag layout to setup gui
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
-        
+    
         //top title       
         name = new JLabel("Character Stat's");
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -47,119 +50,100 @@ public class SetPlayerInfo extends JPanel {
 
         //Starts STR stuff
         addStr = new JButton("+");
-        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = 1;
         c.gridwidth = 1; //reseting back to 1 after centering title
         add(addStr, c);
 
         subStr = new JButton("-");
-        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 1;
         add(subStr, c);
 
         str = new JLabel("   Strength   ");
-        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 2;
         c.gridy = 1;
         add(str, c);
         
         strTotal = new JLabel(Integer.toString(newGuy.getStr()));
-        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 3;
         c.gridy = 1;
         add(strTotal, c);
 
         //Starts DEX stuff
         addDex = new JButton("+");
-        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = 2;
         add(addDex, c);
 
         subDex = new JButton("-");
-        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 2;
         add(subDex, c);
 
         dex = new JLabel("   Dexterity   ");
-        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 2;
         c.gridy = 2;
         add(dex, c);
 
         dexTotal = new JLabel(Integer.toString(newGuy.getDex()));
-        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 3;
         c.gridy = 2;
         add(dexTotal, c);
 
         //Starts END stuff
-        addEnd = new JButton("+");
-        c.fill = GridBagConstraints.HORIZONTAL;
+        addEnd = new JButton("+");       
         c.gridx = 1;
         c.gridy = 3;
         add(addEnd, c);
 
-        subEnd = new JButton("-");
-        c.fill = GridBagConstraints.HORIZONTAL;
+        subEnd = new JButton("-");       
         c.gridx = 0;
         c.gridy = 3;
         add(subEnd, c);
 
-        end = new JLabel("   Endurance   ");
-        c.fill = GridBagConstraints.HORIZONTAL;
+        end = new JLabel("   Endurance   ");      
         c.gridx = 2;
         c.gridy = 3;
         add(end, c);
 
-        endTotal = new JLabel(Integer.toString(newGuy.getEnd()));
-        c.fill = GridBagConstraints.HORIZONTAL;
+        endTotal = new JLabel(Integer.toString(newGuy.getEnd()));      
         c.gridx = 3;
         c.gridy = 3;
         add(endTotal, c);
 
         //Starts WIS stuff
-        addWis = new JButton("+");
-        c.fill = GridBagConstraints.HORIZONTAL;
+        addWis = new JButton("+");       
         c.gridx = 1;
         c.gridy = 4;
         add(addWis, c);
 
-        subWis = new JButton("-");
-        c.fill = GridBagConstraints.HORIZONTAL;
+        subWis = new JButton("-");       
         c.gridx = 0;
         c.gridy = 4;
         add(subWis, c);
 
-        wis = new JLabel("   Wisdom   ");
-        c.fill = GridBagConstraints.HORIZONTAL;
+        wis = new JLabel("   Wisdom   ");       
         c.gridx = 2;
         c.gridy = 4;
         add(wis, c);
 
-        wisTotal = new JLabel(Integer.toString(newGuy.getWis()));
-        c.fill = GridBagConstraints.HORIZONTAL;
+        wisTotal = new JLabel(Integer.toString(newGuy.getWis()));       
         c.gridx = 3;
         c.gridy = 4;
         add(wisTotal, c);
 
-        pointsLeftLabel = new JLabel("Points Left: ");
-        c.fill = GridBagConstraints.HORIZONTAL;
+        pointsLeftLabel = new JLabel("Points Left: ");       
         c.gridx = 2;
         c.gridy = 5;
         add(pointsLeftLabel, c);
 
-        pointsLeftField = new JLabel(Integer.toString(newGuy.getPointsLeft()));
-        c.fill = GridBagConstraints.HORIZONTAL;
+        pointsLeftField = new JLabel(Integer.toString(newGuy.getPointsLeft()));       
         c.gridx = 3;
         c.gridy = 5;
         add(pointsLeftField, c);
         
-        nameField = new JTextField();
-        c.fill = GridBagConstraints.HORIZONTAL;
+        nameField = new JTextField();       
         //c.insets = new Insets(2, 7, 2, 2);
         c.gridx = 0;
         c.gridy = 7;
@@ -167,23 +151,20 @@ public class SetPlayerInfo extends JPanel {
         add(nameField, c);
         
         //adds the buttons the the GUI
-        create = new JButton("Create");
-        c.fill = GridBagConstraints.HORIZONTAL;
+        create = new JButton("Create");       
         c.insets = new Insets(2, 2, 2, 2);
         c.gridx = 0;
         c.gridy = 8;
         c.gridwidth = 2;
         add(create, c);
 
-        edit = new JButton("Edit");
-        c.fill = GridBagConstraints.HORIZONTAL;
+        edit = new JButton("Edit");       
         c.gridx = 2;
         c.gridy = 8;
         c.gridwidth = 2;
         add(edit, c);
 
-        done = new JButton("Done");
-        c.fill = GridBagConstraints.HORIZONTAL;
+        done = new JButton("Done");       
         c.gridx = 2;
         c.gridy = 8;
         c.gridwidth = 2;
@@ -192,8 +173,7 @@ public class SetPlayerInfo extends JPanel {
         //combobox lists already created players by name in order of creation
         //only visiable after inital character creation
         listBox = new JComboBox();
-        c.insets = new Insets(2, 9, 2, 2);
-        c.fill = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(2, 9, 2, 2);      
         c.gridx = 0;
         c.gridy = 9;
         c.gridwidth = 3;
@@ -202,8 +182,7 @@ public class SetPlayerInfo extends JPanel {
         listBox.setVisible(false);
         
         //only visable after 4 characters created
-        battle = new JButton("Battle");
-        c.fill = GridBagConstraints.HORIZONTAL;
+        battle = new JButton("Battle");       
         c.insets = new Insets(2, 2, 2, 30);
         c.gridx = 1;
         c.gridy = 10;
@@ -472,6 +451,7 @@ public class SetPlayerInfo extends JPanel {
         }
         //adds the player to the array list found in the main class
         public void create() {
+                        
             int s = Integer.parseInt(strTotal.getText());
             int d = Integer.parseInt(dexTotal.getText());
             int e = Integer.parseInt(endTotal.getText());
@@ -479,14 +459,13 @@ public class SetPlayerInfo extends JPanel {
             int p = Integer.parseInt(pointsLeftField.getText());
             int lvl = 1;
             playerName = nameField.getText();
-            //String Role = MiniRPG.PlayerClassPanel.getPlayerClass();
-            
-            
-            
-            
+            String Role = pcp.getPlayerRole();
+            String Class =pcp.getPlayerClass();
+            String Skill = pcp.getPlayerSkill();
+                       
             //adds all the information from the menus into the player array creating the player info
             MiniRPG.players.add(new Player(playerName, s, d, e, w, p, 
-                    "Role", "Class", "Skill 1", "Skill 2", " Skill 3", "Skill 4", lvl));
+                    Role, Class, Skill, "Skill 2", " Skill 3", "Skill 4", lvl));
             pID++;
             name.setText(nameField.getText());
             listBox.addItem(playerName);
@@ -496,7 +475,7 @@ public class SetPlayerInfo extends JPanel {
             } else {
                 battleCounter++;
             }
-
+            
         }
     }
 }
