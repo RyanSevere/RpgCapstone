@@ -15,14 +15,16 @@ public class Player {
     private String Skill2;
     private String Skill3;
     private String Skill4;
+    private int column;
+    private int row;
 
     public Player() {
-        this("Steve", 0, 0, 0, 0, 15, "Tank", "Monk", "Stun", null, null, null, 1);
+        this("Steve", 0, 0, 0, 0, 15, "Tank", "Monk", "Stun", null, null, null, 1,0,0);
     }
 //SetPlayerInfo m = new SetPlayerInfo();
     public Player(String name, int str, int dex, int end, int wis, 
             int pointsLeft, String Role, String Class, String Skill1,
-            String Skill2, String Skill3, String Skill4, int Lvl) {
+            String Skill2, String Skill3, String Skill4, int Lvl,int row,int column) {
         setName(name);
         setStr(str);
         setDex(dex);
@@ -35,6 +37,8 @@ public class Player {
         setSkill2(Skill2);
         setSkill3(Skill3);
         setSkill4(Skill4);
+        setRow(row);
+        setColumn(column);
         
 
     }
@@ -165,5 +169,20 @@ public class Player {
     {
         this.Lvl = Lvl;
     }
-    
+    public int getRow()
+    {
+        return row;
+    }
+    public void setRow(int row)
+    {
+        this.row = row;
+    }
+    public int getColoum()
+    {
+        return column;
+    }
+    public void setColumn(int column)
+    {
+        this.column = column;
+    }
 }
