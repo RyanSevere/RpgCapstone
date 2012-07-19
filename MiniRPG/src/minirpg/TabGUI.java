@@ -14,7 +14,7 @@ import javax.swing.*;
 public class TabGUI extends JFrame {
     
     //creates tabbed pane for tabs to attach to
-    JTabbedPane jtp = new JTabbedPane();
+    static JTabbedPane jtp = new JTabbedPane();
     
     //declare panels to create tabs
     PlayerClassPanel PCP = new PlayerClassPanel();
@@ -40,6 +40,10 @@ public class TabGUI extends JFrame {
         
         
     }
+    static void meow(){
+    jtp.setSelectedIndex(0);
+    
+    }
     
     public void disableSummeryPanel()
     {
@@ -63,22 +67,22 @@ public class TabGUI extends JFrame {
         
     }
     
-    public void activateSummeryPanel()
-    {
-        jtp.setEnabledAt(0, true);
-        jtp.setEnabledAt(1, true);
-        jtp.setEnabledAt(2, true);
-        //summery still wont enable
-        
-        System.out.println("ActivateSummyPanel has been run");
-        //index = jtp.getSelectedIndex();
-        System.out.println("Current tab index: " + index);
-    }
+//    public void activateSummeryPanel()
+//    {
+//        jtp.setEnabledAt(0, true);
+//        jtp.setEnabledAt(1, true);
+//        jtp.setEnabledAt(2, true);
+//        //summery still wont enable
+//        
+//        System.out.println("ActivateSummyPanel has been run");
+//        //index = jtp.getSelectedIndex();
+//        System.out.println("Current tab index: " + index);
+//    }
     public void returntoClassPanel()
     {
         
         System.out.println("ReturntoClassPanel has been run");
-        index = jtp.getSelectedIndex();
+        jtp.setSelectedIndex(0);
         System.out.println("Current tab index: " + index);
     }
     
@@ -92,4 +96,6 @@ public class TabGUI extends JFrame {
     {
         this.index = index;
     }
+    
+    
 }

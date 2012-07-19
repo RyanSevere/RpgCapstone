@@ -426,7 +426,7 @@ public class SetPlayerInfo extends JPanel {
             if (battleCounter >= 4) {
                 battle.setVisible(true);
                 create.setEnabled(false);
-                Gui.activateSummeryPanel();
+                //Gui.activateSummeryPanel();
             }
         }
         //lets you edit the player at the index selected 
@@ -453,7 +453,7 @@ public class SetPlayerInfo extends JPanel {
         }
         //adds the player to the array list found in the main class
         public void create() {
-            TabGUI Gui = new TabGUI();           
+            //TabGUI Gui = new TabGUI();           
             int s = Integer.parseInt(strTotal.getText());
             int d = Integer.parseInt(dexTotal.getText());
             int e = Integer.parseInt(endTotal.getText());
@@ -472,7 +472,7 @@ public class SetPlayerInfo extends JPanel {
             name.setText(nameField.getText());
             listBox.addItem(playerName);
             listBox.setVisible(true);
-            Gui.returntoClassPanel();
+            TabGUI.meow();
             
             battleCounter++;
             System.out.println(battleCounter);
