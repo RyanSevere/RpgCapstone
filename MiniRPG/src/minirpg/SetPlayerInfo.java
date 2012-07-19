@@ -3,7 +3,6 @@ package minirpg;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.ListIterator;
 import javax.swing.*;
 
 public class SetPlayerInfo extends JPanel {
@@ -17,10 +16,10 @@ public class SetPlayerInfo extends JPanel {
     JComboBox listBox;
     
     PlayerClassPanel pcp = new PlayerClassPanel();
-    
+               
     //Delcared Array for Player Names and Stats
     ArrayList<Player> players = new ArrayList<Player>();
-    ListIterator<Player> namelist = players.listIterator();
+    //ListIterator<Player> namelist = players.listIterator();
     //Player player; // unneeded code for current set up
     //Player setInfo = new Player(); //point of this line of code? does not seem to be used other then to initalize an instance of player but is not used else were
     int battleCounter = 0;
@@ -38,7 +37,7 @@ public class SetPlayerInfo extends JPanel {
         //uses gridbag layout to setup gui
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
-    
+              
         //top title       
         name = new JLabel("Character Stat's");
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -408,6 +407,7 @@ public class SetPlayerInfo extends JPanel {
         //makes the listbox that holds the players visable
 
         public void show() {
+            TabGUI Gui = new TabGUI();
             strTotal.setText("0");
             dexTotal.setText("0");
             endTotal.setText("0");
@@ -425,6 +425,8 @@ public class SetPlayerInfo extends JPanel {
              * the battle can begin*/
             if (battleCounter >= 4) {
                 battle.setVisible(true);
+                create.setEnabled(false);
+                Gui.activateSummeryPanel();
             }
         }
         //lets you edit the player at the index selected 
@@ -451,7 +453,7 @@ public class SetPlayerInfo extends JPanel {
         }
         //adds the player to the array list found in the main class
         public void create() {
-                        
+            TabGUI Gui = new TabGUI();           
             int s = Integer.parseInt(strTotal.getText());
             int d = Integer.parseInt(dexTotal.getText());
             int e = Integer.parseInt(endTotal.getText());
@@ -460,7 +462,7 @@ public class SetPlayerInfo extends JPanel {
             int lvl = 1;
             playerName = nameField.getText();
             String Role = pcp.getPlayerRole();
-            String Class =pcp.getPlayerClass();
+            String Class = pcp.getPlayerClass();
             String Skill = pcp.getPlayerSkill();
                        
             //adds all the information from the menus into the player array creating the player info
@@ -470,11 +472,11 @@ public class SetPlayerInfo extends JPanel {
             name.setText(nameField.getText());
             listBox.addItem(playerName);
             listBox.setVisible(true);
-            if (battleCounter >= 4) {
-                battle.setVisible(true);
-            } else {
-                battleCounter++;
-            }
+            Gui.returntoClassPanel();
+            
+            battleCounter++;
+            System.out.println(battleCounter);
+            
             
         }
     }

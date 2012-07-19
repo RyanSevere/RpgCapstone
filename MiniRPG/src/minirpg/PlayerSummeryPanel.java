@@ -25,7 +25,6 @@ public class PlayerSummeryPanel extends JPanel {
        
     PlayerClassPanel Pcp = new PlayerClassPanel();
     SetPlayerInfo Spi = new SetPlayerInfo();
-    TabGUI TabGUI = new TabGUI();
     int playerid, str, dex, end, wis;
     String Role, Class, Skill;
     String[] Players;

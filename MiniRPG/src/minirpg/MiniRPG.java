@@ -16,8 +16,9 @@ public class MiniRPG {
         TabGUI gui = new TabGUI();      
         //SetPlayerInfo gui = new SetPlayerInfo();
         gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //gui.setVisible(true); //now set in NewTabGUI
-        //gui.setSize(275, 315); //now set in NewTabGUI
+        gui.setVisible(true); //now set in NewTabGUI
+        gui.setSize(325, 355);; //now set in NewTabGUI
+        gui.disableSummeryPanel();
             
     }
 
