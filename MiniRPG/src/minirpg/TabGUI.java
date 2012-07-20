@@ -17,12 +17,13 @@ public class TabGUI extends JFrame {
     static JTabbedPane jtp = new JTabbedPane();
     
     //declare panels to create tabs
-    PlayerClassPanel PCP = new PlayerClassPanel();
-    PlayerSummeryPanel PSUMP = new PlayerSummeryPanel();
+    static PlayerClassPanel PCP = new PlayerClassPanel();
+    static PlayerSummeryPanel PSUMP = new PlayerSummeryPanel();
     SetPlayerInfo PSP = new SetPlayerInfo();
     SingleSelectionModel model;
     int index;
     int count  = 0;
+    
     public TabGUI()
     {
         Container canvas = getContentPane();  //declare the container to hold the tabs/panels
@@ -32,58 +33,53 @@ public class TabGUI extends JFrame {
         jtp.addTab("Player Class", null, PCP, "Class Selection");
         jtp.addTab("Player Stat", null, PSP, "Player Stats");
         jtp.addTab("Player Summery", null, PSUMP, "Summery");
-        
-        //this.setSize(325, 355);
         this.setTitle("Player Creation");
-        //this.setVisible(true);
+        
        
         
         
     }
-    static void meow(){
-    jtp.setSelectedIndex(0);
+//    static void meow(){
+//    jtp.setSelectedIndex(0);
+//    
+//    }
     
+    static void activateSummeryPanel()
+    {
+        jtp.setEnabledAt(2, true);
     }
     
     public void disableSummeryPanel()
     {
-        //if(count != 1)
-        //{
-            jtp.setEnabledAt(2, false);
-            System.out.println("DisableSummeryPanel");
-            //count = 1;
-        //}
+        jtp.setEnabledAt(2, false);
         
     }
     
-    public void SummerySelected()
+    static void SummerySelected()
     {
-        index = jtp.getSelectedIndex();
-        if(index == 3)
-        {
-            //where code will go to populate the combo box of players in summery panel
-            System.out.println("Selected Tab is Summery");
-        }
         
+//        int count = 0; 
+//        while(count <= MiniRPG.players.size())
+//            {
+//                int x = 0;
+//                PSUMP.Players[x] = MiniRPG.players.get(x).getName();
+//                x++;
+//                count++;
+//                System.out.println(PSUMP.Players[x]);
+//            }  
     }
     
-//    public void activateSummeryPanel()
-//    {
-//        jtp.setEnabledAt(0, true);
-//        jtp.setEnabledAt(1, true);
-//        jtp.setEnabledAt(2, true);
-//        //summery still wont enable
-//        
-//        System.out.println("ActivateSummyPanel has been run");
-//        //index = jtp.getSelectedIndex();
-//        System.out.println("Current tab index: " + index);
-//    }
-    public void returntoClassPanel()
+
+    static void returntoClassPanel()
     {
         
-        System.out.println("ReturntoClassPanel has been run");
+        //System.out.println("ReturntoClassPanel has been run");
         jtp.setSelectedIndex(0);
-        System.out.println("Current tab index: " + index);
+    }
+    
+    static void resetCombo()
+    {
+        PCP.comboRole.setSelectedItem(PCP.roles[0]);
     }
     
     public int GetSelectedTab()

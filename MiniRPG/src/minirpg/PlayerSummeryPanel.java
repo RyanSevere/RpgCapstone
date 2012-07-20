@@ -27,17 +27,20 @@ public class PlayerSummeryPanel extends JPanel {
     SetPlayerInfo Spi = new SetPlayerInfo();
     int playerid, str, dex, end, wis;
     String Role, Class, Skill;
-    String[] Players;
+    String[] Players = {"", "", "", ""};
     
     
     public PlayerSummeryPanel()
             {
-//                while(Spi.namelist.hasNext())
-//                {
-//                    int x = 0;
-//                    Players[0] =MiniRPG.players.get(x).getName();
-//                    x++;
-//                }
+//                int count = 0; 
+//                while(count <= MiniRPG.players.size())
+//                    {
+//                        int x = 0;
+//                        Players[0] = MiniRPG.players.get(x).getName();
+//                        x++;
+//                        count++;
+//                        System.out.println(Players[x]);
+//                    } 
                 
                 
                 //<editor-fold defaultstate="collapesed" desc="GUI layout">
@@ -53,7 +56,7 @@ public class PlayerSummeryPanel extends JPanel {
                 add(lblTitle, c);
                 
                 //Combo Box to selected Player
-                comboPlayerList = new JComboBox();
+                comboPlayerList = new JComboBox(Players);
                 c.gridx = 0;
                 c.gridy = 2;
                 add(comboPlayerList, c);

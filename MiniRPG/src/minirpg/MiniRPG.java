@@ -18,7 +18,7 @@ public class MiniRPG {
         gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gui.setVisible(true); //now set in NewTabGUI
         gui.setSize(325, 355);; //now set in NewTabGUI
-        gui.disableSummeryPanel();
+        gui.disableSummeryPanel(); //initally disables the SummeryPanel
             
     }
 

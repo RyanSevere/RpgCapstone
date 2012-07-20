@@ -24,6 +24,7 @@ public class SetPlayerInfo extends JPanel {
     //Player setInfo = new Player(); //point of this line of code? does not seem to be used other then to initalize an instance of player but is not used else were
     int battleCounter = 0;
     int pID = 0;
+    public boolean valid = false;
 
     //initalizes an instance of Player() (constructor? error control?)
     public SetPlayerInfo() {
@@ -210,6 +211,7 @@ public class SetPlayerInfo extends JPanel {
     
     public class Event implements ActionListener {
 
+        @Override
         public void actionPerformed(ActionEvent a) {
             int total = 0;
             int num = 0;
@@ -315,8 +317,15 @@ public class SetPlayerInfo extends JPanel {
             //Used to set all the stats and adds player to the array list
             //changes menu look the 1st time its clicked
             else if (a.getSource() == create) {
-                create(); //adds stat information and player name to the array list
-                show(); //makes player list box visable
+                //the check to see if all fields have been filled outbefore creating charater still buggy
+                //combobox's for Class, Role, Skill still returning null after use of getter
+                //isValid();
+                //if(valid == true)
+                //{
+                    create(); //adds stat information and player name to the array list
+                    show(); //makes player list box visable
+                //}
+                
             } 
             //edit listener
             else if (a.getSource() == edit) {
@@ -406,8 +415,8 @@ public class SetPlayerInfo extends JPanel {
         //makes the edit and create buttons visable
         //makes the listbox that holds the players visable
 
-        public void show() {
-            TabGUI Gui = new TabGUI();
+        public void show() 
+        {
             strTotal.setText("0");
             dexTotal.setText("0");
             endTotal.setText("0");
@@ -426,7 +435,8 @@ public class SetPlayerInfo extends JPanel {
             if (battleCounter >= 4) {
                 battle.setVisible(true);
                 create.setEnabled(false);
-                //Gui.activateSummeryPanel();
+                TabGUI.activateSummeryPanel();
+                TabGUI.SummerySelected();
             }
         }
         //lets you edit the player at the index selected 
@@ -451,9 +461,39 @@ public class SetPlayerInfo extends JPanel {
             name.setText(playerName);
             pointsLeftField.setText(Integer.toString(MiniRPG.players.get(listBox.getSelectedIndex()).getPointsLeft()));
         }
+        
+        public void isValid()
+        {
+            String Role =  pcp.getPlayerRole();
+            String Class = pcp.getPlayerClass();
+            String Skill = pcp.getPlayerSkill();
+            int pointsleft = Integer.parseInt(pointsLeftField.getText());
+            
+            if("".equals(Role) || Role == null)
+            {
+                JOptionPane.showMessageDialog(create, "you must select a Role, Class, and Skill");
+                System.out.println("Selected Role: " + Role + ".");
+            }
+            else if("".equals(Class) || Class == null)
+            {
+                JOptionPane.showMessageDialog(create, "You must select a Class and Skill");
+            }
+            else if("".equals(Skill) || Skill == null)
+            {
+                JOptionPane.showMessageDialog(create, "You must select a Skill");
+            }
+            else if(pointsleft > 0)
+            {
+                JOptionPane.showMessageDialog(create, "You have unspend Stat Points");
+            }
+            else if (!"".equals(pcp.getPlayerRole()) && !"".equals(pcp.getPlayerClass()) && !"".equals(pcp.getPlayerSkill()) && pointsleft == 0)
+            {
+                valid = true;
+            }
+        }
+        
         //adds the player to the array list found in the main class
         public void create() {
-            //TabGUI Gui = new TabGUI();           
             int s = Integer.parseInt(strTotal.getText());
             int d = Integer.parseInt(dexTotal.getText());
             int e = Integer.parseInt(endTotal.getText());
@@ -461,22 +501,25 @@ public class SetPlayerInfo extends JPanel {
             int p = Integer.parseInt(pointsLeftField.getText());
             int lvl = 1;
             playerName = nameField.getText();
-            String Role = pcp.getPlayerRole();
+            String Role = (String) pcp.getPlayerRole();
             String Class = pcp.getPlayerClass();
             String Skill = pcp.getPlayerSkill();
-                       
+            //add if statement where you create will not work if the user hasnt selected a role, and used all 15 stat points            
             //adds all the information from the menus into the player array creating the player info
-            MiniRPG.players.add(new Player(playerName, s, d, e, w, p, 
-                    Role, Class, Skill, "Skill 2", " Skill 3", "Skill 4", lvl));
-            pID++;
-            name.setText(nameField.getText());
-            listBox.addItem(playerName);
-            listBox.setVisible(true);
-            TabGUI.meow();
-            
-            battleCounter++;
-            System.out.println(battleCounter);
-            
+                MiniRPG.players.add(new Player(playerName, s, d, e, w, p, 
+                        Role, Class, Skill, "Skill 2", " Skill 3", "Skill 4", lvl));
+                pID++;
+                name.setText(nameField.getText());
+                listBox.addItem(playerName);
+                listBox.setVisible(true);
+
+                battleCounter++;
+                //System.out.println(battleCounter);
+                if(battleCounter < 4)
+                {
+                TabGUI.returntoClassPanel();  
+                }
+                TabGUI.resetCombo();
             
         }
     }
