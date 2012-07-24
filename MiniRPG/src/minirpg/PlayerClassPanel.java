@@ -32,6 +32,7 @@ public class PlayerClassPanel extends JPanel {
     String SelectedSkill; //where the selected skill will go for the file read function
     String SkillDescription; //where the description from the file will be stored for output
     String Class, Role, Skill;
+    boolean isValid = false;
     
        
     public PlayerClassPanel()
@@ -165,7 +166,6 @@ public class PlayerClassPanel extends JPanel {
                             {
                                 comboClass.removeAllItems(); // removes previous selection from combobox
                                 comboClass.setModel(new DefaultComboBoxModel(TankClass)); //populates comboClass with Selection
-
                             }
                             else if ("Healer".equals(selectedRole))
                             {
@@ -191,8 +191,7 @@ public class PlayerClassPanel extends JPanel {
 
 
                         }
-                    Role = (String) comboRole.getSelectedItem();
-                    System.out.println(Role);
+                    Role =  (String) comboRole.getSelectedItem();
                }
         
         };
@@ -278,7 +277,7 @@ public class PlayerClassPanel extends JPanel {
                     txtbxDescription.setText("");
                 }
                 Class = (String) comboClass.getSelectedItem();
-                System.out.println(Class);
+                //System.out.println(Class);
             }
             
         };
@@ -300,7 +299,15 @@ public class PlayerClassPanel extends JPanel {
                     txtbxDescription.setText("");
                 }
                 Skill = SelectedSkill;
-                System.out.println(Skill);
+                //System.out.println(Skill);
+                //adding items through item listener isnt working will have to add a done button to class panel
+                //might as well make stat panel disabled until done button pushed and what not
+                checkValid();
+                if (isValid == true)
+                {
+                    TabGUI.comboSelection.add(new ComboSelection(Role, Class, Skill));
+                    isValid = false;
+                }
             }
         };
         
@@ -311,13 +318,27 @@ public class PlayerClassPanel extends JPanel {
         
         
    }
+    
+    public void checkValid()
+    {
+        if(!"".equals(Role) || Role != null)
+        {
+            if(!"".equals(Class) || Class != null)
+            {
+                if(!"".equals(Skill) || Skill != null)
+                {
+                    isValid = true;
+                }
+            }
+        }
+    }
    
     
     //attempts to do get information from role, class, skill to SetPlayerInfo 
     //some where between the ItemListener and the Getters the Value of Class, Role, and Skill are being set back to null;
     public String getPlayerClass()
-        {             
-            return Class;
+        {                         
+            return Class;            
         }
     public String getPlayerRole()
         {   

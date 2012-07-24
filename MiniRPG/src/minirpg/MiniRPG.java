@@ -51,4 +51,5 @@ public class MiniRPG {
         Role = players.get(num).getRole();
         return Role;
     }
+    
 }

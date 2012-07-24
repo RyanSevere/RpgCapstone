@@ -5,6 +5,7 @@
 package minirpg;
 
 import java.awt.*;
+import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -22,7 +23,10 @@ public class TabGUI extends JFrame {
     SetPlayerInfo PSP = new SetPlayerInfo();
     SingleSelectionModel model;
     int index;
+    String Role, Class, Skill;
     int count  = 0;
+    
+    public static ArrayList<ComboSelection> comboSelection = new ArrayList<ComboSelection>();
     
     public TabGUI()
     {
@@ -35,18 +39,18 @@ public class TabGUI extends JFrame {
         jtp.addTab("Player Summery", null, PSUMP, "Summery");
         this.setTitle("Player Creation");
         
-       
-        
-        
     }
-//    static void meow(){
-//    jtp.setSelectedIndex(0);
-//    
-//    }
     
     static void activateSummeryPanel()
     {
         jtp.setEnabledAt(2, true);
+        SummerySelected();
+    }
+    
+    static void activateCreationpanels()
+    {
+        jtp.setEnabledAt(0, true);
+        jtp.setEnabledAt(1, true);
     }
     
     public void disableSummeryPanel()
@@ -55,25 +59,34 @@ public class TabGUI extends JFrame {
         
     }
     
-    static void SummerySelected()
+    static void disableCreationPanels()
     {
-        
-//        int count = 0; 
-//        while(count <= MiniRPG.players.size())
-//            {
-//                int x = 0;
-//                PSUMP.Players[x] = MiniRPG.players.get(x).getName();
-//                x++;
-//                count++;
-//                System.out.println(PSUMP.Players[x]);
-//            }  
+        jtp.setEnabledAt(0, false);
+        jtp.setEnabledAt(1, false);
     }
     
-
+    static void SummerySelected()
+    {
+        int x = 0;
+        int count = 0; 
+        while(count <= MiniRPG.players.size() - 1)
+            {
+                
+                PSUMP.Players[x] = MiniRPG.players.get(x).getName();
+                System.out.println("x: " + x);
+                System.out.println("count: " + count);
+                System.out.println("size of Player Array: " + MiniRPG.players.size());
+                System.out.println("Player " + x + " is " + MiniRPG.players.get(x).getName());
+                x++;
+                count++;
+            }
+        PSUMP.comboPlayerList.setModel(new DefaultComboBoxModel(PSUMP.Players));
+        jtp.setSelectedIndex(2);
+        disableCreationPanels();
+    }
+    
     static void returntoClassPanel()
     {
-        
-        //System.out.println("ReturntoClassPanel has been run");
         jtp.setSelectedIndex(0);
     }
     
@@ -93,5 +106,22 @@ public class TabGUI extends JFrame {
         this.index = index;
     }
     
+    public String getRole(int num) 
+    {
+        Role = comboSelection.get(num).getRole();
+        return Role;
+    }
+    
+    public String getclass(int num)
+    {
+        Class = comboSelection.get(num).getclass();
+        return Class;
+    }
+    
+    public String getSkill(int num)
+    {
+        Skill = comboSelection.get(num).getSkill();
+        return Skill;
+    }
     
 }
