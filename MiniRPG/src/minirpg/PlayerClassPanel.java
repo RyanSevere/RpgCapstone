@@ -6,6 +6,8 @@ package minirpg;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.BufferedReader;
@@ -119,7 +121,18 @@ public class PlayerClassPanel extends JPanel {
         txtbxDescription.setEditable(false);
         txtbxDescription.setWrapStyleWord(true);
         txtbxDescription.setLineWrap(true);
+        
+        btnDone = new JButton("Done");
+        c.gridx = 1;
+        c.gridy = 4;
+        c.gridwidth = 1;
+        add(btnDone, c);
+        
+        PlayerClassPanel.Event a = new PlayerClassPanel.Event();
+        btnDone.addActionListener(a);
+        
         //</editor-fold>
+        
         
        //<editor-fold defaultstate="collapsed" desc="add and Done button placement not being used on this panel">
         //add button
@@ -300,22 +313,14 @@ public class PlayerClassPanel extends JPanel {
                 }
                 Skill = SelectedSkill;
                 //System.out.println(Skill);
-                //adding items through item listener isnt working will have to add a done button to class panel
-                //might as well make stat panel disabled until done button pushed and what not
-                checkValid();
-                if (isValid == true)
-                {
-                    TabGUI.comboSelection.add(new ComboSelection(Role, Class, Skill));
-                    isValid = false;
-                }
+                
             }
         };
         
         //set listeners
         comboRole.addItemListener(roleListener);
         comboClass.addItemListener(classListener);
-        comboSkills.addItemListener(skillListener);
-        
+        comboSkills.addItemListener(skillListener);        
         
    }
     
@@ -384,112 +389,28 @@ public class PlayerClassPanel extends JPanel {
     
     
   //<editor-fold //<editor-fold defaultstate="collapsed" desc="ActionLiseners Replaced with ItemListeners, Resolved Issue of comboboxs getting multipule instances of the same list">
-    /*
+    
         public class Event implements ActionListener
         {
             @Override
-            public void actionPerformed(ActionEvent a)
+            public void actionPerformed(ActionEvent e)
             {
-                String selectedRole = (String) comboRole.getSelectedItem();
-                String selectedClass = (String) comboClass.getSelectedItem();
-
-                if ("Tank".equals(selectedRole))
+                if(e.getSource() == btnDone)
                 {
-                    //comboClass.setModel(new DefaultComboBoxModel(TankClass)); //populating only top level item 
-                    //cleancombo();
-                    tank();
-                    //entire array is being treated as a single item.
+                    TabGUI.activateStatPanel();
+                    
+                    checkValid();
+                    if (isValid == true)
+                    {
+                        TabGUI.comboSelection.add(new ComboSelection(Role, Class, Skill));
+                        isValid = false;
+                        TabGUI.disableClassPanel();
+                        TabGUI.FowardStatPanel();
+                    }
                 }
-                else if ("Healer".equals(selectedRole))
-                {
-                    healer();
-                    //comboClass.setModel(new DefaultComboBoxModel(HealerClass));
-                } 
-                else if ("Caster".equals(selectedRole))
-                {                
-                    caster();
-                    //comboClass.setModel(new DefaultComboBoxModel(CasterClass));
-                }
-                else if ("Damage".equals(selectedRole))
-                {                
-                    dps();
-                    //comboClass.setModel(new DefaultComboBoxModel(DpsClass));
-                }
-
-
-                if("Barbarian".equals(selectedClass))
-                {
-                    //System.out.println(selectedClass);                
-                    //comboSkills.setModel(new DefaultComboBoxModel(BarbaianSkills));
-                    barbarian();
-                    SelectedSkill = (String) comboSkills.getSelectedItem();
-                    System.out.println(SelectedSkill);
-
-                }
-                else if("Monk".equals(selectedClass))
-                {               
-                    comboSkills.setModel(new DefaultComboBoxModel(MonkSkills));
-                }
-                else if("Paladin".equals(selectedClass))
-                {                
-                    comboSkills.setModel(new DefaultComboBoxModel(PaladinSkills));
-                }
-                else if("Warrior".equals(selectedClass))
-                {                
-                    comboSkills.setModel(new DefaultComboBoxModel(WarriorSkills));
-                }
-                else if("Claric".equals(selectedClass))
-                {                
-                    comboSkills.setModel(new DefaultComboBoxModel(ClaricSkills));
-                }
-                else if("Priest".equals(selectedClass))
-                {                
-                    comboSkills.setModel(new DefaultComboBoxModel(PriestSkills));
-                }
-                else if("Shaman".equals(selectedClass))
-                {                
-                    comboSkills.setModel(new DefaultComboBoxModel(ShamanSkills));
-                }
-                else if("Bard".equals(selectedClass))
-                {              
-                    comboSkills.setModel(new DefaultComboBoxModel(BardSkills));
-                }
-                else if("Wizard".equals(selectedClass))
-                {               
-                    comboSkills.setModel(new DefaultComboBoxModel(WizardSkills));
-                }
-                else if("Druid".equals(selectedClass))
-                {                
-                    comboSkills.setModel(new DefaultComboBoxModel(DruidSkills));
-                }
-                else if("Warlock".equals(selectedClass))
-                {                
-                    comboSkills.setModel(new DefaultComboBoxModel(WarlockSkills));
-                }
-                else if("Pyromancer".equals(selectedClass))
-                {                
-                    comboSkills.setModel(new DefaultComboBoxModel(PyroSkills));
-                }
-                else if("Swashbuckler".equals(selectedClass))
-                {                
-                    comboSkills.setModel(new DefaultComboBoxModel(SwashSkills));
-                }
-                else if("Thief".equals(selectedClass))
-                {               
-                    comboSkills.setModel(new DefaultComboBoxModel(ThiefSkills));
-                }
-                else if("Ranger".equals(selectedClass))
-                {                
-                    comboSkills.setModel(new DefaultComboBoxModel(RangerSkills));
-                }
-                else if("Assassin".equals(selectedClass))
-                {                
-                    comboSkills.setModel(new DefaultComboBoxModel(AssassinSkills));
-                }
-            
             }
         }
-        */
+        
     //</editor-fold>    
     
    

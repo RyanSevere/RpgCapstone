@@ -24,7 +24,7 @@ public class SetPlayerInfo extends JPanel {
     //Player setInfo = new Player(); //point of this line of code? does not seem to be used other then to initalize an instance of player but is not used else were
     int battleCounter = 0;
     int pID = 0;
-    int x = 1;
+    int x = 0;
     public boolean valid = false;
 
     //initalizes an instance of Player() (constructor? error control?)
@@ -524,7 +524,8 @@ public class SetPlayerInfo extends JPanel {
                 //System.out.println(battleCounter);
                 if(battleCounter < 4)
                 {
-                TabGUI.returntoClassPanel();  
+                    TabGUI.activateClassPanel();
+                    TabGUI.returntoClassPanel();  
                 }
                 TabGUI.resetCombo();
             

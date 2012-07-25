@@ -47,16 +47,36 @@ public class TabGUI extends JFrame {
         SummerySelected();
     }
     
+    static void activateStatPanel()
+    {
+        jtp.setEnabledAt(1, true);
+    }
+    
     static void activateCreationpanels()
     {
         jtp.setEnabledAt(0, true);
         jtp.setEnabledAt(1, true);
     }
     
-    public void disableSummeryPanel()
+    static void activateClassPanel()
+    {
+        jtp.setEnabledAt(0, true);
+    }
+    
+    static void disableClassPanel()
+    {
+        jtp.setEnabledAt(0, false);
+    }
+    
+    static void disableSummeryPanel()
     {
         jtp.setEnabledAt(2, false);
         
+    }
+    
+    static void disableStatPanel()
+    {
+        jtp.setEnabledAt(1, false);
     }
     
     static void disableCreationPanels()
@@ -88,6 +108,11 @@ public class TabGUI extends JFrame {
     static void returntoClassPanel()
     {
         jtp.setSelectedIndex(0);
+    }
+    
+    static void FowardStatPanel()
+    {
+        jtp.setSelectedIndex(1);
     }
     
     static void resetCombo()
