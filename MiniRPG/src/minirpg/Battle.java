@@ -1,8 +1,8 @@
 package minirpg;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
@@ -36,6 +36,7 @@ public class Battle extends JFrame {
             lblSkill2,skill2,lblSkill3,skill3,lblSkill4,skill4;
     JTextArea infoBox;
     String empty = "";
+    public JTabbedPane characterInfoPane;
     //int rowInt = (int)table.getSelectedRow();
     //int colInt = (int)table.getSelectedColumn();
     //private JSplitPane splitPane;
@@ -60,7 +61,7 @@ public class Battle extends JFrame {
         battleGridPane.setMinimumSize(minimumSize);
         battleGridPane.add(table);
  
-        JTabbedPane characterInfoPane = new JTabbedPane();
+        final JTabbedPane characterInfoPane = new JTabbedPane();
         while (playerIndex < 4){
         JComponent panel = makeTextPanel("");
         characterInfoPane.addTab(minirpg.MiniRPG.players.get(playerIndex).getName(),null, panel,
@@ -87,7 +88,41 @@ public class Battle extends JFrame {
 //        moveP1.addActionListener(a);
 //        attackP1.addActionListener(a);
 
-
+table.addKeyListener(new KeyAdapter() {
+            @Override
+public void keyPressed(KeyEvent k) {
+   int keyCode = k.getKeyCode();
+      if(keyCode == KeyEvent.VK_W){
+                int y = 0;
+                boolean selectedPlayerColumn = false;
+                boolean selectedPlayerRow = false;
+                boolean meow = false;
+                
+                while (y <= 3) {
+                    if (MiniRPG.players.get(y).getColoum() == table.getSelectedColumn()) {
+                        selectedPlayerColumn = true;
+                    }
+                    if (MiniRPG.players.get(y).getRow() == table.getSelectedRow()) {
+                        selectedPlayerRow = true;
+                    }
+                    if (selectedPlayerRow == true && selectedPlayerColumn == true) {
+                        meow = true;
+                    }
+                    if (meow == true) {
+                        int r = MiniRPG.players.get(y).getRow();
+                        System.out.println("Player selected" + MiniRPG.players.get(y).getName());
+                        MiniRPG.players.get(y).setRow(r - 1);
+                        
+                        int c = MiniRPG.players.get(y).getColoum();
+                        table.setValueAt(MiniRPG.players.get(y).getName(), MiniRPG.players.get(y).getRow(), c);
+                       meow = false;
+                       break;
+                    }
+                    y++;
+                }
+      k.consume();
+   }
+}});
         table.addMouseListener(new MouseAdapter() {
 
             public void mouseClicked(MouseEvent e) {
@@ -95,19 +130,25 @@ public class Battle extends JFrame {
                 boolean selectedPlayerColumn = false;
                 boolean selectedPlayerRow = false;
                 boolean meow = false;
-                while(x < 3){
-                    if(MiniRPG.players.get(x).getColoum() == table.getSelectedColumn())
-                    {
+                while (x <= 3) {
+                    if (MiniRPG.players.get(x).getColoum() == table.getSelectedColumn()) {
                         selectedPlayerColumn = true;
-                        }
-                else if(MiniRPG.players.get(x).getRow() == table.getSelectedRow())
-                {
-                        selectedPlayerRow = true;
-                        }
-                else if(selectedPlayerRow == true && selectedPlayerColumn == true){
-                        meow = false;
                     }
+                    if (MiniRPG.players.get(x).getRow() == table.getSelectedRow()) {
+                        selectedPlayerRow = true;
+                    }
+                    if (selectedPlayerRow == true && selectedPlayerColumn == true) {
+                        meow = true;
+                    }
+                    if (meow == true) {
+                        System.out.println("Player selected" + MiniRPG.players.get(x).getName());
+                        meow = false;
+                        characterInfoPane.setSelectedIndex(x);
+                        break;
+                    }
+                    x++;
                 }
+                
 //                System.out.println("ROW:" + sr() + "," + "COLUMN:" + sc());
 //                System.out.println(nc());
 //                getMonsterIndex();
