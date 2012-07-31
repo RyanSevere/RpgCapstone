@@ -106,6 +106,7 @@ public class Battle extends JFrame {
             }
         });
     }
+
     //deals with player attack use later also uncomment event
     
     /*public class Event implements ActionListener {

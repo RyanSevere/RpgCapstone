@@ -7,6 +7,7 @@ public class MiniRPG {
 
     String name;
     int str, dex, end, wis;
+    String Class, Role, Skill;
     public static ArrayList<Player> players = new ArrayList<Player>();
     
     //Player playerList = new Player();
@@ -15,8 +16,10 @@ public class MiniRPG {
         TabGUI gui = new TabGUI();      
         //SetPlayerInfo gui = new SetPlayerInfo();
         gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //gui.setVisible(true); //now set in NewTabGUI
-        //gui.setSize(275, 315); //now set in NewTabGUI
+        gui.setVisible(true); //now set in NewTabGUI
+        gui.setSize(325, 355);; //now set in NewTabGUI
+        TabGUI.disableSummeryPanel(); //initally disables the SummeryPanel
+        TabGUI.disableStatPanel();
             
     }
 
@@ -44,4 +47,10 @@ public class MiniRPG {
         wis = players.get(num).getWis();
         return wis;
     }
+    public String getRole(int num)
+    {
+        Role = players.get(num).getRole();
+        return Role;
+    }
+    
 }

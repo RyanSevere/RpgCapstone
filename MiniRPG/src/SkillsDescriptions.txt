@@ -5,7 +5,7 @@ Rage
 Large bonus to attack  negative to defense lasts 1 round
 Spin
 Attacks all in front, behind, and either side of player
-Knockback
+KnockBack
 Pushes attacked Monster back one block
 Monk
 Meditate
@@ -17,79 +17,79 @@ Stuns one monster for 1 round
 Roundhouse
 Kicks monsters within one block around Monk
 Paladin
-Lay on hands
+Lay on Hands
 Heals another player within one square of Paladin
 Banish
 Prevents monster from doing any action for 2 rounds
 Holy Strike
 Bonus to damage
-Righteous rage
+Righteous Rage
 Boosts attack for 2 rounds
 Warrior
 Shield Bash
 Stuns Monster and does damage
 Tactical Strike
 Boost to damage
-Power attack
+Power Attack
 Large boost to damage negative to defense
-Rally 
+Rally
 Boost to damage of any other player within 4 blocks
 Mage uses Wiz (skills are also the attacks)
 Wizard
 Fireball
 Medium range high damage, lowers monster defense
-Magic missile
+Magic Missile
 Long range medium damage
-Lightning bolt
+Lightning Bolt
 Long range high damage, stuns monster 1 round
 Frost Shard
 Short range medium damage, slows monster for 1 round
 Druid
 Entanglement
 Traps monster for 1 round
-Summon DireWolf
+Summon Dire Wolf
 Summons one Dire Wolf to fight alongside the druid
-Natures touch 
+Natures Touch
 Heals self or another player next to druid
 Wild Shape
 Turn into Ent becomes Rooted but attack and defense boosted by 50% for 2 rounds, limit one per match
 warlock
-summon demon
+Summon Demon
 Summons a demon 
-shadow bolt
+Shadow Bolt
 Ranged attack medium damage
 Fear
 Monster is unable to move for 2 rounds
 Drain Life
 Get  1% health for damage dealt
 Pyromancer
-Fire blast
+Fire Blast
 Long range normal damage attack
 Blaze
 Cone of fire that damages any one 2 blocks infront of pyro
 Incinerate
 Large damage attack short range
-Mind fire
+Mind Fire
 Damages monster and causes them to go apeshit on anything near it for 1 round
 Healer uses Int
 Cleric
 Divine Intervention
-Heals all characters to full health, kills one monster, damages all monsters
+Heals all characters to full health, kills one monster, or damages. only useable once per battle effect is random.  all monsters
 Prayer
 Heals target for medium amount
 Holy Bash
 Strong Melee Attack with Mace
-Holy aura
+Holy Aura
 All players within 6 blocks get +25% to defense
 Priest uses 
 Heal Target
 Heals single target
-Heal all
+Heal All
 Heals all players within 8 blocks 
 Holy Fire
 Ranged holy attack
-Righteous strike
-Melee attack  
+Act of GOD
+Either Kills all monsters or heals all friend units. only usable once per battle, 50% chance GOD will do nothing. cuz GOD is a douch that way  
 Shaman uses Wis
 Curse
 Monster gets -25% to defense and attack
@@ -102,15 +102,15 @@ Players within 4 blocks get +25% to defense
 Bard  uses dex
 Song of Inspiration
 All other characters get movement points renewed
-Song of renewal
+Song of Renewal
 Heal all other players within 4 block range
 Throw Dagger
 medium damage medium range attack
-Fascinate
+Facinate
 All monsters within 10 blocks do not move for 3 rounds, bard also cannot move for same 3 rounds.
 Dps uses Dex
 Swashbuckler
-Pistol Shot		
+Pistol Shot
 Medium damage short range attack
 Repose
 Increases defense 
@@ -119,7 +119,7 @@ Steal random item and low damage attack
 Dirty Trick
 Bonus to attack 5% chance to blind monster (blinded monster cannot move for 2 rounds)
 Thief
-Back stab
+Back Stab
 High damage attack
 Stealth
 Thief can move unseen for 3 rounds but becomes seen if attacks limit 1 use per match
@@ -128,20 +128,20 @@ Medium attack that causes monster to take continued damage for 3 rounds
 Steal
 Get one random item from nearest monster
 Ranger
-Targeted Shot
+Aimed Shot
 High damage single target attack long range
 Rain of Arrows
 Medium damage attack that hits 3 blocks side by side medium range
 Bow Strike
 High damage melee attack
-Arrow stab
+Arrow Stab
 Medium damage melee attack
 Assassin
 Garrote
 High damage attack from behind
 Throwing Knife
 Short range medium damage attack
-Kidney stab
+Kidney Stab
 High damage attack that paralyzes monster for 3 rounds
 Assassinate
 Assassin Studies Target for up to 3 rounds getting 10, 20, 30% chance of instantly killing target. Assassin cannot move or attack while studying target. Very high damage attack if does not kill
