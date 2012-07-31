@@ -1,3 +1,4 @@
+//created by Sean Forman
 package minirpg;
 
 import java.awt.*;

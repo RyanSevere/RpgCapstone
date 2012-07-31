@@ -28,6 +28,7 @@ public class PlayerSummeryPanel extends JPanel {
     SetPlayerInfo SPI = new SetPlayerInfo();
     String Role, Class, Skill, Str, Dex, End, Wis;
     String[] Players = {"", "", "", ""};
+    static int comboindex;
     
     
     public PlayerSummeryPanel()
@@ -184,6 +185,7 @@ public class PlayerSummeryPanel extends JPanel {
                         lblpRole.setText(Role);
                         lblpClass.setText(Class);
                         lblpSkill.setText(Skill);
+                        comboindex = comboPlayerList.getSelectedIndex();
                     }
                 };
             
@@ -224,17 +226,28 @@ public class PlayerSummeryPanel extends JPanel {
             String setEnd = Integer.toString(MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getEnd());
             String setWis = Integer.toString(MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getWis());
             String setPointsLeft = Integer.toString(MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getPointsLeft());
+            String setRole = MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getRole();
+            String setClass = MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getclass();
+            String setSkill = MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getSkill1();
+            PCP.comboRole.setSelectedItem(setRole);
+            PCP.comboClass.setSelectedItem(setClass);
+            PCP.comboSkills.setSelectedItem(setSkill);
             SPI.strTotal.setText(setStr);
             SPI.dexTotal.setText(setDex);
             SPI.endTotal.setText(setEnd);
             SPI.wisTotal.setText(setWis);
             SPI.pointsLeftField.setText(setPointsLeft);
-            SPI.create.setVisible(false);
-            SPI.done.setVisible(true);
             SPI.playerName = MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getName();
             SPI.name.setText(SPI.playerName);
             SPI.pointsLeftField.setText(Integer.toString(MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getPointsLeft()));
-            TabGUI.activateCreationpanels();
+            SPI.done.setVisible(true);
+            TabGUI.activateClassPanel();
+            TabGUI.disableSummeryPanel();
             TabGUI.returntoClassPanel();
         }
+
+    static int getcomboIndex()
+    {
+        return comboindex;
+    }
 }
