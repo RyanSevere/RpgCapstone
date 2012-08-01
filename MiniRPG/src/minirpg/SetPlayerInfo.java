@@ -351,16 +351,6 @@ public class SetPlayerInfo extends JPanel {
             }
             //makes current window disappear
             //opens battle window
-<<<<<<< HEAD
-            else if (a.getSource() == battle) {
-                setVisible(false);
-                Battle gui = new Battle();      
-                gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                gui.setSize(1100, 650);
-                gui.setResizable(true);
-                gui.setVisible(true);
-            }
-=======
             //Battle button moved to Summery panel
 //            else if (a.getSource() == battle) {
 //                setVisible(false);
@@ -370,7 +360,6 @@ public class SetPlayerInfo extends JPanel {
 //                gui.setResizable(false);
 //                gui.setVisible(true);
 //            }
->>>>>>> 9c8f6e462a5d97fda4738923b2482f5313a43295
         }
 
         
@@ -524,35 +513,22 @@ public class SetPlayerInfo extends JPanel {
             x++;
             System.out.println(x);
             //adds all the information from the menus into the player array creating the player info
-<<<<<<< HEAD
+
             MiniRPG.players.add(new Player(playerName, s, d, e, w, p, 
-                    "Role", "Class", "Skill 1", "Skill 2", " Skill 3", "Skill 4", lvl,0,0));
+                    SelectedRole, SelectedClass, SelectedSkill, "Skill 2", " Skill 3", "Skill 4", lvl,0,0));
             pID++;
             name.setText(nameField.getText());
             listBox.addItem(playerName);
-            listBox.setVisible(true);
-            if (battleCounter >= 4) {
-                battle.setVisible(true);
-            } else {
-                battleCounter++;
-            }
-=======
-                MiniRPG.players.add(new Player(playerName, s, d, e, w, p, 
-                        SelectedRole, SelectedClass, SelectedSkill, "Skill 2", " Skill 3", "Skill 4", lvl));
-                pID++;
-                name.setText(nameField.getText());
-                listBox.addItem(playerName);
-                //listBox.setVisible(true);
->>>>>>> 9c8f6e462a5d97fda4738923b2482f5313a43295
+            //listBox.setVisible(true);
 
-                battleCounter++;
-                //System.out.println(battleCounter);
-                if(battleCounter < 4)
-                {
-                    TabGUI.activateClassPanel();
-                    TabGUI.returntoClassPanel();  
-                }
-                TabGUI.resetCombo();
+            battleCounter++;
+            //System.out.println(battleCounter);
+            if(battleCounter < 4)
+            {
+                TabGUI.activateClassPanel();
+                TabGUI.returntoClassPanel();  
+            }
+            TabGUI.resetCombo();
             
         }
     }
