@@ -1,3 +1,6 @@
+//created by Sean Forman
+
+//token change to force new commit with current info
 package minirpg;
 
 import java.awt.*;
