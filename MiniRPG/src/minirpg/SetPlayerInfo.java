@@ -34,9 +34,6 @@ public class SetPlayerInfo extends JPanel {
 
     //sets up and inializes layout of GUI for Stats entry
     public SetPlayerInfo(Player newGuy) {
-        //inital instructions message before game menu
-        //JOptionPane.showMessageDialog(rootPane, "Create 4 Players then the battle button will become visable");
-        //uses gridbag layout to setup gui
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
               
@@ -516,21 +513,22 @@ public class SetPlayerInfo extends JPanel {
             x++;
             System.out.println(x);
             //adds all the information from the menus into the player array creating the player info
-                MiniRPG.players.add(new Player(playerName, s, d, e, w, p, 
-                        SelectedRole, SelectedClass, SelectedSkill, "Skill 2", " Skill 3", "Skill 4", lvl));
-                pID++;
-                name.setText(nameField.getText());
-                listBox.addItem(playerName);
-                //listBox.setVisible(true);
 
-                battleCounter++;
-                //System.out.println(battleCounter);
-                if(battleCounter < 4)
-                {
-                    TabGUI.activateClassPanel();
-                    TabGUI.returntoClassPanel();  
-                }
-                TabGUI.resetCombo();
+            MiniRPG.players.add(new Player(playerName, s, d, e, w, p, 
+                    SelectedRole, SelectedClass, SelectedSkill, "Skill 2", " Skill 3", "Skill 4", lvl,0,0));
+            pID++;
+            name.setText(nameField.getText());
+            listBox.addItem(playerName);
+            //listBox.setVisible(true);
+
+            battleCounter++;
+            //System.out.println(battleCounter);
+            if(battleCounter < 4)
+            {
+                TabGUI.activateClassPanel();
+                TabGUI.returntoClassPanel();  
+            }
+            TabGUI.resetCombo();
             
         }
     }
