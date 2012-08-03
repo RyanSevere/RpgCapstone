@@ -15,8 +15,7 @@ public class SetPlayerInfo extends JPanel {
     String playerName = "meow";
     JComboBox listBox;
     
-    PlayerClassPanel pcp = new PlayerClassPanel();
-               
+    PlayerClassPanel pcp = new PlayerClassPanel();    
     //Delcared Array for Player Names and Stats
     ArrayList<Player> players = new ArrayList<Player>();
     //ListIterator<Player> namelist = players.listIterator();
@@ -24,6 +23,9 @@ public class SetPlayerInfo extends JPanel {
     //Player setInfo = new Player(); //point of this line of code? does not seem to be used other then to initalize an instance of player but is not used else were
     int battleCounter = 0;
     int pID = 0;
+    int x = 0;
+    int comboSelectedIndex;
+    public boolean valid = false;
 
     //initalizes an instance of Player() (constructor? error control?)
     public SetPlayerInfo() {
@@ -32,9 +34,6 @@ public class SetPlayerInfo extends JPanel {
 
     //sets up and inializes layout of GUI for Stats entry
     public SetPlayerInfo(Player newGuy) {
-        //inital instructions message before game menu
-        //JOptionPane.showMessageDialog(rootPane, "Create 4 Players then the battle button will become visable");
-        //uses gridbag layout to setup gui
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
               
@@ -152,39 +151,43 @@ public class SetPlayerInfo extends JPanel {
         //adds the buttons the the GUI
         create = new JButton("Create");       
         c.insets = new Insets(2, 2, 2, 2);
-        c.gridx = 0;
+        c.gridx = 1;
         c.gridy = 8;
-        c.gridwidth = 2;
+        c.gridwidth = 3;
         add(create, c);
 
-        edit = new JButton("Edit");       
-        c.gridx = 2;
-        c.gridy = 8;
-        c.gridwidth = 2;
-        add(edit, c);
+        // will be deleted in cleaning
+//        edit = new JButton("Edit");       
+//        c.gridx = 2;
+//        c.gridy = 8;
+//        c.gridwidth = 2;
+//        add(edit, c);
 
         done = new JButton("Done");       
-        c.gridx = 2;
-        c.gridy = 8;
-        c.gridwidth = 2;
+        c.gridx = 1;
+        c.gridy = 9;
+        c.gridwidth = 3;
         add(done, c);
+        done.setVisible(false);
         
         //combobox lists already created players by name in order of creation
         //only visiable after inital character creation
+        // will be deleted in cleaning
         listBox = new JComboBox();
         c.insets = new Insets(2, 9, 2, 2);      
         c.gridx = 0;
-        c.gridy = 9;
+        c.gridy = 10;
         c.gridwidth = 3;
         add(listBox, c);
         listBox.setEditable(true);
         listBox.setVisible(false);
         
         //only visable after 4 characters created
+        // will be deleted in cleaning
         battle = new JButton("Battle");       
         c.insets = new Insets(2, 2, 2, 30);
         c.gridx = 1;
-        c.gridy = 10;
+        c.gridy = 11;
         c.gridwidth = 2;
         add(battle, c);
         battle.setVisible(false);
@@ -201,7 +204,7 @@ public class SetPlayerInfo extends JPanel {
         addWis.addActionListener(a);
         subWis.addActionListener(a);
         create.addActionListener(a);
-        edit.addActionListener(a);
+//        edit.addActionListener(a);
         listBox.addActionListener(a);
         done.addActionListener(a);
         battle.addActionListener(a);
@@ -210,6 +213,7 @@ public class SetPlayerInfo extends JPanel {
     
     public class Event implements ActionListener {
 
+        @Override
         public void actionPerformed(ActionEvent a) {
             int total = 0;
             int num = 0;
@@ -314,15 +318,20 @@ public class SetPlayerInfo extends JPanel {
             //create listener
             //Used to set all the stats and adds player to the array list
             //changes menu look the 1st time its clicked
-            else if (a.getSource() == create) {
+            else if (a.getSource() == create) 
+            {
+                //the check to see if all fields have been filled outbefore creating charater still buggy
+                //combobox's for Class, Role, Skill still returning null after use of getter
                 create(); //adds stat information and player name to the array list
                 show(); //makes player list box visable
             } 
             //edit listener
+            /* edit button moved to summery pannel
             else if (a.getSource() == edit) {
                 edit();
                 nameField.setText(MiniRPG.players.get(listBox.getSelectedIndex()).getName());
-            } 
+            }
+            */
             //clicked after a player is done with editing a player
             //changes menu look
             /*changing the name with edit doesn't update the dropdown menu but
@@ -334,18 +343,23 @@ public class SetPlayerInfo extends JPanel {
                 setWis();
                 setName();
                 setPointsLeft();
-                show();
+                setRole();
+                setClass();
+                setSkill();
+                battleCounter = 4;
+                create();
             }
             //makes current window disappear
             //opens battle window
-            else if (a.getSource() == battle) {
-                setVisible(false);
-                Battle gui = new Battle();
-                gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                gui.setSize(1000, 550);
-                gui.setResizable(false);
-                gui.setVisible(true);
-            }
+            //Battle button moved to Summery panel
+//            else if (a.getSource() == battle) {
+//                setVisible(false);
+//                Battle gui = new Battle();
+//                gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//                gui.setSize(1000, 550);
+//                gui.setResizable(false);
+//                gui.setVisible(true);
+//            }
         }
 
         
@@ -392,6 +406,28 @@ public class SetPlayerInfo extends JPanel {
             MiniRPG.players.get(listBox.getSelectedIndex()).setPointsLeft(Integer.parseInt(pointsLeftField.getText()));
         }
         
+        public void setClass()
+        {
+            getSelectedComboIndex();
+            TabGUI.comboSelection.get(comboSelectedIndex).getClass();
+        }
+        
+        public void setRole()
+        {
+            getSelectedComboIndex();
+            TabGUI.comboSelection.get(comboSelectedIndex).getRole();
+        }
+        public void setSkill()
+        {
+            getSelectedComboIndex();
+            TabGUI.comboSelection.get(comboSelectedIndex).getSkill();
+        }
+        
+        public void getSelectedComboIndex()
+        {
+            comboSelectedIndex = PlayerSummeryPanel.getcomboIndex();
+        }
+        
         //sets name
         public void setName() {
             Object obj = listBox.getSelectedItem();
@@ -406,8 +442,8 @@ public class SetPlayerInfo extends JPanel {
         //makes the edit and create buttons visable
         //makes the listbox that holds the players visable
 
-        public void show() {
-            TabGUI Gui = new TabGUI();
+        public void show() 
+        {
             strTotal.setText("0");
             dexTotal.setText("0");
             endTotal.setText("0");
@@ -415,22 +451,26 @@ public class SetPlayerInfo extends JPanel {
             pointsLeftField.setText("15");
             nameField.setText("");
             name.setText("Character Setup");
-            done.setVisible(false);
-            edit.setVisible(true);
+//            edit.setVisible(true);
             nameField.setVisible(true);
-            listBox.setVisible(true);
+            //listBox.setVisible(true);
             create.setVisible(true);
             //makes the battle button visable 
             /*the loop number is how many players need to be created before 
              * the battle can begin*/
             if (battleCounter >= 4) {
-                battle.setVisible(true);
+                //battle.setVisible(true); battle button moved to Summery Panel
                 create.setEnabled(false);
-                Gui.activateSummeryPanel();
+                TabGUI.activateSummeryPanel();
+                TabGUI.SummerySelected();
             }
         }
+        
         //lets you edit the player at the index selected 
         //chages the menu look
+        //Moved to Summery Panel
+        //<editor-fold defaultstate="collapsed" desc="edit function has been moved to Sumnmery Panel">
+        /*
         public void edit() {
             String setStr = Integer.toString(MiniRPG.players.get(listBox.getSelectedIndex()).getStr());
             String setDex = Integer.toString(MiniRPG.players.get(listBox.getSelectedIndex()).getDex());
@@ -451,9 +491,12 @@ public class SetPlayerInfo extends JPanel {
             name.setText(playerName);
             pointsLeftField.setText(Integer.toString(MiniRPG.players.get(listBox.getSelectedIndex()).getPointsLeft()));
         }
+        */
+        //</editor-fold>
+        
         //adds the player to the array list found in the main class
-        public void create() {
-            TabGUI Gui = new TabGUI();           
+        public void create() 
+        {
             int s = Integer.parseInt(strTotal.getText());
             int d = Integer.parseInt(dexTotal.getText());
             int e = Integer.parseInt(endTotal.getText());
@@ -461,22 +504,31 @@ public class SetPlayerInfo extends JPanel {
             int p = Integer.parseInt(pointsLeftField.getText());
             int lvl = 1;
             playerName = nameField.getText();
-            String Role = pcp.getPlayerRole();
-            String Class = pcp.getPlayerClass();
-            String Skill = pcp.getPlayerSkill();
-                       
+            String SelectedRole = TabGUI.comboSelection.get(x).getRole();
+            //System.out.println("The selected Role is: " + SelectedRole);
+            String SelectedClass = TabGUI.comboSelection.get(x).getclass();
+            //System.out.println("The selcted Class is: "+ SelectedClass);                    
+            String SelectedSkill = TabGUI.comboSelection.get(x).getSkill();
+            //System.out.println("The selcted Skill is: "+ SelectedSkill);
+            x++;
+            System.out.println(x);
             //adds all the information from the menus into the player array creating the player info
+
             MiniRPG.players.add(new Player(playerName, s, d, e, w, p, 
-                    Role, Class, Skill, "Skill 2", " Skill 3", "Skill 4", lvl));
+                    SelectedRole, SelectedClass, SelectedSkill, "Skill 2", " Skill 3", "Skill 4", lvl,0,0));
             pID++;
             name.setText(nameField.getText());
             listBox.addItem(playerName);
-            listBox.setVisible(true);
-            Gui.returntoClassPanel();
-            
+            //listBox.setVisible(true);
+
             battleCounter++;
-            System.out.println(battleCounter);
-            
+            //System.out.println(battleCounter);
+            if(battleCounter < 4)
+            {
+                TabGUI.activateClassPanel();
+                TabGUI.returntoClassPanel();  
+            }
+            TabGUI.resetCombo();
             
         }
     }

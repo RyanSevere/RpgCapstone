@@ -7,10 +7,11 @@ package minirpg;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import javax.swing.*;
 
 /**
  *
@@ -23,23 +24,15 @@ public class PlayerSummeryPanel extends JPanel {
     JComboBox comboPlayerList;
     JButton btnBattle, btnEdit;
        
-    PlayerClassPanel Pcp = new PlayerClassPanel();
-    SetPlayerInfo Spi = new SetPlayerInfo();
-    int playerid, str, dex, end, wis;
-    String Role, Class, Skill;
-    String[] Players;
+    PlayerClassPanel PCP = new PlayerClassPanel();
+    SetPlayerInfo SPI = new SetPlayerInfo();
+    String Role, Class, Skill, Str, Dex, End, Wis;
+    String[] Players = {"", "", "", ""};
+    static int comboindex;
     
     
     public PlayerSummeryPanel()
             {
-//                while(Spi.namelist.hasNext())
-//                {
-//                    int x = 0;
-//                    Players[0] =MiniRPG.players.get(x).getName();
-//                    x++;
-//                }
-                
-                
                 //<editor-fold defaultstate="collapesed" desc="GUI layout">
                 //uses gridbag payout to setup GUI
                 setLayout(new GridBagLayout());
@@ -65,7 +58,7 @@ public class PlayerSummeryPanel extends JPanel {
                 add(lblRole, c);
                 
                 //Player Role
-                lblpRole = new JLabel("Tank");
+                lblpRole = new JLabel("");
                 c.gridx = 1;
                 c.gridy = 3;
                 add(lblpRole, c);
@@ -77,7 +70,7 @@ public class PlayerSummeryPanel extends JPanel {
                 add(lblClass, c);
                 
                 //Player Class
-                lblpClass = new JLabel("Barbarian");
+                lblpClass = new JLabel("");
                 c.gridx = 1;
                 c.gridy = 4;
                 add(lblpClass, c);
@@ -154,7 +147,7 @@ public class PlayerSummeryPanel extends JPanel {
                 add(lblSkill, c);
                 
                 //player skill
-                lblpSkill = new JLabel("Rush");
+                lblpSkill = new JLabel("");
                 c.gridx = 1;
                 c.gridy = 11;
                 add(lblpSkill, c);
@@ -172,17 +165,89 @@ public class PlayerSummeryPanel extends JPanel {
                 add(btnEdit, c);
                 //</editor-fold>
                 
+                ItemListener PlayerSelect = new ItemListener()
+                {
+                    @Override
+                    public void itemStateChanged(ItemEvent e)
+                    {
+                        Str = Integer.toString(MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getStr());
+                        Dex = Integer.toString(MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getDex());
+                        End = Integer.toString(MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getEnd());
+                        Wis = Integer.toString(MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getWis());
+                        Role = MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getRole();
+                        Class = MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getclass();
+                        Skill = MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getSkill1();
                         
+                        lblStatStr.setText(Str);
+                        lblStatDex.setText(Dex);
+                        lblStatEnd.setText(End);
+                        lblStatWis.setText(Wis);
+                        lblpRole.setText(Role);
+                        lblpClass.setText(Class);
+                        lblpSkill.setText(Skill);
+                        comboindex = comboPlayerList.getSelectedIndex();
+                    }
+                };
+            
+            PlayerSummeryPanel.Event a = new PlayerSummeryPanel.Event();
+                
+            comboPlayerList.addItemListener(PlayerSelect);    
+            btnBattle.addActionListener(a);
+            btnEdit.addActionListener(a);
             }
     
     
-//   ChangeListener changeListener = new ChangeListener() {
-//       public void stateChanged(ChangeEvent evt)
-//       {
-//           JTabbedPane sourceTabbedPane = (JTabbedPane) evt.getSource();
-//           int index = sourceTabbedPane.getSelectedIndex();
-//           System.out.println("Summery Panel Selected");
-//       }
-//   };
-   
+    public class Event implements ActionListener 
+    {
+        @Override
+        public void actionPerformed(ActionEvent a)
+        {
+            if(a.getSource() == btnBattle)
+            {
+                setVisible(false);
+                Battle gui = new Battle();
+                gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                gui.setSize(1000, 600);
+                gui.setResizable(false);
+                gui.setVisible(true);
+            }
+            if(a.getSource() == btnEdit)
+            {
+                edit();
+                SPI.nameField.setText(MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getName());
+            }
+        }
+    }
+    
+    public void edit() 
+        {
+            String setStr = Integer.toString(MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getStr());
+            String setDex = Integer.toString(MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getDex());
+            String setEnd = Integer.toString(MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getEnd());
+            String setWis = Integer.toString(MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getWis());
+            String setPointsLeft = Integer.toString(MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getPointsLeft());
+            String setRole = MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getRole();
+            String setClass = MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getclass();
+            String setSkill = MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getSkill1();
+            PCP.comboRole.setSelectedItem(setRole);
+            PCP.comboClass.setSelectedItem(setClass);
+            PCP.comboSkills.setSelectedItem(setSkill);
+            SPI.strTotal.setText(setStr);
+            SPI.dexTotal.setText(setDex);
+            SPI.endTotal.setText(setEnd);
+            SPI.wisTotal.setText(setWis);
+            SPI.pointsLeftField.setText(setPointsLeft);
+            SPI.playerName = MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getName();
+            SPI.name.setText(SPI.playerName);
+            SPI.pointsLeftField.setText(Integer.toString(MiniRPG.players.get(comboPlayerList.getSelectedIndex()).getPointsLeft()));
+            SPI.done.setVisible(true);
+            TabGUI.activateClassPanel();
+            TabGUI.disableSummeryPanel();
+            TabGUI.returntoClassPanel();
+        }
+
+    static int getcomboIndex()
+    {
+        return comboindex;
+    }
 }
