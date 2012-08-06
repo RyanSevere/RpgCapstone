@@ -15,7 +15,9 @@ public class SetPlayerInfo extends JPanel {
     String playerName = "meow";
     JComboBox listBox;
     
+    ImageIcon icon = new ImageIcon();
     PlayerClassPanel pcp = new PlayerClassPanel();    
+    IconSelector IS = new IconSelector();
     //Delcared Array for Player Names and Stats
     ArrayList<Player> players = new ArrayList<Player>();
     //ListIterator<Player> namelist = players.listIterator();
@@ -513,9 +515,11 @@ public class SetPlayerInfo extends JPanel {
             x++;
             //System.out.println(x);
             //adds all the information from the menus into the player array creating the player info
-
+            IS.IconSelector();
+            icon = IS.getPlayerIcon();
+            
             MiniRPG.players.add(new Player(playerName, s, d, e, w, p, 
-                    SelectedRole, SelectedClass, SelectedSkill, "Skill 2", " Skill 3", "Skill 4", lvl,0,0));
+                    SelectedRole, SelectedClass, SelectedSkill, "Unlock at lvl 5", "Unlock at lvl 10", "Unlock at lvl 15", lvl,0,0, icon));
             pID++;
             name.setText(nameField.getText());
             listBox.addItem(playerName);

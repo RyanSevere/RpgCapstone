@@ -1,5 +1,7 @@
 package minirpg;
 
+import javax.swing.ImageIcon;
+
 public class Player {
 
     PlayerClassPanel PCP = new PlayerClassPanel();
@@ -19,14 +21,15 @@ public class Player {
     private String Skill4;
     private int column;
     private int row;
+    private ImageIcon icon;
 
     public Player() {
-        this("Steve", 0, 0, 0, 0, 15, "Tank", "Monk", "Stun", null, null, null, 1,0,0);
+        this("Steve", 0, 0, 0, 0, 15, "Tank", "Monk", "Stun", null, null, null, 1,0,0, null);
     }
 //SetPlayerInfo m = new SetPlayerInfo();
     public Player(String name, int str, int dex, int end, int wis, 
             int pointsLeft, String Role, String Class, String Skill1,
-            String Skill2, String Skill3, String Skill4, int Lvl,int row,int column) {
+            String Skill2, String Skill3, String Skill4, int Lvl,int row,int column, ImageIcon icon) {
         setName(name);
         setStr(str);
         setDex(dex);
@@ -41,6 +44,7 @@ public class Player {
         setSkill4(Skill4);
         setRow(row);
         setColumn(column);
+        setIcon(icon);
         
 
     }
@@ -186,5 +190,15 @@ public class Player {
     public void setColumn(int column)
     {
         this.column = column;
+    }
+    
+    public ImageIcon getIcon()
+    {
+        return icon;
+    }
+    
+    public void setIcon(ImageIcon icon)
+    {
+        this.icon = icon;
     }
 }

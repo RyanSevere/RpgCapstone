@@ -236,7 +236,7 @@ public class PlayerClassPanel extends JPanel {
                 {
                     comboSkills.setModel(new DefaultComboBoxModel(WarriorSkills));
                 }
-                else if("Claric".equals(selectedClass))
+                else if("Cleric".equals(selectedClass))
                 {
                     comboSkills.setModel(new DefaultComboBoxModel(ClaricSkills));
                 }
@@ -495,7 +495,7 @@ public class PlayerClassPanel extends JPanel {
     //Array for Tank Classes
     String[] TankClass = {"", "Barbarian", "Monk", "Paladin", "Warrior"};
         //Array for Healer Classes
-    String[] HealerClass = {"", "Claric", "Priest", "Shaman", "Bard"};
+    String[] HealerClass = {"", "Cleric", "Priest", "Shaman", "Bard"};
     //Array for Caster Classes
     String[] CasterClass = {"", "Wizard", "Druid", "Warlock", "Pyromancer"};
     //Array for Damage Classes

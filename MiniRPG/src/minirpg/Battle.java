@@ -310,7 +310,7 @@ public void keyPressed(KeyEvent k) {
         c.gridwidth = 2;
         panel.add(name, c);
         
-        icon = new JLabel("icon");
+        icon = new JLabel(MiniRPG.players.get(playerIndex).getIcon());
         c.gridx = 1;
         c.gridy = 2;
         panel.add(icon, c);
@@ -321,7 +321,7 @@ public void keyPressed(KeyEvent k) {
         c.gridwidth = 1;
         panel.add(lblClass, c);
         
-        pClass = new JLabel("Wizard");
+        pClass = new JLabel(MiniRPG.players.get(playerIndex).getclass());
         c.gridx = 2;
         c.gridy = 3;
         panel.add(pClass, c);
@@ -331,7 +331,7 @@ public void keyPressed(KeyEvent k) {
         c.gridy = 4;
         panel.add(lblRole, c);
         
-        role = new JLabel("CatMage");
+        role = new JLabel(MiniRPG.players.get(playerIndex).getRole());
         c.gridx = 2;
         c.gridy = 4;
         panel.add(role, c);
@@ -417,7 +417,7 @@ public void keyPressed(KeyEvent k) {
         c.gridy = 12;
         panel.add(lblSkill1, c);
         
-        skill1 = new JLabel("Scrach");
+        skill1 = new JLabel(MiniRPG.players.get(playerIndex).getSkill1());
         c.gridx = 2;
         c.gridy = 12;
         panel.add(skill1, c);
@@ -427,7 +427,7 @@ public void keyPressed(KeyEvent k) {
         c.gridy = 13;
         panel.add(lblSkill2, c);
         
-        skill2 = new JLabel("Bite");
+        skill2 = new JLabel(MiniRPG.players.get(playerIndex).getSkill2());
         c.gridx = 2;
         c.gridy = 13;
         panel.add(skill2, c);
@@ -437,7 +437,7 @@ public void keyPressed(KeyEvent k) {
         c.gridy = 14;
         panel.add(lblSkill3, c);
         
-        skill3 = new JLabel("Meow");
+        skill3 = new JLabel(MiniRPG.players.get(playerIndex).getSkill3());
         c.gridx = 2;
         c.gridy = 14;
         panel.add(skill3, c);
@@ -447,7 +447,7 @@ public void keyPressed(KeyEvent k) {
         c.gridy = 15;
         panel.add(lblSkill4, c);
         
-        skill4 = new JLabel("Hair Ball");
+        skill4 = new JLabel(MiniRPG.players.get(playerIndex).getSkill4());
         c.gridx = 2;
         c.gridy = 15;
         panel.add(skill4, c);
