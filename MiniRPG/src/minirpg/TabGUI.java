@@ -93,10 +93,10 @@ public class TabGUI extends JFrame {
             {
                 
                 PSUMP.Players[x] = MiniRPG.players.get(x).getName();
-                System.out.println("x: " + x);
-                System.out.println("count: " + count);
-                System.out.println("size of Player Array: " + MiniRPG.players.size());
-                System.out.println("Player " + x + " is " + MiniRPG.players.get(x).getName());
+//                System.out.println("x: " + x);
+//                System.out.println("count: " + count);
+//                System.out.println("size of Player Array: " + MiniRPG.players.size());
+//                System.out.println("Player " + x + " is " + MiniRPG.players.get(x).getName());
                 x++;
                 count++;
             }

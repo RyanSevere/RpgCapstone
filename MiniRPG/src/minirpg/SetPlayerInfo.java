@@ -511,7 +511,7 @@ public class SetPlayerInfo extends JPanel {
             String SelectedSkill = TabGUI.comboSelection.get(x).getSkill();
             //System.out.println("The selcted Skill is: "+ SelectedSkill);
             x++;
-            System.out.println(x);
+            //System.out.println(x);
             //adds all the information from the menus into the player array creating the player info
 
             MiniRPG.players.add(new Player(playerName, s, d, e, w, p, 
@@ -529,7 +529,7 @@ public class SetPlayerInfo extends JPanel {
                 TabGUI.returntoClassPanel();  
             }
             TabGUI.resetCombo();
-            
+
         }
     }
 }

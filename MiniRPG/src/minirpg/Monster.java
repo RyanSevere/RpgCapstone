@@ -1,6 +1,6 @@
 package minirpg;
 
-import java.util.Random;
+import javax.swing.ImageIcon;
 
 public class Monster {
 
@@ -9,16 +9,27 @@ public class Monster {
     private int row;
     private int col;
     private boolean isDead;
+    private ImageIcon icon = new ImageIcon("Redx.png");
 
     public Monster() {
-        this("Monster", 20,0,0);
+        this("Monster",null , 20,0,0);
     }
-    public Monster(String name,int hp,int row,int col) {
+    public Monster(String name,ImageIcon icon, int hp,int row,int col) {
         setName(name);
+        setIcon(icon);
         setHp(hp);
         setRow(row);
         setCol(col);
         setIsDead(false);
+    }
+    
+    public ImageIcon getIcon()
+    {
+        return icon;
+    }
+    public void setIcon(ImageIcon icon)
+    {
+        this.icon = icon;
     }
 
     public int getHp() {

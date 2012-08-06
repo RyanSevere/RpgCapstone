@@ -16,6 +16,11 @@ import java.util.Random;
 import javax.swing.*;
 
 public class Battle extends JFrame {
+    
+    IconSelector IS = new IconSelector();
+    ImageIcon Orc = IS.getOrc();
+    ImageIcon Ogre = IS.getOgre();
+    ImageIcon Goblin = IS.getGoblin();
 
     Random rand = new Random();
     public static ArrayList<Monster> monsters = new ArrayList<Monster>();
@@ -49,11 +54,11 @@ public class Battle extends JFrame {
         
         table.setRowHeight(50);
         table.setBorder(BorderFactory.createLineBorder(Color.black));
-        monsters.add(new Monster("Orc", 1, 0, 3));
-        monsters.add(new Monster("Troll", 1, 0, 7));
-        monsters.add(new Monster("Troll", 1, 1, 0));
-        monsters.add(new Monster("Orc", 1, 2, 8));
-        monsters.add(new Monster("Ogre", 1, 2, 2));
+        monsters.add(new Monster("Orc", Orc, 1, 0, 3));
+        monsters.add(new Monster("Goblin", Goblin, 1, 0, 7));
+        monsters.add(new Monster("Goblin", Goblin, 1, 1, 0));
+        monsters.add(new Monster("Orc", Orc, 1, 2, 8));
+        monsters.add(new Monster("Ogre", Ogre, 1, 2, 2));
 
         setMap();
 
