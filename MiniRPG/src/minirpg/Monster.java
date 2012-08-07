@@ -7,19 +7,19 @@ public class Monster {
     private String name;
     private int hp;
     private int row;
-    private int col;
+    private int column;
     private boolean isDead;
     private ImageIcon icon = new ImageIcon("Redx.png");
 
     public Monster() {
         this("Monster",null , 20,0,0);
     }
-    public Monster(String name,ImageIcon icon, int hp,int row,int col) {
+    public Monster(String name,ImageIcon icon, int hp,int row,int column) {
         setName(name);
         setIcon(icon);
         setHp(hp);
         setRow(row);
-        setCol(col);
+        setColumn(column);
         setIsDead(false);
     }
     
@@ -46,12 +46,12 @@ public class Monster {
         this.name = name;
     }
 
-    public int getCol() {
-        return col;
+    public int getColumn() {
+        return column;
     }
 
-    public void setCol(int col) {
-        this.col = col;
+    public void setColumn(int colunm) {
+        this.column = colunm;
     }
 
     public int getRow() {

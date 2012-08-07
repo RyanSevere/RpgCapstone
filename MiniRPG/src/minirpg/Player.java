@@ -183,7 +183,7 @@ public class Player {
     {
         this.row = row;
     }
-    public int getColoum()
+    public int getColumn()
     {
         return column;
     }
