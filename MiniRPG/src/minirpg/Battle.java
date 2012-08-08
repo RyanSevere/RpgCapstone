@@ -29,16 +29,18 @@ public class Battle extends JFrame {
     int setupPlayerIndex = 0;
     int selectedPlayerIndex = 0;
     int selectedMonsterIndex = 0;
-    JTable table = new JTable(10, 10);
+    JTable table = new JTable(11, 11);
     JButton skill1, skill2,  skill3, skill4;//add buttons as needed
     JLabel lblClass, pClass, lblRole, role, lblStr, lblDex, lblEnd, lblwiz, str, dex, end,
             wiz, movesLeft, lblHp, hp, skills, name, icon, dash, lblSkill1,
-            lblSkill2, lblSkill3, lblSkill4;
+            lblSkill2, lblSkill3, lblSkill4, health;
     JTextArea infoBox;
     String empty = "";
     public JTabbedPane characterInfoPane;
 
     public Battle() {
+        
+        
         
         infoBox = new JTextArea(6, 95);
         infoBox.setEditable(false);
@@ -328,31 +330,31 @@ public class Battle extends JFrame {
         return col;
     }
 
-    public void getMonsterIndex() {
-        boolean mc = false;
-        boolean rc = false;
-        boolean cc = false;
-        int i = 0;
-        int rowInt = table.getSelectedRow();
-        int colInt = table.getSelectedColumn();
-        ListIterator<Monster> li = monsters.listIterator();
-        while (li.hasNext() && mc == false) {
-            Object meow = li.next();
-            for (int x = 0; x < 9; x++) {
-                if (monsters.get(i).getRow() == rowInt && rc == false) {
-                    rc = true;
-                }
-                if (monsters.get(i).getColumn() == colInt && cc == false) {
-                    cc = true;
-                }
-                if (cc == true && rc == true) {
-                    monsterIndex = i;
-                    mc = true;
-                }
-            }
-            i++;
-        }
-    }
+//    public void getMonsterIndex() {
+//        boolean mc = false;
+//        boolean rc = false;
+//        boolean cc = false;
+//        int i = 0;
+//        int rowInt = table.getSelectedRow();
+//        int colInt = table.getSelectedColumn();
+//        ListIterator<Monster> li = monsters.listIterator();
+//        while (li.hasNext() && mc == false) {
+//            Object meow = li.next();
+//            for (int x = 0; x < 9; x++) {
+//                if (monsters.get(i).getRow() == rowInt && rc == false) {
+//                    rc = true;
+//                }
+//                if (monsters.get(i).getColumn() == colInt && cc == false) {
+//                    cc = true;
+//                }
+//                if (cc == true && rc == true) {
+//                    monsterIndex = i;
+//                    mc = true;
+//                }
+//            }
+//            i++;
+//        }
+//    }
 
     public void checkMap() {
         ListIterator<Monster> li = monsters.listIterator();
@@ -375,7 +377,6 @@ public class Battle extends JFrame {
 
     public void damageEvent(String file, String moveName) {
         //Sets up varibles for damage      
-        String isRanged;
         String range;
         String damage;
         String output;
@@ -391,7 +392,6 @@ public class Battle extends JFrame {
             while ((strLine = br.readLine()) != null) {
                 // Print the content on the console
                 if (strLine.equals(moveName)) {
-                    isRanged = br.readLine();
                     range = br.readLine();
                     damage = br.readLine();
                     output = br.readLine();
@@ -507,10 +507,12 @@ public class Battle extends JFrame {
         c.gridy = 10;
         panel.add(lblHp, c);
 
-        hp = new JLabel("27");
+        
+        health = new JLabel(Integer.toString(
+                minirpg.MiniRPG.players.get(setupPlayerIndex).getHp()));
         c.gridx = 2;
         c.gridy = 10;
-        panel.add(hp, c);
+        panel.add(health, c);
 
         dash = new JLabel("--------------------SKILLS--------------------");
         c.gridwidth = 4;
@@ -558,8 +560,7 @@ public class Battle extends JFrame {
         c.gridx = 2;
         c.gridy = 15;
         panel.add(skill4, c);
-
-
+        
         return panel;
     }
 
@@ -576,7 +577,7 @@ public class Battle extends JFrame {
     }
 
     private void sMoveCheck(int x) {
-        if (MiniRPG.players.get(x).getRow() + 1 <= 9) {
+        if (MiniRPG.players.get(x).getRow() + 1 <= table.getRowCount()-1) {
             if (table.getValueAt(
                     MiniRPG.players.get(x).getRow() + 1,
                     MiniRPG.players.get(x).getColumn()) == null) {
@@ -599,7 +600,7 @@ public class Battle extends JFrame {
     }
 
     private void dMoveCheck(int x) {
-        if (MiniRPG.players.get(x).getColumn() + 1 <= 9) {
+        if (MiniRPG.players.get(x).getColumn() + 1 <= table.getRowCount() - 1) {
             if (table.getValueAt(
                     MiniRPG.players.get(x).getRow() ,
                     MiniRPG.players.get(x).getColumn()+ 1) == null) {

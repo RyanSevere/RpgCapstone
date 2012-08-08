@@ -22,14 +22,15 @@ public class Player {
     private int column;
     private int row;
     private ImageIcon icon;
+    int hp;
 
     public Player() {
-        this("Steve", 0, 0, 0, 0, 15, "Tank", "Monk", "Stun", null, null, null, 1,0,0, null);
+        this("Steve", 0, 0, 0, 0, 15, "Tank", "Monk", "Stun", null, null, null, 1,0,0, null, 30);
     }
 //SetPlayerInfo m = new SetPlayerInfo();
     public Player(String name, int str, int dex, int end, int wis, 
             int pointsLeft, String Role, String Class, String Skill1,
-            String Skill2, String Skill3, String Skill4, int Lvl,int row,int column, ImageIcon icon) {
+            String Skill2, String Skill3, String Skill4, int Lvl,int row,int column, ImageIcon icon,int hp) {
         setName(name);
         setStr(str);
         setDex(dex);
@@ -45,6 +46,7 @@ public class Player {
         setRow(row);
         setColumn(column);
         setIcon(icon);
+        setHp(hp);
         
 
     }
@@ -201,4 +203,14 @@ public class Player {
     {
         this.icon = icon;
     }
+    public int getHp()
+    {
+        return hp;
+    }
+    
+    public void setHp(int hp)
+    {
+        this.hp = hp;
+    }
+    
 }
