@@ -1,0 +1,20 @@
+starting hp 
+player 20
+Ogre 40
+Orc 30
+goblin 20
+
+for every 2 points in a skill you get +1 to relavent attack or hp
+hp goes up by 5 every lvl 
+
+revent class stat gets +2 to damage stat and end
+
+Light attack 5
+Medium attack 10
+Strong Attack 15
+
+Short range 2
+Medium Range 3
+Long Range 5
+
+skill attacks get +3 every lvl

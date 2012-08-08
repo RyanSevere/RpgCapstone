@@ -1,3 +1,4 @@
-Project for CS290
-By Sean Forman
-& Ryan Severe
+RPG Game
+CapStone Project for CS290
+By Ryan Severe 
+& Sean Forman

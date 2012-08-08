@@ -1,0 +1,748 @@
+Key
+
+name
+Range
+Damange fixed
+Heal %
+Defence boost %
+Damage boost %
+Defence Reduction %
+if stuns 
+stun duration
+text output
+
+Barbarian
+
+Rush
+1
+10
+0
+0
+0
+0
+0
+0
+You Rushed
+
+Rage
+0
+0
+0
+0
+0
+15
+0
+0
+Your Attack Power Inceases by
+
+Spin
+1
+10
+0
+0
+0
+0
+0
+0
+Your Spin Damages
+
+KnockBack
+1
+10
+0
+0
+0
+0
+0
+0
+You KnockBack
+
+Monk
+
+Meditate
+0
+0
+50%
+0
+0
+0
+0
+0
+You Meditate for 1 round
+
+Focus Strike
+1
+15
+0
+0
+0
+0
+0
+0
+You Strike
+
+Stun
+1
+0
+0
+0
+0
+0
+1
+1
+You Stun
+
+Roundhouse
+1
+10
+0
+0
+0
+0
+0
+0
+You Roundhouse
+
+Paladin
+
+Lay on Hands
+1
+0
+100%
+0
+0
+0
+0
+0
+You Heal
+
+Banish
+1
+0
+0
+0
+0
+0
+1
+2
+You Banish
+
+Holy Strike
+1
+15
+0
+0
+0
+0
+0
+0
+Your Holy Strike Hits
+
+Righteous Rage
+0
+0
+0
+0
+20
+0
+0
+0
+You are filled with a Righteous Rage for 2 rounds
+
+Warrior
+
+Shield Bash
+1
+10
+0
+0
+0
+0
+1
+1
+You Bash
+
+Tactical Strike
+1
+15
+0
+0
+0
+0
+0
+0
+You Study and Strike
+
+Power Attack
+1
+15
+0
+0
+0
+10
+0
+0
+Your Power Attack hits
+
+Rally
+0
+0
+0
+20
+15
+0
+0
+0
+You Rally your nearby allies
+
+Wizard
+
+Fireball
+3
+10
+0
+0
+0
+15
+0
+0
+Your Fireball blasts
+
+Magic Missle
+5
+5
+0
+0
+0
+0
+0
+0
+Your Magic Missle strikes
+
+Lightning Bolt
+5
+15
+0
+0
+0
+0
+1
+1
+Your Lightning Bolt fries
+
+Frost Shard
+2
+15
+0
+0
+0
+0
+0
+0
+Your Frost Shard Freezes
+
+Druid
+
+Entanglement
+3
+0
+0
+0
+0
+0
+1
+1
+You Entangle
+
+Summon Dire Wolf
+0
+0
+0
+0
+0
+0
+0
+0
+You Summon a Dire Wolf
+
+Natures Touch
+1
+0
+25%
+0
+0
+0
+0
+0
+You Heal
+
+Wild Shape
+0
+0
+0
+50
+50
+0
+0
+0
+You become an Ent, you are rooted for 2 rounds
+
+Warlock
+
+Summon Demon
+0
+0
+0
+0
+0
+0
+0
+0
+You summon a Demon to destory your enemies
+
+Shadow Bolt
+3
+10
+0
+0
+0
+0
+0
+0
+Your Shadow Bolt deals
+
+Fear
+5
+0
+0
+0
+0
+0
+1
+2
+You Fear
+
+Drain Life
+3
+0
+10%
+0
+0
+0
+0
+0
+You Drain life from
+
+Pyromancer
+
+Fire Blast
+5
+5
+0
+0
+0
+0
+0
+0
+You Blast
+
+Blaze
+2
+10
+0
+0
+0
+0
+0
+0
+You Torch
+
+Incinerate
+5
+15
+0
+0
+0
+0
+0
+0
+You Incinerate
+
+Mind Fire
+3
+10
+0
+0
+0
+0
+0
+0
+You do something fancy
+
+Cleric
+
+Divine Intervention
+0
+0
+0
+0
+0
+0
+0
+0
+You God Choose to ingnore your plea
+
+Prayer
+3
+0
+30%
+0
+0
+0
+0
+0
+Your Prayer is answered, you heal
+
+Holy Bash
+1
+15
+0
+0
+0
+0
+0
+0
+Your Holy Bash hits
+
+Holy Aura
+0
+0
+0
+25
+0
+0
+0
+0
+Your Holy Aura effects
+
+Priest
+
+Heal Target
+2
+0
+50%
+0
+0
+0
+0
+0
+You heal
+
+Heal All
+0
+0
+25
+0
+0
+0
+0
+0
+All players heal 25% of their health
+
+Holy Fire
+3
+10
+0
+0
+0
+0
+0
+0
+Your Hole Fire Smites
+
+Act of GOD
+0
+0
+0
+0
+0
+0
+0
+0
+GOD is out to lunch, please leave a message...beep
+
+Shaman
+
+Curse
+3
+0
+0
+0
+25
+0
+0
+You Curse
+
+Heal
+3
+0
+30%
+0
+0
+0
+0
+0
+You Heal
+
+Magic Weapon
+0
+0
+0
+0
+0
+0
+0
+0
+You Summon an Ethereal Sword
+
+Protection
+0
+0
+0
+35
+0
+0
+0
+0
+You Project a Protective Barrier around your Allies
+
+Bard
+
+Song of Inspiration
+0
+0
+0
+0
+0
+0
+0
+0
+Your Song Inspires everyone redouble their efforts, half of all players movement points are restored.
+
+Song of Renewal
+0
+0
+10
+0
+0
+0
+0
+0
+Your song of Renewal spreads a feeling of warmth amoung your allies healing them 10%
+
+Throw Dagger
+3
+10
+0
+0
+0
+0
+0
+0
+Your Hidden Dagger stabs
+
+Facinate
+0
+0
+0
+0
+0
+1
+3
+Your Song and Dance Facinates Everyone, Stunning all Monsters and distracting all allies
+
+Swashbuckler
+
+Pistol Shot
+2
+10
+0
+0
+0
+0
+0
+You Shoot
+
+Repose
+0
+0
+0
+20
+0
+0
+0
+0
+You assume a defensive posture raising your defence 20%
+
+Pillage
+1
+5
+0
+0
+0
+0
+0
+You Pillage
+
+Dirty Trick
+1
+0
+0
+0
+15
+0
+0
+2
+Your Dirty Trick distracts
+
+Theif
+
+Back Stab
+1
+15
+0
+0
+0
+0
+0
+0
+You Back Stab
+
+Stealth
+0
+0
+0
+0
+0
+0
+0
+0
+You Stealth
+
+Poison
+1
+10
+0
+0
+0
+0
+0
+0
+You Poison
+
+Steal
+0
+0
+0
+0
+0
+0
+0
+0
+You Steal
+
+Ranger
+
+Aimed Shot
+5
+10
+0
+0
+0
+0
+0
+0
+Your Aimed Shot hits
+
+Rain of Arrows
+3
+10
+0
+0
+0
+0
+0
+0
+Your Rain of Arrows hits
+
+Bow Strike
+1
+15
+0
+0
+0
+0
+1
+1
+You wollup 
+
+Arrow Stab
+1
+10
+0
+0
+0
+20
+0
+0
+You use an arrow to stab
+
+Assassin
+
+Garrote
+1
+15
+0
+0
+0
+0
+0
+0
+You Garrote
+
+Throwing Knife
+2
+10
+0
+0
+0
+0
+0
+0
+Your Throwing Knife impales
+
+Kidney Stab
+1
+15
+0
+0
+0
+0
+1
+3
+The Pain from your Kidney Stab Paralyzes
+
+Assasinate
+1
+20
+0
+0
+0
+0
+0
+0
+Your assassination failed but you hit
+
+
+
+
