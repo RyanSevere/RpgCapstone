@@ -22,7 +22,6 @@ public class MiniRPG {
         TabGUI.disableStatPanel();
             
     }
-
     public String getName(int num) {
         name = players.get(num).getName();
         return name;

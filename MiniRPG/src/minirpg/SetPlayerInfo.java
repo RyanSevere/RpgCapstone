@@ -519,7 +519,7 @@ public class SetPlayerInfo extends JPanel {
             icon = IS.getPlayerIcon();
             
             MiniRPG.players.add(new Player(playerName, s, d, e, w, p, 
-                    SelectedRole, SelectedClass, SelectedSkill, "Unlock at lvl 5", "Unlock at lvl 10", "Unlock at lvl 15", lvl,0,0, icon));
+                    SelectedRole, SelectedClass, SelectedSkill, "Unlock at lvl 5", "Unlock at lvl 10", "Unlock at lvl 15", lvl,0,0, icon, 30));
             pID++;
             name.setText(nameField.getText());
             listBox.addItem(playerName);

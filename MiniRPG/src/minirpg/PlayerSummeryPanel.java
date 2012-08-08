@@ -207,9 +207,10 @@ public class PlayerSummeryPanel extends JPanel {
                 setVisible(false);
                 Battle gui = new Battle();
                 gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                gui.setSize(1000, 650);
+                gui.setSize(1100, 700);
                 gui.setResizable(false);
                 gui.setVisible(true);
+                
             }
             if(a.getSource() == btnEdit)
             {
