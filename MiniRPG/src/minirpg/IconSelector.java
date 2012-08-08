@@ -25,7 +25,7 @@ public class IconSelector {
     ImageIcon Pyromancer = new ImageIcon("src/Icons/Icon-Pyromancer.png");
     ImageIcon Ranger = new ImageIcon("src/Icons/Icon-Ranger.png");
     ImageIcon Shaman = new ImageIcon("src/Icons/Icon-Shaman.png");
-    ImageIcon Swashbuckler = new ImageIcon("src/Icons/Icon-Swachbuckler.png");
+    ImageIcon Swashbuckler = new ImageIcon("src/Icons/Icon-Swashbuckler.png");
     ImageIcon Thief = new ImageIcon("src/Icons/Icon-Theif.png");
     ImageIcon Warlock = new ImageIcon("src/Icons/Icon-Warlock.png");
     ImageIcon Warrior = new ImageIcon("src/Icons/Icon-Warrior.png");
