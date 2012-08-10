@@ -2,11 +2,11 @@ Key
 
 name
 Range
-Damange fixed
+Damage fixed
 Heal %
-Defence boost %
+Defense boost %
 Damage boost %
-Defence Reduction %
+Defense Reduction %
 if stuns 
 stun duration
 text output
@@ -551,7 +551,7 @@ Throw Dagger
 0
 Your Hidden Dagger stabs
 
-Facinate
+Fascinate
 0
 0
 0
@@ -559,7 +559,7 @@ Facinate
 0
 1
 3
-Your Song and Dance Facinates Everyone, Stunning all Monsters and distracting all allies
+Your Song and Dance Fascinates Everyone, Stunning all Monsters and distracting all allies
 
 Swashbuckler
 
@@ -732,7 +732,7 @@ Kidney Stab
 3
 The Pain from your Kidney Stab Paralyzes
 
-Assasinate
+Assassinate
 1
 20
 0

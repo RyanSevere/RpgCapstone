@@ -167,7 +167,7 @@ Heal all other players, low heal
 Throw Dagger
 medium damage medium range attack
 
-Facinate
+Fascinate
 All monsters do not move for 3 rounds, bard also cannot move for same 3 rounds, and other player movement points are reduced by half. 
 
 Dps uses Dex

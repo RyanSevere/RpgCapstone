@@ -516,7 +516,7 @@ public class PlayerClassPanel extends JPanel {
     String[] ClaricSkills = {"", "Holy Bash", "Prayer", "Holy Aura", "Divine Intervention"};
     String[] PriestSkills = {"", "Heal Target", "Holy Fire", "Heal All", "Act of GOD"};
     String[] ShamanSkills = {"", "Curse", "Heal", "Protection", "Magic Weapon"};
-    String[] BardSkills = {"", "Throw Dagger", "Song of Inspiration", "Song of Renewal", "Facinate"};
+    String[] BardSkills = {"", "Throw Dagger", "Song of Inspiration", "Song of Renewal", "Fascinate"};
     //Arrays for Damage Skills
     String[] SwashSkills = {"", "Repose", "Dirty Trick", "Pistol Shot", "Pillage"};
     String[] ThiefSkills = {"", "Back Stab", "Poison", "Stealth", "Steal"};
