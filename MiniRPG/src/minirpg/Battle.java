@@ -2,10 +2,7 @@
 package minirpg;
 
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
@@ -14,10 +11,10 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.Random;
 import javax.swing.*;
-import javax.swing.table.TableCellRenderer;
 
-public class Battle extends JFrame {
+public class Battle extends JFrame{
 
+    SkillAttacks SA = new SkillAttacks();
     IconSelector IS = new IconSelector();
     ImageIcon Orc = IS.getOrc();
     ImageIcon Ogre = IS.getOgre();
@@ -36,8 +33,9 @@ public class Battle extends JFrame {
             lblSkill2, lblSkill3, lblSkill4, health;
     JTextArea infoBox;
     String empty = "";
+    Battle.Event e = new Battle.Event();
     public JTabbedPane characterInfoPane;
-
+    
     public Battle() {
         
         
@@ -69,8 +67,7 @@ public class Battle extends JFrame {
                     "");
             setupPlayerIndex++;
         }
-
-
+        
         JSplitPane splitPane1 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
                 true, battleGridPane, characterInfoPane);
 
@@ -84,8 +81,8 @@ public class Battle extends JFrame {
 
 
         getContentPane().add(splitPane2);
-
-//        Event a = new Event();
+        
+        //Event a = new Event();
 
         table.addKeyListener(new KeyAdapter() {
 
@@ -265,8 +262,9 @@ public class Battle extends JFrame {
                 }
             }
         });
+        
     }
-
+    
     //deals with player attack use later also uncomment event
     /*
      * public class Event implements ActionListener {
@@ -540,6 +538,7 @@ public class Battle extends JFrame {
         c.gridx = 2;
         c.gridy = 13;
         panel.add(skill2, c);
+        //skill2.setEnabled(false);
 
         lblSkill3 = new JLabel("Skill 3:");
         c.gridx = 1;
@@ -550,6 +549,7 @@ public class Battle extends JFrame {
         c.gridx = 2;
         c.gridy = 14;
         panel.add(skill3, c);
+        //skill3.setEnabled(false);
 
         lblSkill4 = new JLabel("Skill 4:");
         c.gridx = 1;
@@ -560,6 +560,12 @@ public class Battle extends JFrame {
         c.gridx = 2;
         c.gridy = 15;
         panel.add(skill4, c);
+        //skill4.setEnabled(false);
+                        
+        skill1.addActionListener(e);
+        skill2.addActionListener(e);
+        skill3.addActionListener(e);
+        skill4.addActionListener(e);
         
         return panel;
     }
@@ -634,4 +640,47 @@ public class Battle extends JFrame {
             x++;
         }
     }
+    
+    static String Skill;
+    
+    public class Event implements ActionListener
+    {
+        
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            if(e.getSource() == skill1)
+            {
+                System.out.println("you pressed the skill 1 button");
+                Skill = skill1.getText();
+                System.out.println("the skill for skill 1 button is " + Skill);
+                //SA.ReadFile();
+                //SA.TestFileRead();
+            }
+            
+            if(e.getSource() == skill2)
+            {
+                System.out.println("you pressed the skill 2 button");
+            }
+            
+            if(e.getSource() == skill3)
+            {
+                System.out.println("you pressed the skill 3 button");
+            }
+            
+            if(e.getSource() == skill4)
+            {
+                System.out.println("you pressed the skill 4 button");
+            }
+            
+            //throw new UnsupportedOperationException("Not supported yet.");
+        }
+    }
+    
+    static String GetSelectedSkill()
+    {
+        return Skill;
+    }
+    
+    
 }

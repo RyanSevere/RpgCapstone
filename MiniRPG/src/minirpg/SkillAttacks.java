@@ -15,7 +15,16 @@ import java.io.InputStreamReader;
  */
 public class SkillAttacks {
     
-    String SelectedSkill;
+    String SelectedSkill = "";
+    int Range;
+    int Damage;
+    int Heal;
+    int DefenseBoost;
+    int DefenseReduction;
+    int DamageBoost;
+    boolean IfStuned;
+    int StunDuration;
+    String TextOutput;
     
     public SkillAttacks()
     {
@@ -690,7 +699,7 @@ public class SkillAttacks {
     
     public void ReadFile()
     {
-        
+        SelectedSkill = Battle.GetSelectedSkill();
         try
             {
                 //open the file
@@ -706,7 +715,15 @@ public class SkillAttacks {
                     //for testing Print the contents on the console
                     if(strline.equals(SelectedSkill))
                     {
-                        //SkillDescription = reader.readLine();
+                        Range = Integer.parseInt(reader.readLine());
+                        Damage = Integer.parseInt(reader.readLine());
+                        Heal = Integer.parseInt(reader.readLine());
+                        DefenseBoost = Integer.parseInt(reader.readLine());
+                        DamageBoost = Integer.parseInt(reader.readLine());
+                        DefenseReduction = Integer.parseInt(reader.readLine());
+                        IfStuned = Boolean.getBoolean(reader.readLine());
+                        StunDuration = Integer.parseInt(reader.readLine());
+                        TextOutput = reader.readLine();
                         
                     }
                 }
@@ -717,6 +734,20 @@ public class SkillAttacks {
             {
                 System.err.println("Error: "+ e.getMessage());        
             }
+    }
+    
+    public void TestFileRead()
+    {
+        System.out.println(SelectedSkill);
+        System.out.println(Range);
+        System.out.println(Damage);
+        System.out.println(Heal);
+        System.out.println(DefenseBoost + "%");
+        System.out.println(DamageBoost + "%");
+        System.out.println(DefenseReduction + "%");
+        System.out.println(IfStuned);
+        System.out.println(StunDuration);
+        System.out.println(TextOutput);
     }
 }
 
