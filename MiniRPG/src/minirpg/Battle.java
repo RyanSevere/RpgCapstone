@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.Random;
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class Battle extends JFrame{
 
@@ -33,7 +35,7 @@ public class Battle extends JFrame{
             lblSkill2, lblSkill3, lblSkill4, health;
     JTextArea infoBox;
     String empty = "";
-    Battle.Event e = new Battle.Event();
+    
     public JTabbedPane characterInfoPane;
     
     public Battle() {
@@ -561,11 +563,56 @@ public class Battle extends JFrame{
         c.gridy = 15;
         panel.add(skill4, c);
         //skill4.setEnabled(false);
-                        
-        skill1.addActionListener(e);
-        skill2.addActionListener(e);
-        skill3.addActionListener(e);
-        skill4.addActionListener(e);
+        
+        //Battle.Event e = new Battle.Event();
+        skill1.addItemListener(new ItemListener()
+        {
+            @Override
+            public void itemStateChanged(ItemEvent e)
+            {
+                System.out.println("you pressed the skill 1 button");
+                Skill = skill1.getText();
+                System.out.println("the skill for skill 1 button is " + Skill);
+                //SA.ReadFile();
+                //SA.TestFileRead();
+            }
+        });
+        
+        skill1.addChangeListener(new ChangeListener()
+        {
+            public void stateChanged(ChangeEvent ev)
+            {
+                System.out.println("ChangeEvent!");
+            }
+        });
+        ItemListener Skill2BtnListener = new ItemListener()
+        {
+            @Override
+            public void itemStateChanged(ItemEvent e)
+            {
+                
+            }
+        };
+        ItemListener Skill3BtnListener = new ItemListener()
+        {
+            @Override
+            public void itemStateChanged(ItemEvent e)
+            {
+                
+            }
+        };
+        ItemListener Skill4BtnListener = new ItemListener()
+        {
+            @Override
+            public void itemStateChanged(ItemEvent e)
+            {
+                
+            }
+        };
+        //skill1.addItemListener(Skill1BtnListener);
+        skill2.addItemListener(Skill2BtnListener);
+        skill3.addItemListener(Skill3BtnListener);
+        skill4.addItemListener(Skill4BtnListener);
         
         return panel;
     }
@@ -642,20 +689,25 @@ public class Battle extends JFrame{
     }
     
     static String Skill;
-    
+    /*
     public class Event implements ActionListener
     {
         
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            if(e.getSource() == skill1)
+            if(e.getSource().equals(skill1))
             {
                 System.out.println("you pressed the skill 1 button");
                 Skill = skill1.getText();
                 System.out.println("the skill for skill 1 button is " + Skill);
                 //SA.ReadFile();
                 //SA.TestFileRead();
+            }
+            else
+            {
+                System.out.println(e.getSource().toString());
+                System.out.println(skill1);
             }
             
             if(e.getSource() == skill2)
@@ -676,7 +728,7 @@ public class Battle extends JFrame{
             //throw new UnsupportedOperationException("Not supported yet.");
         }
     }
-    
+    */
     static String GetSelectedSkill()
     {
         return Skill;
