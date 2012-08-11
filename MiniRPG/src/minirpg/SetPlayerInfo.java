@@ -347,7 +347,10 @@ public class SetPlayerInfo extends JPanel {
                 setPointsLeft();
                 setRole();
                 setClass();
-                setSkill();
+                setSkill1();
+                setSkill2();
+                setSkill3();
+                setSkill4();
                 battleCounter = 4;
                 create();
             }
@@ -419,10 +422,25 @@ public class SetPlayerInfo extends JPanel {
             getSelectedComboIndex();
             TabGUI.comboSelection.get(comboSelectedIndex).getRole();
         }
-        public void setSkill()
+        public void setSkill1()
         {
             getSelectedComboIndex();
-            TabGUI.comboSelection.get(comboSelectedIndex).getSkill();
+            TabGUI.comboSelection.get(comboSelectedIndex).getSkill1();
+        }
+        public void setSkill2()
+        {
+            getSelectedComboIndex();
+            TabGUI.comboSelection.get(comboSelectedIndex).getSkill2();
+        }
+        public void setSkill3()
+        {
+            getSelectedComboIndex();
+            TabGUI.comboSelection.get(comboSelectedIndex).getSkill3();
+        }
+        public void setSkill4()
+        {
+            getSelectedComboIndex();
+            TabGUI.comboSelection.get(comboSelectedIndex).getSkill4();
         }
         
         public void getSelectedComboIndex()
@@ -510,7 +528,10 @@ public class SetPlayerInfo extends JPanel {
             //System.out.println("The selected Role is: " + SelectedRole);
             String SelectedClass = TabGUI.comboSelection.get(x).getclass();
             //System.out.println("The selcted Class is: "+ SelectedClass);                    
-            String SelectedSkill = TabGUI.comboSelection.get(x).getSkill();
+            String Skill1 = TabGUI.comboSelection.get(x).getSkill1();
+            String Skill2 = TabGUI.comboSelection.get(x).getSkill2();
+            String Skill3 = TabGUI.comboSelection.get(x).getSkill3();
+            String Skill4 = TabGUI.comboSelection.get(x).getSkill4();
             //System.out.println("The selcted Skill is: "+ SelectedSkill);
             x++;
             //System.out.println(x);
@@ -519,7 +540,7 @@ public class SetPlayerInfo extends JPanel {
             icon = IS.getPlayerIcon();
             
             MiniRPG.players.add(new Player(playerName, s, d, e, w, p, 
-                    SelectedRole, SelectedClass, SelectedSkill, "Unlock at lvl 5", "Unlock at lvl 10", "Unlock at lvl 15", lvl,0,0, icon, 30));
+                    SelectedRole, SelectedClass, Skill1, Skill2, Skill3, Skill4, lvl,0,0, icon, 30));
             pID++;
             name.setText(nameField.getText());
             listBox.addItem(playerName);

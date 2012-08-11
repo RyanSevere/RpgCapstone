@@ -25,15 +25,15 @@ public class PlayerClassPanel extends JPanel {
        
     //establish Buttons, Drop boxes, Labels
     JButton btnDone, btnAdd;
-    JLabel lblClass, lblRole, lblTitle, lblName, lblSkills;
+    JLabel lblClass, lblRole, lblTitle, lblName, lblSkills, lblspacer;
     JTextField txtbxName;
     JTextArea txtbxDescription;
     JComboBox comboClass, comboRole, comboName, comboSkills;
-    
+    String defaultmessage = "Skill dropdown is for Skill Preview, and skill description. Not Skill Selection";
     //Skill Description variables
     String SelectedSkill; //where the selected skill will go for the file read function
     String SkillDescription; //where the description from the file will be stored for output
-    String Class, Role, Skill;
+    String Class, Role, Skill1 = "", Skill2 = "", Skill3 = "", Skill4 = "";
     boolean isValid = false;
     
        
@@ -51,25 +51,9 @@ public class PlayerClassPanel extends JPanel {
         c.gridy = 0;
         c.gridwidth = 5; //centering title text
         add(lblTitle, c);
-
-        //<editor-fold defaultstate="collapsed" desc="grid placement for Player Name and Text Field for player name, not being used on this pannel">
-//        //label for name field
-//        lblName = new JLabel("Player Name");
-//        c.fill = GridBagConstraints.HORIZONTAL;
-//        c.gridx = 0;
-//        c.gridy = 1;
-//        add(lblName, c);
-//        
-//        //text field for name
-//        txtbxName = new JTextField(); //need to figure out how to enlarge /extend field size
-//        c.fill = GridBagConstraints.HORIZONTAL;
-//        c.gridx = 2;
-//        c.gridy = 1;
-//        add(txtbxName, c);
-        //</editor-fold>
-        
+  
         //label for Role Combo box
-        lblRole = new JLabel("Role");
+        lblRole = new JLabel("Role ");
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 2;
@@ -83,48 +67,55 @@ public class PlayerClassPanel extends JPanel {
         c.gridy = 2;
         add(comboRole, c);
         
-        //label for Class Combo Box
-        lblClass = new JLabel("Class");
-        c.fill = GridBagConstraints.HORIZONTAL;
+        lblspacer = new JLabel("  ");
         c.gridx = 2;
         c.gridy = 2;
+        add(lblspacer, c);
+        
+        //label for Class Combo Box
+        lblClass = new JLabel("Class ");
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 0;
+        c.gridy = 3;
         add(lblClass, c);
         
         //Class Combo Box
         comboClass = new JComboBox(); //popluate based on selection from roles combo box
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 3;
-        c.gridy = 2;
+        c.gridx = 1;
+        c.gridy = 3;
         add(comboClass, c);
         
         //label for skills combo box
-        lblSkills = new JLabel("Skills");
+        lblSkills = new JLabel("Skills ");
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
-        c.gridy = 3;
+        c.gridy = 4;
         add(lblSkills, c);
         
         //combo box for skills
         comboSkills = new JComboBox();
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
-        c.gridy = 3;
+        c.gridy = 4;
         add(comboSkills, c);
         
         //txtbox where Skill Discription will be displayed
-        txtbxDescription = new JTextArea(5, 8);
+        txtbxDescription = new JTextArea(5, 10);
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 2;
-        c.gridy = 3;
+        c.gridx = 3;
+        c.gridy = 2;
         c.gridwidth = 3;
+        c.gridheight = 3;
         add(txtbxDescription, c);
         txtbxDescription.setEditable(false);
         txtbxDescription.setWrapStyleWord(true);
         txtbxDescription.setLineWrap(true);
+        txtbxDescription.setText(defaultmessage);
         
         btnDone = new JButton("Done");
         c.gridx = 1;
-        c.gridy = 4;
+        c.gridy = 5;
         c.gridwidth = 1;
         add(btnDone, c);
         
@@ -177,29 +168,27 @@ public class PlayerClassPanel extends JPanel {
                             //tank();
                             if ("Tank".equals(selectedRole))
                             {
-                                comboClass.removeAllItems(); // removes previous selection from combobox
+                                resetSelection();
                                 comboClass.setModel(new DefaultComboBoxModel(TankClass)); //populates comboClass with Selection
                             }
                             else if ("Healer".equals(selectedRole))
                             {
-                                comboClass.removeAllItems();
+                                resetSelection();
                                 comboClass.setModel(new DefaultComboBoxModel(HealerClass));
                             } 
                             else if ("Caster".equals(selectedRole))
                             {                
-                                comboClass.removeAllItems();
+                                resetSelection();
                                 comboClass.setModel(new DefaultComboBoxModel(CasterClass));
                             }
                             else if ("Damage".equals(selectedRole))
                             {                
-                                comboClass.removeAllItems();
+                                resetSelection();
                                 comboClass.setModel(new DefaultComboBoxModel(DpsClass));
                             }
                             else if ("".equals(selectedRole))
                             {
-                                comboClass.removeAllItems();
-                                comboSkills.removeAllItems();
-                                txtbxDescription.setText("");
+                                resetSelection();
                             }
 
 
@@ -219,69 +208,82 @@ public class PlayerClassPanel extends JPanel {
                 String selectedClass = (String) comboClass.getSelectedItem();
                 if("Barbarian".equals(selectedClass))
                 {
-                    comboSkills.removeAllItems();
+                    txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(BarbarianSkills));
                 }
                 else if("Monk".equals(selectedClass))
                 {
-                    comboSkills.removeAllItems();
+                    txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(MonkSkills));
                 }
                 else if("Paladin".equals(selectedClass))
                 {
-                    comboSkills.removeAllItems();
+                    txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(PaladinSkills));
                 }
                 else if("Warrior".equals(selectedClass))
                 {
+                    txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(WarriorSkills));
                 }
                 else if("Cleric".equals(selectedClass))
                 {
+                    txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(ClaricSkills));
                 }
                 else if("Priest".equals(selectedClass))
                 {
+                    txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(PriestSkills));
                 }
                 else if("Shaman".equals(selectedClass))
                 {
+                    txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(ShamanSkills));
                 }
                 else if("Bard".equals(selectedClass))
                 {
+                    txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(BardSkills));
                 }
                 else if("Wizard".equals(selectedClass))
                 {
+                    txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(WizardSkills));
                 }
                 else if("Druid".equals(selectedClass))
                 {
+                    txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(DruidSkills));
                 }
                 else if("Warlock".equals(selectedClass))
                 {
+                    txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(WarlockSkills));
                 }
                 else if("Pyromancer".equals(selectedClass))
                 {
+                    txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(PyroSkills));
                 }
                 else if("Swashbuckler".equals(selectedClass))
                 {
+                    txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(SwashSkills));
                 }
                 else if("Thief".equals(selectedClass))
                 {
+                    txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(ThiefSkills));
                 }
                 else if("Ranger".equals(selectedClass))
                 {
+                    txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(RangerSkills));
                 }
                 else if("Assassin".equals(selectedClass))
                 {
+                    txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(AssassinSkills));
                 }
                 else if("".equals(selectedClass))
@@ -311,7 +313,13 @@ public class PlayerClassPanel extends JPanel {
                 {
                     txtbxDescription.setText("");
                 }
-                Skill = SelectedSkill;
+                if(comboSkills.getItemCount() > 0)
+                {
+                    Skill1 = comboSkills.getItemAt(1).toString();
+                    Skill2 = comboSkills.getItemAt(2).toString();
+                    Skill3 = comboSkills.getItemAt(3).toString();
+                    Skill4 = comboSkills.getItemAt(4).toString();
+                }
                 //System.out.println(Skill);
                 
             }
@@ -330,7 +338,7 @@ public class PlayerClassPanel extends JPanel {
         {
             if(!"".equals(Class) || Class != null)
             {
-                if(!"".equals(Skill) || Skill != null)
+                if(!"".equals(Skill1) || Skill1 != null)
                 {
                     isValid = true;
                 }
@@ -349,9 +357,21 @@ public class PlayerClassPanel extends JPanel {
         {   
             return Role;
         }
-    public String getPlayerSkill()
+    public String getPlayerSkill1()
         {   
-            return Skill;
+            return Skill1;
+        }
+    public String getPlayerSkill2()
+        {   
+            return Skill2;
+        }
+    public String getPlayerSkill3()
+        {   
+            return Skill3;
+        }
+    public String getPlayerSkill4()
+        {   
+            return Skill4;
         }
    
     
@@ -387,7 +407,12 @@ public class PlayerClassPanel extends JPanel {
         }
     //</editor-fold>
     
-    
+  public void resetSelection()
+    {
+        comboClass.removeAllItems(); // removes previous selection from combobox
+        comboSkills.removeAllItems(); // removes previous skill selection
+        txtbxDescription.setText("");
+    }  
   //<editor-fold //<editor-fold defaultstate="collapsed" desc="ActionLiseners Replaced with ItemListeners, Resolved Issue of comboboxs getting multipule instances of the same list">
     
         public class Event implements ActionListener
@@ -402,7 +427,7 @@ public class PlayerClassPanel extends JPanel {
                     checkValid();
                     if (isValid == true)
                     {
-                        TabGUI.comboSelection.add(new ComboSelection(Role, Class, Skill));
+                        TabGUI.comboSelection.add(new ComboSelection(Role, Class, Skill1, Skill2, Skill3, Skill4));
                         isValid = false;
                         TabGUI.disableClassPanel();
                         TabGUI.FowardStatPanel();
@@ -412,82 +437,6 @@ public class PlayerClassPanel extends JPanel {
         }
         
     //</editor-fold>    
-    
-   
-  //<editor-fold defaultstate="collapsed" desc="no longer used methods for filling in combobox's">
-    /*public void comboClasscleaner()
-    {
-        int x = 5;
-        int y = 6;
-        if(x <= comboClass.getItemCount())
-        {
-            System.out.println("x = " + x);
-            System.out.println("y = " + y);
-            System.out.println("number of item in combo" + comboClass.getItemCount());
-            comboClass.removeItemAt(6);
-            comboClass.removeItemAt(7);
-            comboClass.removeItemAt(8);
-            comboClass.removeItemAt(9);
-            comboClass.removeItemAt(10);
-            y++;
-        }
-    }
-    
-    public void tank()
-    {
-        int x = 0;
-        while (x < TankClass.length) 
-        {
-            System.out.println(x);
-            comboClass.insertItemAt(TankClass[x], x);
-            x++;
-        }
-    }
-    
-    public void caster()
-    {
-        int x = 0;
-        while (x < CasterClass.length)
-        {
-            System.out.println(x);
-            comboClass.insertItemAt(CasterClass[x], x);
-            x++;
-        }
-    }
-    
-    public void healer()
-    {
-        int x = 0;
-        while (x < HealerClass.length)
-        {
-            comboClass.insertItemAt(HealerClass[x], x);
-            x++;
-        }
-    }
-    
-    public void dps()
-    {
-        int x = 0;
-        while (x < DpsClass.length)
-        {
-            comboClass.insertItemAt(DpsClass[x], x);
-            x++;
-        }
-    }
-    
-    public void barbarian()
-    {
-        int x = 0;
-        while (x < BarbarianSkills.length)
-        {
-            comboSkills.insertItemAt(BarbarianSkills[x], x);
-            x++;
-        }
-    }
-    
-    */
-  //</editor-fold>
-   
     
     //<editor-fold defaultstate="collapsed" desc="Drop Box Arrays">
     //Roles Array

@@ -697,7 +697,7 @@ public class SkillAttacks {
         
     }
     
-    public void ReadFile()
+    public void ReadFile() //works
     {
         SelectedSkill = Battle.GetSelectedSkill();
         try

@@ -564,58 +564,16 @@ public class Battle extends JFrame{
         panel.add(skill4, c);
         //skill4.setEnabled(false);
         
-        //Battle.Event e = new Battle.Event();
-        skill1.addItemListener(new ItemListener()
-        {
-            @Override
-            public void itemStateChanged(ItemEvent e)
-            {
-                System.out.println("you pressed the skill 1 button");
-                Skill = skill1.getText();
-                System.out.println("the skill for skill 1 button is " + Skill);
-                //SA.ReadFile();
-                //SA.TestFileRead();
-            }
-        });
+        Battle.Event e = new Battle.Event();
         
-        skill1.addChangeListener(new ChangeListener()
-        {
-            public void stateChanged(ChangeEvent ev)
-            {
-                System.out.println("ChangeEvent!");
-            }
-        });
-        ItemListener Skill2BtnListener = new ItemListener()
-        {
-            @Override
-            public void itemStateChanged(ItemEvent e)
-            {
-                
-            }
-        };
-        ItemListener Skill3BtnListener = new ItemListener()
-        {
-            @Override
-            public void itemStateChanged(ItemEvent e)
-            {
-                
-            }
-        };
-        ItemListener Skill4BtnListener = new ItemListener()
-        {
-            @Override
-            public void itemStateChanged(ItemEvent e)
-            {
-                
-            }
-        };
-        //skill1.addItemListener(Skill1BtnListener);
-        skill2.addItemListener(Skill2BtnListener);
-        skill3.addItemListener(Skill3BtnListener);
-        skill4.addItemListener(Skill4BtnListener);
+        skill1.addActionListener(e);
+        skill2.addActionListener(e);
+        skill3.addActionListener(e);
+        skill4.addActionListener(e);
         
         return panel;
     }
+    
 
     private void wMoveCheck(int x) {
         if (MiniRPG.players.get(x).getRow() - 1 >= 0) {
@@ -640,6 +598,7 @@ public class Battle extends JFrame{
             System.out.println("not so legal move");
         }
     }
+    
     private void aMoveCheck(int x) {
         if (MiniRPG.players.get(x).getColumn() - 1 >= 0) {
             if (table.getValueAt(
@@ -689,26 +648,33 @@ public class Battle extends JFrame{
     }
     
     static String Skill;
-    /*
+    
     public class Event implements ActionListener
     {
         
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            if(e.getSource().equals(skill1))
+            int x = 0;
+            while(x < 4)
             {
-                System.out.println("you pressed the skill 1 button");
-                Skill = skill1.getText();
-                System.out.println("the skill for skill 1 button is " + Skill);
-                //SA.ReadFile();
-                //SA.TestFileRead();
+                if(e.getSource().toString().contains(MiniRPG.players.get(x).getSkill1()) == true)
+                {
+                    System.out.println("you pressed the skill 1 button");
+                    Skill = skill1.getText();
+                    System.out.println("the skill for skill 1 button is " + Skill);
+                    System.out.println(e.getSource());
+                    SA.ReadFile();
+                    SA.TestFileRead();
+                    x = 4;
+                }
+                else
+                {
+                    x++;
+                    System.out.println(x);
+                }
             }
-            else
-            {
-                System.out.println(e.getSource().toString());
-                System.out.println(skill1);
-            }
+            
             
             if(e.getSource() == skill2)
             {
@@ -728,7 +694,7 @@ public class Battle extends JFrame{
             //throw new UnsupportedOperationException("Not supported yet.");
         }
     }
-    */
+    
     static String GetSelectedSkill()
     {
         return Skill;

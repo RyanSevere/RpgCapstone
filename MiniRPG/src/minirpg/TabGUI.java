@@ -23,7 +23,7 @@ public class TabGUI extends JFrame {
     SetPlayerInfo PSP = new SetPlayerInfo();
     SingleSelectionModel model;
     int index;
-    String Role, Class, Skill;
+    String Role, Class, Skill1, Skill2, Skill3, Skill4;
     int count  = 0;
     
     public static ArrayList<ComboSelection> comboSelection = new ArrayList<ComboSelection>();
@@ -107,6 +107,7 @@ public class TabGUI extends JFrame {
     
     static void returntoClassPanel()
     {
+        jtp.setEnabledAt(1, false);
         jtp.setSelectedIndex(0);
     }
     
@@ -143,10 +144,28 @@ public class TabGUI extends JFrame {
         return Class;
     }
     
-    public String getSkill(int num)
+    public String getSkill1(int num)
     {
-        Skill = comboSelection.get(num).getSkill();
-        return Skill;
+        Skill1 = comboSelection.get(num).getSkill1();
+        return Skill1;
+    }
+    
+    public String getSkill2(int num)
+    {
+        Skill2 = comboSelection.get(num).getSkill2();
+        return Skill2;
+    }
+    
+    public String getSkill3(int num)
+    {
+        Skill3 = comboSelection.get(num).getSkill3();
+        return Skill3;
+    }
+    
+    public String getSkill4(int num)
+    {
+        Skill4 = comboSelection.get(num).getSkill4();
+        return Skill4;
     }
     
     

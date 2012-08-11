@@ -117,7 +117,7 @@ Healer uses Int
 Cleric
 
 Divine Intervention
-Heals all characters to full health, kills one monster, or damages. only useable once per battle effect is random.  all monsters
+Heals all characters to full health, kills one monster, or damages all monsters. only useable once per battle effect is random.  
 
 Prayer
 Heals target for medium amount
