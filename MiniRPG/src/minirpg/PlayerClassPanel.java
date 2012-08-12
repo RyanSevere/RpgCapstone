@@ -413,8 +413,8 @@ public class PlayerClassPanel extends JPanel {
         comboSkills.removeAllItems(); // removes previous skill selection
         txtbxDescription.setText("");
     }  
-  //<editor-fold //<editor-fold defaultstate="collapsed" desc="ActionLiseners Replaced with ItemListeners, Resolved Issue of comboboxs getting multipule instances of the same list">
-    
+  
+  //<editor-fold //<editor-fold defaultstate="collapsed" desc="ActionLiseners for done button">
         public class Event implements ActionListener
         {
             @Override
