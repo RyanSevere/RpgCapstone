@@ -28,308 +28,316 @@ public class SkillAttacks {
     
     public SkillAttacks()
     {
+        //<editor-fold defaultstate="collapsed" desc="Tank Skills">
         //<editor-fold defaultstate="collapsed" desc="Barbarian Skills">
         if(SelectedSkill.equals("Rush"))
         {
-            
+            Rush();
         }
         else if(SelectedSkill.equals("Rage"))
         {
-            
+            Rage();   
         }
         else if(SelectedSkill.equals("Spin"))
         {
-            
+            Spin();
         }
         else if(SelectedSkill.equals("KnockBack"))
         {
-            
+            KnockBack();
         }
         //</editor-fold>
         
         //<editor-fold defaultstate="collapsed" desc="Monk Skills">
         else if(SelectedSkill.equals("Focus Strike"))
         {
-            
+            FocusStrike();
         }
         else if(SelectedSkill.equals("Meditate"))
         {
-            
+            Meditate();
         }
         else if(SelectedSkill.equals("Stun"))
         {
-            
+            Stun();
         }
         else if(SelectedSkill.equals("Roundhouse"))
         {
-            
+            Roundhouse();
         }
         //</editor-fold>
         
         //<editor-fold defaultstate="collapsed" desc="Paladin Skills">
         else if(SelectedSkill.equals("Lay on Hands"))
         {
-            
+            LayOnHands();
         }
         else if(SelectedSkill.equals("Banish"))
         {
-            
+            Banish();
         }
         else if(SelectedSkill.equals("Holy Strike"))
         {
-            
+            HolyStrike();
         }
         else if(SelectedSkill.equals("Righteous Rage"))
         {
-            
+            RighteousRage();
         }
         //</editor-fold>
         
         //<editor-fold defaultstate="collapsed" desc="Warrior Skills">
         else if(SelectedSkill.equals("Shield Bash"))
         {
-            
+            ShieldBash();
         }
         else if(SelectedSkill.equals("Tactical Strike"))
         {
-            
+            TacticalStrike();
         }
         else if(SelectedSkill.equals("Power Attack"))
         {
-            
+            PowerAttack();
         }
         else if(SelectedSkill.equals("Rally"))
         {
-            
+            Rally();
         }
         //</editor-fold>
+        //</editor-fold>
         
+        //<editor-fold defaultstate="collapsed" desc="Caster Skills">
         //<editor-fold defaultstate="collapsed" desc="Wizard Skills">
         else if(SelectedSkill.equals("Fireball"))
         {
-            
+            Fireball();
         }
         else if(SelectedSkill.equals("Magic Missile"))
         {
-            
+            MagicMissle();
         }
         else if(SelectedSkill.equals("Lightning Bolt"))
         {
-            
+            LightningBolt();
         }
         else if(SelectedSkill.equals("Frost Shard"))
         {
-            
+            FrostShard();
         }
         //</editor-fold>
         
         //<editor-fold defaultstate="collapsed" desc="Druid Skills">
         else if(SelectedSkill.equals("Entanglement"))
         {
-            
+            Entanglement();
         }
         else if(SelectedSkill.equals("Natures Touch"))
         {
-            
+            NaturesTouch();
         }
         else if(SelectedSkill.equals("Summon Dire Wolf"))
         {
-            
+            SummonDireWolf();
         }
         else if(SelectedSkill.equals("Wild Shape"))
         {
-            
+            WildShape();
         }
         //</editor-fold>
         
         //<editor-fold defaultstate="collapsed" desc="Warlock Skills">
         else if(SelectedSkill.equals("Shadow Bolt"))
         {
-            
+            ShadowBolt();
         }
         else if(SelectedSkill.equals("Fear"))
         {
-            
+            Fear();
         }
         else if(SelectedSkill.equals("Drain Life"))
         {
-            
+            DrainLife();
         }
         else if(SelectedSkill.equals("Summon Demon"))
         {
-            
+            SummonDemon();
         }
         //</editor-fold>
         
         //<editor-fold defaultstate="collapsed" desc="Pyromancer Skills">
         else if(SelectedSkill.equals("Fire Blast"))
         {
-            
+            FireBlast();
         }
         else if(SelectedSkill.equals("Blaze"))
         {
-            
+            Blaze();
         }
         else if(SelectedSkill.equals("Incinerate"))
         {
-            
+            Incinerate();
         }
         else if(SelectedSkill.equals("Mind Fire"))
         {
-            
+            MindFire();
         }
         //</editor-fold>
+        //</editor-fold>
         
+        //<editor-fold defaultstate="Collapsed" desc="healer Skills">
         //<editor-fold defaultstate="collapsed" desc="Cleric Skills"> 
         else if(SelectedSkill.equals("Holy Bash"))
         {
-            
+            HolyBash();
         }
         else if(SelectedSkill.equals("Prayer"))
         {
-            
+            Prayer();
         }
         else if(SelectedSkill.equals("Holy Aura"))
         {
-            
+            HolyAura();
         }
         else if(SelectedSkill.equals("Divine Intervention"))
         {
-            
+            DivineIntervention();
         }
         //</editor-fold>
         
         //<editor-fold defaultstate="collapsed" desc="Priest Skills">
         else if(SelectedSkill.equals("Heal Target"))
         {
-            
+            HealTarget();
         }
         else if(SelectedSkill.equals("Holy Fire"))
         {
-            
+            HolyFire();
         }
         else if(SelectedSkill.equals("Heal All"))
         {
-            
+            HealAll();
         }
         else if(SelectedSkill.equals("Act of GOD"))
         {
-            
+            ActOfGOD();
         }
         //</editor-fold>
         
         //<editor-fold defaultstate="collapsed" desc="Shaman Skills">
         else if(SelectedSkill.equals("Curse"))
         {
-            
+            Curse();
         }
         else if(SelectedSkill.equals("Heal"))
         {
-            
+            Heal();
         }
         else if(SelectedSkill.equals("Protection"))
         {
-            
+            Protection();
         }
         else if(SelectedSkill.equals("Magic Weapon"))
         {
-            
+            MagicWeapon();
         }
         //</editor-fold>
         
         //<editor-fold defaultstate="collapsed" desc="Bard Skills">
         else if(SelectedSkill.equals("Throw Dagger"))
         {
-            
+            ThrowDagger();
         }
         else if(SelectedSkill.equals("Song of Inspiration"))
         {
-            
+            Inspiration();
         }
         else if(SelectedSkill.equals("Song of Renewal"))
         {
-            
+            Renewal();
         }
         else if(SelectedSkill.equals("Fascinate"))
         {
-            
+            Fascinate();
         }
         //</editor-fold>
+        //</editor-fold>
         
+        //<editor-fold defaultstate="collapsed" desc="Damage Skills">
         //<editor-fold defaultstate="collapsed" desc="Swashbuckler Skills">
         else if(SelectedSkill.equals("Repose"))
         {
-            
+            Repose();
         }
         else if(SelectedSkill.equals("Dirty Trick"))
         {
-            
+            DirtyTrick();
         }
         else if(SelectedSkill.equals("Pistol Shot"))
         {
-            
+            PistolShot();
         }
         else if(SelectedSkill.equals("Pillage"))
         {
-            
+            Pillage();
         }
         //</editor-fold>
         
         //<editor-fold defaultstate="collapsed" desc="Thief Skills"> 
         else if(SelectedSkill.equals("Back Stab"))
         {
-            
+            BackStab();
         }
         else if(SelectedSkill.equals("Poison"))
         {
-            
+            Poison();
         }
         else if(SelectedSkill.equals("Stealth"))
         {
-            
+            Stealth();
         }
         else if(SelectedSkill.equals("Steal"))
         {
-            
+            Steal();
         }
         //</editor-fold>
         
         //<editor-fold defaultstate="collapsed" desc="Ranger Skills">
         else if(SelectedSkill.equals("Aimed Shot"))
         {
-            
+            AimedShot();
         }
         else if(SelectedSkill.equals("Bow Strike"))
         {
-            
+            BowStrike();
         }
         else if(SelectedSkill.equals("Arrow Stab"))
         {
-            
+            ArrowStab();
         }
         else if(SelectedSkill.equals("Rain of Arrows"))
         {
-            
+            RainofArrows();
         }
         //</editor-fold>
         
         //<editor-fold defaultstate="collapsed" desc="Assassin Skills">
         else if(SelectedSkill.equals("Garrote"))
         {
-            
+            Garrote();
         }
         else if(SelectedSkill.equals("Throwing Knife"))
         {
-            
+            ThrowingKnife();
         }
         else if(SelectedSkill.equals("Kidney Stab"))
         {
-            
+            KidneyStab();
         }
         else if(SelectedSkill.equals("Assassinate"))
         {
-            
+            Assassinate();
         }
+        //</editor-fold>
         //</editor-fold>
     }
     
@@ -337,21 +345,23 @@ public class SkillAttacks {
     //<editor-fold defaultstate="collapsed" desc="Barbarian Skill Functions">
     public void Rush()
     {
-
+        //needs movement limitor set up to allow for additional movements
+        ReadFile();
     }
+    
     public void Rage()
     {
-        
+        ReadFile();
     }
     
     public void Spin()
     {
-        
+        ReadFile();
     }
     
     public void KnockBack()
     {
-        
+        ReadFile();
     }
     //</editor-fold>
     
@@ -400,7 +410,7 @@ public class SkillAttacks {
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Warior Skill Functions">
-    public void SheildBash()
+    public void ShieldBash()
     {
         
     }
@@ -514,7 +524,7 @@ public class SkillAttacks {
     
     //<editor-fold defaultstate="collapsed" desc="Caster Skill Functions">
     //<editor-fold defaultstate="collapsed" desc="Wizard Skill Functions">
-    public void FireBall()
+    public void Fireball()
     {
         
     }
@@ -541,7 +551,7 @@ public class SkillAttacks {
         
     }
     
-    public void ShadowBold()
+    public void ShadowBolt()
     {
         
     }
@@ -663,7 +673,7 @@ public class SkillAttacks {
         
     }
     
-    public void ArrowStrike()
+    public void ArrowStab()
     {
         
     }
@@ -692,7 +702,7 @@ public class SkillAttacks {
     //</editor-fold>
     //</editor-fold>
     
-    public void GlobalStun()
+    public void StunFunction()
     {
         
     }
@@ -734,6 +744,20 @@ public class SkillAttacks {
             {
                 System.err.println("Error: "+ e.getMessage());        
             }
+        
+        /*  data layout
+            name
+            Range
+            Damage fixed
+            Heal %
+            Defense boost %
+            Damage boost %
+            Defense Reduction %
+            if stuns 
+            stun duration
+            text output
+         */
+        
     }
     
     public void TestFileRead()

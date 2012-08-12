@@ -3,31 +3,20 @@ package minirpg;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.Random;
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 public class Battle extends JFrame{
 
     SkillAttacks SA = new SkillAttacks();
     IconSelector IS = new IconSelector();
-    ImageIcon Orc = IS.getOrc();
-    ImageIcon Ogre = IS.getOgre();
-    ImageIcon Goblin = IS.getGoblin();
+    ImageIcon Orc = IS.getOrc(), Ogre = IS.getOgre(), Goblin = IS.getGoblin();
     Random rand = new Random();
     public static ArrayList<Monster> monsters = new ArrayList<Monster>();
     boolean moveCheck = false;
-    int monsterIndex;
-    int setupPlayerIndex = 0;
-    int selectedPlayerIndex = 0;
-    int selectedMonsterIndex = 0;
+    int monsterIndex, monsterHP, setupPlayerIndex = 0, selectedPlayerIndex = 0, selectedMonsterIndex = 0;
     JTable table = new JTable(11, 11);
     JButton skill1, skill2,  skill3, skill4;//add buttons as needed
     JLabel lblClass, pClass, lblRole, role, lblStr, lblDex, lblEnd, lblwiz, str, dex, end,
@@ -40,19 +29,17 @@ public class Battle extends JFrame{
     
     public Battle() {
         
-        
-        
         infoBox = new JTextArea(6, 95);
         infoBox.setEditable(false);
         //table.setShowGrid(false);
         table.setSelectionBackground(Color.white);
         table.setRowHeight(50);
         table.setBorder(BorderFactory.createLineBorder(Color.black));
-        monsters.add(new Monster("Orc", Orc, 1, 0, 3));
-        monsters.add(new Monster("Goblin", Goblin, 1, 0, 7));
-        monsters.add(new Monster("Goblin", Goblin, 1, 1, 0));
-        monsters.add(new Monster("Orc", Orc, 1, 2, 8));
-        monsters.add(new Monster("Ogre", Ogre, 1, 2, 2));
+        monsters.add(new Monster("Orc", Orc, 30, 3, 0, 3));
+        monsters.add(new Monster("Goblin", Goblin, 2,  20, 0, 7));
+        monsters.add(new Monster("Goblin", Goblin, 2, 20, 1, 0));
+        monsters.add(new Monster("Orc", Orc, 30, 3, 2, 8));
+        monsters.add(new Monster("Ogre", Ogre, 40, 5, 2, 2));
 
         setMap();
 
@@ -73,10 +60,10 @@ public class Battle extends JFrame{
         JSplitPane splitPane1 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
                 true, battleGridPane, characterInfoPane);
 
-        JPanel battleTextPane = new JPanel();
+        JScrollPane battleTextPane = new JScrollPane(infoBox);
         Dimension battleTextPannelSize = new Dimension(800, 500);
         battleGridPane.setMinimumSize(battleTextPannelSize);
-        battleTextPane.add(infoBox);
+        battleTextPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
         JSplitPane splitPane2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT,
                 true, splitPane1, battleTextPane);
@@ -180,7 +167,10 @@ public class Battle extends JFrame{
                             monsters.get(selectedMonsterIndex).getColumn() && 
                             MiniRPG.players.get(selectedPlayerIndex).getRow() == 
                             monsters.get(selectedMonsterIndex).getRow()) {
+                        damageEvent();
+                        CheckIfAlive();
                         System.out.println("col hit left!.....on "+ monsters.get(selectedMonsterIndex).getName());
+                        
                     }
                     
                     
@@ -188,6 +178,8 @@ public class Battle extends JFrame{
                             monsters.get(selectedMonsterIndex).getRow() && 
                             MiniRPG.players.get(selectedPlayerIndex).getColumn() == 
                             monsters.get(selectedMonsterIndex).getColumn()) {
+                        damageEvent();
+                        CheckIfAlive();
                         System.out.println("row hit down!.....on "+ monsters.get(selectedMonsterIndex).getName());
                     }
                     
@@ -195,12 +187,16 @@ public class Battle extends JFrame{
                             monsters.get(selectedMonsterIndex).getRow() &&
                             MiniRPG.players.get(selectedPlayerIndex).getColumn() == 
                             monsters.get(selectedMonsterIndex).getColumn() ) {
+                        damageEvent();
+                        CheckIfAlive();
                         System.out.println("row hit up!.....on "+ monsters.get(selectedMonsterIndex).getName());
                     }
                     else if (MiniRPG.players.get(selectedPlayerIndex).getColumn() + 1 ==
                             monsters.get(selectedMonsterIndex).getColumn()&& 
                             MiniRPG.players.get(selectedPlayerIndex).getRow() == 
                             monsters.get(selectedMonsterIndex).getRow()){
+                        damageEvent();
+                        CheckIfAlive();
                         System.out.println("col hit right!.....on " + monsters.get(selectedMonsterIndex).getName());
                     }
                     else{
@@ -291,6 +287,7 @@ public class Battle extends JFrame{
         table.setValueAt(MiniRPG.players.get(1).getName(), 9, 4);
         table.setValueAt(MiniRPG.players.get(2).getName(), 9, 5);
         table.setValueAt(MiniRPG.players.get(3).getName(), 9, 6);
+        
         //Sets Monsters
         monsters.get(0).setColumn(3);
         monsters.get(1).setColumn(7);
@@ -375,32 +372,24 @@ public class Battle extends JFrame{
         }
     }
 
-    public void damageEvent(String file, String moveName) {
+    public void damageEvent() {
         //Sets up varibles for damage      
-        String range;
-        String damage;
-        String output;
-        try {
-            // Open the file that is the first 
-            // command line parameter
-            FileInputStream fstream = new FileInputStream(file);
-            // Get the object of DataInputStream
-            DataInputStream in = new DataInputStream(fstream);
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String strLine;
-            //Read File Line By Line
-            while ((strLine = br.readLine()) != null) {
-                // Print the content on the console
-                if (strLine.equals(moveName)) {
-                    range = br.readLine();
-                    damage = br.readLine();
-                    output = br.readLine();
-                }
-            }
-            //Close the input stream
-            in.close();
-        } catch (Exception e) {//Catch exception if any
-            System.err.println("Error: " + e.getMessage());
+        int damage = MiniRPG.players.get(selectedPlayerIndex).getBasicDamage();
+        monsterHP = monsters.get(selectedMonsterIndex).getHp() - damage; 
+        monsters.get(selectedMonsterIndex).setHp(monsterHP);
+        String DamageReport = monsters.get(selectedMonsterIndex).getName() + " takes " + damage + " damage.\n"
+                + monsters.get(selectedMonsterIndex).getName() + " is down to " + monsterHP + " Hp";
+        infoBox.setText(infoBox.getText() + "\n" + DamageReport);
+    }
+    
+    public void CheckIfAlive()
+    {
+        if(monsterHP <= 0)
+        {
+            monsters.get(selectedMonsterIndex).setIsDead(true);
+            String Kill = monsters.get(selectedMonsterIndex).getName() + "Has Died";
+            infoBox.setText(infoBox.getText() + "\n" + Kill);
+            
         }
     }
 

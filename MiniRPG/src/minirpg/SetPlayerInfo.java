@@ -12,22 +12,18 @@ public class SetPlayerInfo extends JPanel {
     JLabel str, dex, end, wis, name, pointsLeftLabel, strTotal,
             dexTotal, endTotal, wisTotal, pointsLeftField;
     JTextField nameField;
-    String playerName = "meow";
+    String playerName = "meow", SelectedRole, SelectedClass;
     JComboBox listBox;
     
+    int x = 0, pID = 0, battleCounter = 0, pStr, pDex, pEnd, pWis, pName, pLvl, hp, Damage, baseLineDamage;
+    int comboSelectedIndex;
+    public boolean valid = false;
     ImageIcon icon = new ImageIcon();
     PlayerClassPanel pcp = new PlayerClassPanel();    
     IconSelector IS = new IconSelector();
     //Delcared Array for Player Names and Stats
     ArrayList<Player> players = new ArrayList<Player>();
-    //ListIterator<Player> namelist = players.listIterator();
-    //Player player; // unneeded code for current set up
-    //Player setInfo = new Player(); //point of this line of code? does not seem to be used other then to initalize an instance of player but is not used else were
-    int battleCounter = 0;
-    int pID = 0;
-    int x = 0;
-    int comboSelectedIndex;
-    public boolean valid = false;
+    
 
     //initalizes an instance of Player() (constructor? error control?)
     public SetPlayerInfo() {
@@ -369,7 +365,7 @@ public class SetPlayerInfo extends JPanel {
 
         
         //gets all stats 
-        //allows the array list to know the stats of a player
+        //<editor-fold defaultstate="collapsed" desc="allows the array list to know the stats of a player">
         public int getStr() {
             int str = players.get(listBox.getSelectedIndex()).getStr();
             return str;
@@ -457,11 +453,11 @@ public class SetPlayerInfo extends JPanel {
             obj = listBox.getSelectedItem();
             listBox.updateUI();
         }
+        //</editor-fold>
         
         //resets all fields
         //makes the edit and create buttons visable
         //makes the listbox that holds the players visable
-
         public void show() 
         {
             strTotal.setText("0");
@@ -517,16 +513,16 @@ public class SetPlayerInfo extends JPanel {
         //adds the player to the array list found in the main class
         public void create() 
         {
-            int s = Integer.parseInt(strTotal.getText());
-            int d = Integer.parseInt(dexTotal.getText());
-            int e = Integer.parseInt(endTotal.getText());
-            int w = Integer.parseInt(wisTotal.getText());
+            pStr = Integer.parseInt(strTotal.getText());
+            pDex = Integer.parseInt(dexTotal.getText());
+            pEnd = Integer.parseInt(endTotal.getText());
+            pWis = Integer.parseInt(wisTotal.getText());
             int p = Integer.parseInt(pointsLeftField.getText());
-            int lvl = 1;
+            pLvl = 1;
             playerName = nameField.getText();
-            String SelectedRole = TabGUI.comboSelection.get(x).getRole();
+            SelectedRole = TabGUI.comboSelection.get(x).getRole();
             //System.out.println("The selected Role is: " + SelectedRole);
-            String SelectedClass = TabGUI.comboSelection.get(x).getclass();
+            SelectedClass = TabGUI.comboSelection.get(x).getclass();
             //System.out.println("The selcted Class is: "+ SelectedClass);                    
             String Skill1 = TabGUI.comboSelection.get(x).getSkill1();
             String Skill2 = TabGUI.comboSelection.get(x).getSkill2();
@@ -538,9 +534,12 @@ public class SetPlayerInfo extends JPanel {
             //adds all the information from the menus into the player array creating the player info
             IS.IconSelector();
             icon = IS.getPlayerIcon();
-            
-            MiniRPG.players.add(new Player(playerName, s, d, e, w, p, 
-                    SelectedRole, SelectedClass, Skill1, Skill2, Skill3, Skill4, lvl,0,0, icon, 30));
+            HP();
+            Damage();
+            int basicDamage = getDamage();
+            int playerHp = getHp();
+            MiniRPG.players.add(new Player(playerName, pStr, pDex, pEnd, pWis, p, 
+                    SelectedRole, SelectedClass, Skill1, Skill2, Skill3, Skill4, pLvl,0,0, icon, playerHp, basicDamage));
             pID++;
             name.setText(nameField.getText());
             listBox.addItem(playerName);
@@ -557,7 +556,66 @@ public class SetPlayerInfo extends JPanel {
 
         }
     }
+    
+    public void HP()
+    {
+        //int modifyer = pEnd/2;
+        hp = 20 + (pEnd/2);
+        System.out.println(hp);
+    }
+    
+    public void Damage()
+    {
+        if(SelectedRole == "Tank")
+        {
+            baseLineDamage = 5;
+            Damage = baseLineDamage + (pStr / 2);
+        }
+        else if(SelectedRole == "Caster")
+        {
+            baseLineDamage = 1;
+            Damage = baseLineDamage + (pWis / 2);
+        }
+        else if(SelectedRole == "Healer")
+        {
+            if(SelectedClass == "Cleric")
+            {
+                baseLineDamage = 3;
+                Damage = baseLineDamage + (pStr / 2);
+            }
+            else
+            {
+                baseLineDamage = 1;
+                Damage = baseLineDamage + (pWis / 2);
+            }
+        }
+        else if(SelectedRole == "Damage")
+        {
+            baseLineDamage = 4;
+            Damage = baseLineDamage + (pDex / 2);
+        }
+        
+    }
+    
+    public int getHp()
+    {
+        return hp;
+    }
+    
+    public void setHp()
+    {
+        this.hp = hp;
+    }
+    
+    public int getDamage()
+    {
+        return Damage;
+    }
+    
+    public void setDamage()
+    {
+        this.Damage = Damage;
+    }
 }
 
 
-//test comment for github

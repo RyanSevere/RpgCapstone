@@ -5,19 +5,18 @@ import javax.swing.ImageIcon;
 public class Monster {
 
     private String name;
-    private int hp;
-    private int row;
-    private int column;
+    private int hp, row, column, damage;
     private boolean isDead;
     private ImageIcon icon = new ImageIcon("Redx.png");
 
     public Monster() {
-        this("Monster",null , 20,0,0);
+        this("Monster",null , 20, 1, 0,0);
     }
-    public Monster(String name,ImageIcon icon, int hp,int row,int column) {
+    public Monster(String name,ImageIcon icon, int hp,int damage, int row,int column) {
         setName(name);
         setIcon(icon);
         setHp(hp);
+        setDamage(damage);
         setRow(row);
         setColumn(column);
         setIsDead(false);
@@ -68,5 +67,15 @@ public class Monster {
 
     public void setIsDead(boolean isDead) {
         this.isDead = isDead;
+    }
+    
+    public int getDamage()
+    {
+        return damage;
+    }
+    
+    public void setDamage(int damage)
+    {
+        this.damage = damage;
     }
 }

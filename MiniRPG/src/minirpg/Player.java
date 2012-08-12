@@ -23,14 +23,15 @@ public class Player {
     private int row;
     private ImageIcon icon;
     int hp;
+    int basicDamage;
 
     public Player() {
-        this("Steve", 0, 0, 0, 0, 15, "Tank", "Monk", "Stun", null, null, null, 1,0,0, null, 30);
+        this("Steve", 0, 0, 0, 0, 15, "Tank", "Monk", "Stun", null, null, null, 1,0,0, null, 20, 10);
     }
 //SetPlayerInfo m = new SetPlayerInfo();
     public Player(String name, int str, int dex, int end, int wis, 
             int pointsLeft, String Role, String Class, String Skill1,
-            String Skill2, String Skill3, String Skill4, int Lvl,int row,int column, ImageIcon icon,int hp) {
+            String Skill2, String Skill3, String Skill4, int Lvl,int row,int column, ImageIcon icon,int hp, int basicDamage) {
         setName(name);
         setStr(str);
         setDex(dex);
@@ -47,6 +48,8 @@ public class Player {
         setColumn(column);
         setIcon(icon);
         setHp(hp);
+        setBasicDamage(basicDamage);
+        
         
 
     }
@@ -211,6 +214,16 @@ public class Player {
     public void setHp(int hp)
     {
         this.hp = hp;
+    }
+    
+    public int getBasicDamage()
+    {
+        return basicDamage;
+    }
+    
+    public void setBasicDamage(int basicDamage)
+    {
+        this.basicDamage = basicDamage;
     }
     
 }
