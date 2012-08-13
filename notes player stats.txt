@@ -4,10 +4,7 @@ Ogre 40
 Orc 30
 goblin 20
 
-for every 2 points in a skill you get +1 to relavent attack or hp
-hp goes up by 5 every lvl 
-
-revent class stat gets +2 to damage stat and end
+for every 2 points in a stat you get +1 to basic attack type or hp
 
 Light attack 5
 Medium attack 10
@@ -17,4 +14,6 @@ Short range 2
 Medium Range 3
 Long Range 5
 
-skill attacks get +3 every lvl
+hp goes up by 5 when lvl up
+skill attacks get +3 when lvl up
+revent class stat gets +2 to damage stat and end when lvl up
