@@ -18,10 +18,10 @@ public class Battle extends JFrame{
     boolean moveCheck = false;
     int monsterIndex, monsterHP, setupPlayerIndex = 0, selectedPlayerIndex = 0, selectedMonsterIndex = 0;
     JTable table = new JTable(11, 11);
-    JButton skill1, skill2,  skill3, skill4;//add buttons as needed
+    JButton skill1, skill2,  skill3, skill4, roundEnd;//add buttons as needed
     JLabel lblClass, pClass, lblRole, role, lblStr, lblDex, lblEnd, lblwiz, str, dex, end,
             wiz, movesLeft, lblHp, hp, skills, name, icon, dash, lblSkill1,
-            lblSkill2, lblSkill3, lblSkill4, health;
+            lblSkill2, lblSkill3, lblSkill4, health, phaseLbl, phase, roundLbl, round;
     JTextArea infoBox;
     String empty = "";
     
@@ -29,7 +29,7 @@ public class Battle extends JFrame{
     
     public Battle() {
         
-        infoBox = new JTextArea(6, 95);
+        infoBox = new JTextArea(6, 72);
         infoBox.setEditable(false);
         //table.setShowGrid(false);
         table.setSelectionBackground(Color.white);
@@ -60,14 +60,63 @@ public class Battle extends JFrame{
         JSplitPane splitPane1 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
                 true, battleGridPane, characterInfoPane);
 
+        JPanel roundInfo = new JPanel();
+        //Dimension m = new Dimension(200, 111);
+        //roundInfo.setMinimumSize(m);
+        roundInfo.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+              
+        //top title       
+        phaseLbl = new JLabel("Phase: ");
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(5, 5, 5, 5);
+        c.gridx = 0;
+        c.gridy = 0;
+        c.gridwidth = 1; //centering title
+        roundInfo.add(phaseLbl, c);
+        
+        phase = new JLabel("Player Phase");
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 1;
+        c.gridy = 0;
+        //c.gridwidth = 1; //centering title
+        roundInfo.add(phase, c);
+        
+        roundLbl = new JLabel("Round: ");
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 0;
+        c.gridy = 2;
+        //c.gridwidth = 3; //centering title
+        roundInfo.add(roundLbl, c);
+        
+        round = new JLabel("1");
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 1;
+        c.gridy = 2;
+        //c.gridwidth = 1; //centering title
+        roundInfo.add(round, c);
+        
+        roundEnd = new JButton("End Round");
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 0;
+        c.gridy = 4;
+        c.gridwidth = 1; //centering title
+        roundInfo.add(roundEnd, c);
+        
+        
         JScrollPane battleTextPane = new JScrollPane(infoBox);
         Dimension battleTextPannelSize = new Dimension(800, 500);
         battleGridPane.setMinimumSize(battleTextPannelSize);
         battleTextPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
+        JSplitPane splitPane3= new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,true, battleTextPane, roundInfo);
+        
         JSplitPane splitPane2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT,
-                true, splitPane1, battleTextPane);
-
+                true, splitPane1, splitPane3);
+        splitPane1.setDividerSize(1);
+        splitPane2.setDividerSize(1);
+        splitPane3.setDividerSize(1);
+        
 
         getContentPane().add(splitPane2);
         
