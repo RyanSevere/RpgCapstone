@@ -16,14 +16,8 @@ import java.io.InputStreamReader;
 public class SkillAttacks {
     
     String SelectedSkill = "";
-    int Range;
-    int Damage;
-    int Heal;
-    int DefenseBoost;
-    int DefenseReduction;
-    int DamageBoost;
+    int Range, Damage, Heal, DefenseBoost, DefenseReduction, DamageBoost, StunDuration, StunCount;
     boolean IfStuned;
-    int StunDuration;
     String TextOutput;
     
     public SkillAttacks()

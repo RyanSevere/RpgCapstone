@@ -26,14 +26,17 @@ public class PlayerClassPanel extends JPanel {
     //establish Buttons, Drop boxes, Labels
     JButton btnDone, btnAdd;
     JLabel lblClass, lblRole, lblTitle, lblName, lblSkills, lblspacer;
-    JTextField txtbxName;
     JTextArea txtbxDescription;
     JComboBox comboClass, comboRole, comboName, comboSkills;
-    String defaultmessage = "Skill dropdown is for Skill Preview, and skill description. Not Skill Selection";
-    //Skill Description variables
-    String SelectedSkill; //where the selected skill will go for the file read function
-    String SkillDescription; //where the description from the file will be stored for output
-    String Class, Role, Skill1 = "", Skill2 = "", Skill3 = "", Skill4 = "";
+    String defaultmessage = "Skill dropdown is for Skill Preview, and skill description. Not Skill Selection",
+            TankMessage = "Tank basic damage based on Str", 
+            CasterMessage = "Caster basic damage based on Wis",
+            DamageMessage = "Damage basic damage based on Dex", 
+            HealerMessage ="Healer basic damage based on Wis, Except Cleric which is based on Str",
+            //Skill Description variables
+            SelectedSkill, //where the selected skill will go for the file read function
+            SkillDescription, //where the description from the file will be stored for output
+            Class, Role, Skill1 = "", Skill2 = "", Skill3 = "", Skill4 = "";
     boolean isValid = false;
     
        
@@ -125,35 +128,6 @@ public class PlayerClassPanel extends JPanel {
         //</editor-fold>
         
         
-       //<editor-fold defaultstate="collapsed" desc="add and Done button placement not being used on this panel">
-        //add button
-//        btnAdd = new JButton("Add");
-//        c.fill = GridBagConstraints.HORIZONTAL;
-//        c.gridx = 0;
-//        c.gridy = 4;
-//        c.gridwidth = 2;
-//        c.gridheight = 4;
-//        add(btnAdd, c);
-        
-        //done button
-//        btnDone = new JButton("Done");
-//        c.fill = GridBagConstraints.HORIZONTAL;
-//        c.gridx = 2;
-//        c.gridy = 4;
-//        c.gridwidth = 2;
-//        add(btnDone, c);
-//        btnDone.setVisible(false);
-       //</editor-fold> 
-        
-       //<editor-fold defaultstate="collapsed" desc="now unused action listeners"> 
-       /*
-        PlayerClassPanel.Event a = new PlayerClassPanel.Event();
-        comboClass.addActionListener(a);
-        comboRole.addActionListener(a);
-        comboSkills.addActionListener(a);
-       */ 
-       //</editor-fold> 
-        
         ItemListener roleListener = new ItemListener()
         {
             @Override
@@ -169,22 +143,26 @@ public class PlayerClassPanel extends JPanel {
                             if ("Tank".equals(selectedRole))
                             {
                                 resetSelection();
-                                comboClass.setModel(new DefaultComboBoxModel(TankClass)); //populates comboClass with Selection
+                                comboClass.setModel(new DefaultComboBoxModel(TankClass));//populates comboClass with Selection
+                                txtbxDescription.setText(TankMessage);
                             }
                             else if ("Healer".equals(selectedRole))
                             {
                                 resetSelection();
                                 comboClass.setModel(new DefaultComboBoxModel(HealerClass));
+                                txtbxDescription.setText(HealerMessage);
                             } 
                             else if ("Caster".equals(selectedRole))
                             {                
                                 resetSelection();
                                 comboClass.setModel(new DefaultComboBoxModel(CasterClass));
+                                txtbxDescription.setText(CasterMessage);
                             }
                             else if ("Damage".equals(selectedRole))
                             {                
                                 resetSelection();
                                 comboClass.setModel(new DefaultComboBoxModel(DpsClass));
+                                txtbxDescription.setText(DamageMessage);
                             }
                             else if ("".equals(selectedRole))
                             {
@@ -197,7 +175,6 @@ public class PlayerClassPanel extends JPanel {
                }
         
         };
-        
         
         ItemListener classListener = new ItemListener()
         //<editor-fold defaultstate="collapsed" desc="{...}">

@@ -15,8 +15,8 @@ public class Battle extends JFrame{
     ImageIcon Orc = IS.getOrc(), Ogre = IS.getOgre(), Goblin = IS.getGoblin();
     Random rand = new Random();
     public static ArrayList<Monster> monsters = new ArrayList<Monster>();
-    boolean moveCheck = false;
-    int monsterIndex, monsterHP, setupPlayerIndex = 0, selectedPlayerIndex = 0, selectedMonsterIndex = 0;
+    boolean moveCheck = false, isStunned;
+    int monsterIndex, monsterHP, setupPlayerIndex = 0, selectedPlayerIndex = 0, selectedMonsterIndex = 0, stunDuration, stunCount;
     JTable table = new JTable(11, 11);
     JButton skill1, skill2,  skill3, skill4;//add buttons as needed
     JLabel lblClass, pClass, lblRole, role, lblStr, lblDex, lblEnd, lblwiz, str, dex, end,
@@ -35,11 +35,11 @@ public class Battle extends JFrame{
         table.setSelectionBackground(Color.white);
         table.setRowHeight(50);
         table.setBorder(BorderFactory.createLineBorder(Color.black));
-        monsters.add(new Monster("Orc", Orc, 30, 3, 0, 3));
-        monsters.add(new Monster("Goblin", Goblin, 2,  20, 0, 7));
-        monsters.add(new Monster("Goblin", Goblin, 2, 20, 1, 0));
-        monsters.add(new Monster("Orc", Orc, 30, 3, 2, 8));
-        monsters.add(new Monster("Ogre", Ogre, 40, 5, 2, 2));
+        monsters.add(new Monster("Orc", Orc, 30, 3, 0, 3, false, 0, 0));
+        monsters.add(new Monster("Goblin", Goblin, 2,  20, 0, 7, false, 0, 0));
+        monsters.add(new Monster("Goblin", Goblin, 2, 20, 1, 0, false, 0, 0));
+        monsters.add(new Monster("Orc", Orc, 30, 3, 2, 8, false, 0, 0));
+        monsters.add(new Monster("Ogre", Ogre, 40, 5, 2, 2, false, 0, 0));
 
         setMap();
 
@@ -649,12 +649,12 @@ public class Battle extends JFrame{
             {
                 if(e.getSource().toString().contains(MiniRPG.players.get(x).getSkill1()) == true)
                 {
-                    System.out.println("you pressed the skill 1 button");
-                    Skill = skill1.getText();
-                    System.out.println("the skill for skill 1 button is " + Skill);
-                    System.out.println(e.getSource());
+                    //System.out.println("you pressed the skill 1 button");
+                    Skill = ((JButton)(e.getSource())).getText();
+                    //System.out.println("the skill for skill 1 button is " + Skill);
+                    //System.out.println(e.getSource());
                     SA.ReadFile();
-                    SA.TestFileRead();
+                    //SA.TestFileRead();
                     x = 4;
                 }
                 else

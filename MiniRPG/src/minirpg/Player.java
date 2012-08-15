@@ -6,32 +6,18 @@ public class Player {
 
     PlayerClassPanel PCP = new PlayerClassPanel();
     
-    private String name;
-    private int str;
-    private int dex;
-    private int end;
-    private int wis;
-    private int pointsLeft = 0;
-    private String Class;
-    private String Role;
-    private int Lvl;
-    private String Skill1;
-    private String Skill2;
-    private String Skill3;
-    private String Skill4;
-    private int column;
-    private int row;
+    private String name, Class, Role, Skill1, Skill2, Skill3, Skill4;
+    private int basicDamage, hp, row, column, str, dex, end, wis, Lvl, pointsLeft = 0, stunDuration, stunCount;
     private ImageIcon icon;
-    int hp;
-    int basicDamage;
+    private boolean hasAttacked, isStunned;
 
     public Player() {
-        this("Steve", 0, 0, 0, 0, 15, "Tank", "Monk", "Stun", null, null, null, 1,0,0, null, 20, 10);
+        this("Steve", 0, 0, 0, 0, 15, "Tank", "Monk", "Stun", null, null, null, 1,0,0, null, 20, 10, false, false, 0, 0);
     }
 //SetPlayerInfo m = new SetPlayerInfo();
     public Player(String name, int str, int dex, int end, int wis, 
             int pointsLeft, String Role, String Class, String Skill1,
-            String Skill2, String Skill3, String Skill4, int Lvl,int row,int column, ImageIcon icon,int hp, int basicDamage) {
+            String Skill2, String Skill3, String Skill4, int Lvl,int row,int column, ImageIcon icon,int hp, int basicDamage, boolean hasAttacked, boolean isStunned, int StunDuration, int stunCount) {
         setName(name);
         setStr(str);
         setDex(dex);
@@ -49,6 +35,8 @@ public class Player {
         setIcon(icon);
         setHp(hp);
         setBasicDamage(basicDamage);
+        setHasAttacked(hasAttacked);
+        setIsStunned(isStunned);
         
         
 
@@ -226,4 +214,43 @@ public class Player {
         this.basicDamage = basicDamage;
     }
     
+    public boolean getHasAttacked()
+    {
+        return hasAttacked;
+    }
+    
+    public void setHasAttacked(boolean hasAttacked)
+    {
+        this.hasAttacked = hasAttacked;
+    }
+    
+    public boolean getIsStunned()
+    {
+        return isStunned;
+    }
+    
+    public void setIsStunned(boolean isStunned)
+    {
+        this.isStunned = isStunned;
+    }
+    
+    public int getStunDuration()
+    {
+        return stunDuration;
+    }
+    
+    public void setStunDuration(int stunDuration)
+    {
+        this.stunDuration = stunDuration;
+    }
+    
+    public int getStunCount()
+    {
+        return stunCount;
+    }
+    
+    public void setStunCount(int stunCount)
+    {
+        this.stunCount = stunCount;
+    }
 }

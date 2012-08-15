@@ -5,14 +5,14 @@ import javax.swing.ImageIcon;
 public class Monster {
 
     private String name;
-    private int hp, row, column, damage;
-    private boolean isDead;
+    private int hp, row, column, damage, stunDuration, stunCount;
+    private boolean isDead, isStunned;
     private ImageIcon icon = new ImageIcon("Redx.png");
 
     public Monster() {
-        this("Monster",null , 20, 1, 0,0);
+        this("Monster",null , 20, 1, 0,0, false, 0, 0);
     }
-    public Monster(String name,ImageIcon icon, int hp,int damage, int row,int column) {
+    public Monster(String name,ImageIcon icon, int hp,int damage, int row,int column, boolean isStunned, int stunDuration, int stunCount) {
         setName(name);
         setIcon(icon);
         setHp(hp);
@@ -20,6 +20,8 @@ public class Monster {
         setRow(row);
         setColumn(column);
         setIsDead(false);
+        setStunDuration(stunDuration);
+        setStunCount(stunCount);
     }
     
     public ImageIcon getIcon()
@@ -77,5 +79,34 @@ public class Monster {
     public void setDamage(int damage)
     {
         this.damage = damage;
+    }
+    public boolean getIsStunned()
+    {
+        return isStunned;
+    }
+    
+    public void getIsStunned(boolean isStunned)
+    {
+        this.isStunned = isStunned;
+    }
+    
+    public int getStunDuration()
+    {
+        return stunDuration;
+    }
+    
+    public void setStunDuration(int stunDuration)
+    {
+        this.stunDuration = stunDuration;
+    }
+    
+    public int getStunCount()
+    {
+        return stunCount;
+    }
+    
+    public void setStunCount(int stunCount)
+    {
+        this.stunCount = stunCount;
     }
 }

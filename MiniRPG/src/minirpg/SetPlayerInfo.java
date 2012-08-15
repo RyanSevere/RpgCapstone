@@ -539,7 +539,7 @@ public class SetPlayerInfo extends JPanel {
             int basicDamage = getDamage();
             int playerHp = getHp();
             MiniRPG.players.add(new Player(playerName, pStr, pDex, pEnd, pWis, p, 
-                    SelectedRole, SelectedClass, Skill1, Skill2, Skill3, Skill4, pLvl,0,0, icon, playerHp, basicDamage));
+                    SelectedRole, SelectedClass, Skill1, Skill2, Skill3, Skill4, pLvl,0,0, icon, playerHp, basicDamage, false, false, 0, 0));
             pID++;
             name.setText(nameField.getText());
             listBox.addItem(playerName);
