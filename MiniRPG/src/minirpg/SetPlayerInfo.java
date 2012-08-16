@@ -16,6 +16,7 @@ public class SetPlayerInfo extends JPanel {
     JComboBox listBox;
     
     int x = 0, pID = 0, battleCounter = 0, pStr, pDex, pEnd, pWis, pName, pLvl, hp, Damage, baseLineDamage;
+    double Defense, Modifyer;
     int comboSelectedIndex;
     public boolean valid = false;
     ImageIcon icon = new ImageIcon();
@@ -536,10 +537,13 @@ public class SetPlayerInfo extends JPanel {
             icon = IS.getPlayerIcon();
             HP();
             Damage();
+            Defense();
             int basicDamage = getDamage();
             int playerHp = getHp();
+            double PlayerDefense = getDefense();
             MiniRPG.players.add(new Player(playerName, pStr, pDex, pEnd, pWis, p, 
-                    SelectedRole, SelectedClass, Skill1, Skill2, Skill3, Skill4, pLvl,0,0, icon, playerHp, basicDamage, false, false, 0, 0));
+                    SelectedRole, SelectedClass, Skill1, Skill2, Skill3, Skill4, pLvl,0,0, icon,
+                    playerHp, playerHp, basicDamage, basicDamage, PlayerDefense, PlayerDefense, 4, false, false, 0, 0));
             pID++;
             name.setText(nameField.getText());
             listBox.addItem(playerName);
@@ -597,12 +601,36 @@ public class SetPlayerInfo extends JPanel {
         
     }
     
+    public void Defense()
+    {
+        if(SelectedRole == "Tank")
+        {
+            Modifyer= 10 + (pEnd / 2);
+            Defense = Modifyer / 100;
+        }
+        else if(SelectedRole == "Caster")
+        {
+            Modifyer = 3 + (pEnd / 2);
+            Defense = Modifyer / 100;
+        }
+        else if(SelectedRole == "Healer")
+        {
+            Modifyer= 2 + (pEnd / 2);
+            Defense = Modifyer / 100;
+        }
+        else if(SelectedRole == "Damage")
+        {
+            Modifyer= 5 + (pEnd / 2);
+            Defense = Modifyer / 100;
+        }
+    }
+    
     public int getHp()
     {
         return hp;
     }
     
-    public void setHp()
+    public void setHp(int hp)
     {
         this.hp = hp;
     }
@@ -612,9 +640,19 @@ public class SetPlayerInfo extends JPanel {
         return Damage;
     }
     
-    public void setDamage()
+    public void setDamage(int Damage)
     {
         this.Damage = Damage;
+    }
+    
+    public double getDefense()
+    {
+        return Defense;
+    }
+    
+    public void setDefense(double Defense)
+    {
+        this.Defense = Defense;
     }
 }
 

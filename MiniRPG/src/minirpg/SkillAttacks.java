@@ -16,7 +16,9 @@ import java.io.InputStreamReader;
 public class SkillAttacks {
     
     String SelectedSkill = "";
-    int Range, Damage, Heal, DefenseBoost, DefenseReduction, DamageBoost, StunDuration, StunCount;
+    int Range, Damage, CurrentDamage, MaxDamage, StunDuration, StunCount, 
+            CurrentHp, MaxHp, Target, SelectedPlayer = Battle.GetSelectedPlayer();
+    double Heal, DefenseBoost, DefenseReduction, DamageBoost, CurrentDefense, MaxDefense;
     boolean IfStuned;
     String TextOutput;
     
@@ -696,12 +698,51 @@ public class SkillAttacks {
     //</editor-fold>
     //</editor-fold>
     
-    public void StunFunction()
+    public void StunFcn()
     {
         
     }
     
-    public void ReadFile() //works
+    public void HealFcn()
+    {
+        CurrentHp = MiniRPG.players.get(Target).getHp();
+        MaxHp = MiniRPG.players.get(Target).getMaxHp();
+        int AmountHealed = (int) (MaxHp * Heal);
+        CurrentHp = CurrentHp + AmountHealed;
+        MiniRPG.players.get(Target).setHp(CurrentHp);       
+    }
+    
+    public void DefenseBoost()
+    {
+        CurrentDefense = MiniRPG.players.get(Target).getDefense();
+        CurrentDefense = CurrentDefense + DefenseBoost;
+        MiniRPG.players.get(Target).setDefense(CurrentDefense);
+    }
+    
+    public void DamageBoost()
+    {
+        CurrentDamage = MiniRPG.players.get(Target).getDamage();
+        int DamageBonus = (int) (CurrentDamage * DamageBoost);
+        CurrentDamage = CurrentDamage + DamageBonus;
+        MiniRPG.players.get(Target).setDamage(CurrentDamage);
+    }
+    
+    public void DefenseRdn()
+    {
+        CurrentDefense = MiniRPG.players.get(Target).getDefense();
+        CurrentDefense = CurrentDefense - DefenseBoost;
+        if(CurrentDefense < 0)
+        {
+            CurrentDefense = 0;
+            MiniRPG.players.get(Target).setDefense(CurrentDefense);
+        }
+        else
+        {
+            MiniRPG.players.get(Target).setDefense(CurrentDefense);
+        }
+    }
+    
+    public void ReadFile() //reads the needed kill information from the AttackDoc
     {
         SelectedSkill = Battle.GetSelectedSkill();
         try
@@ -721,10 +762,10 @@ public class SkillAttacks {
                     {
                         Range = Integer.parseInt(reader.readLine());
                         Damage = Integer.parseInt(reader.readLine());
-                        Heal = Integer.parseInt(reader.readLine());
-                        DefenseBoost = Integer.parseInt(reader.readLine());
-                        DamageBoost = Integer.parseInt(reader.readLine());
-                        DefenseReduction = Integer.parseInt(reader.readLine());
+                        Heal = Double.parseDouble(reader.readLine());
+                        DefenseBoost = Double.parseDouble(reader.readLine());
+                        DamageBoost = Double.parseDouble(reader.readLine());
+                        DefenseReduction = Double.parseDouble(reader.readLine());
                         IfStuned = Boolean.getBoolean(reader.readLine());
                         StunDuration = Integer.parseInt(reader.readLine());
                         TextOutput = reader.readLine();

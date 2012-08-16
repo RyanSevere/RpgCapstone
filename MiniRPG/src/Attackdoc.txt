@@ -30,7 +30,7 @@ Rage
 0
 0
 0
-15
+.15
 0
 0
 Your Attack Power Inceases by
@@ -62,7 +62,7 @@ Monk
 Meditate
 0
 0
-50%
+.50
 0
 0
 0
@@ -108,7 +108,7 @@ Paladin
 Lay on Hands
 1
 0
-100%
+1
 0
 0
 0
@@ -143,7 +143,7 @@ Righteous Rage
 0
 0
 0
-20
+.20
 0
 0
 0
@@ -179,7 +179,7 @@ Power Attack
 0
 0
 0
-10
+.10
 0
 0
 Your Power Attack hits
@@ -188,8 +188,8 @@ Rally
 0
 0
 0
-20
-15
+.20
+.15
 0
 0
 0
@@ -203,7 +203,7 @@ Fireball
 0
 0
 0
-15
+.15
 0
 0
 Your Fireball blasts
@@ -268,7 +268,7 @@ You Summon a Dire Wolf
 Natures Touch
 1
 0
-25%
+.25
 0
 0
 0
@@ -280,8 +280,8 @@ Wild Shape
 0
 0
 0
-50
-50
+.50
+.50
 0
 0
 0
@@ -325,7 +325,7 @@ You Fear
 Drain Life
 3
 0
-10%
+.10
 0
 0
 0
@@ -395,7 +395,7 @@ You God Choose to ingnore your plea
 Prayer
 3
 0
-30%
+.30
 0
 0
 0
@@ -418,7 +418,7 @@ Holy Aura
 0
 0
 0
-25
+.25
 0
 0
 0
@@ -430,7 +430,7 @@ Priest
 Heal Target
 2
 0
-50%
+.50
 0
 0
 0
@@ -441,7 +441,7 @@ You heal
 Heal All
 0
 0
-25
+.25
 0
 0
 0
@@ -478,7 +478,7 @@ Curse
 0
 0
 0
-25
+.25
 0
 0
 You Curse
@@ -486,7 +486,7 @@ You Curse
 Heal
 3
 0
-30%
+.30
 0
 0
 0
@@ -509,7 +509,7 @@ Protection
 0
 0
 0
-35
+.35
 0
 0
 0
@@ -532,7 +532,7 @@ Your Song Inspires everyone redouble their efforts, half of all players movement
 Song of Renewal
 0
 0
-10
+.10
 0
 0
 0
@@ -577,7 +577,7 @@ Repose
 0
 0
 0
-20
+.20
 0
 0
 0
@@ -599,7 +599,7 @@ Dirty Trick
 0
 0
 0
-15
+.15
 0
 0
 2

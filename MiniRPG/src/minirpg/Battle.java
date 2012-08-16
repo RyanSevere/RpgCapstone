@@ -16,11 +16,13 @@ public class Battle extends JFrame{
     Random rand = new Random();
     public static ArrayList<Monster> monsters = new ArrayList<Monster>();
     boolean moveCheck = false, isStunned;
-    int monsterIndex, monsterHP, setupPlayerIndex = 0, selectedPlayerIndex = 0, selectedMonsterIndex = 0, stunDuration, stunCount;
+    int monsterIndex, monsterHP, setupPlayerIndex = 0, stunDuration, stunCount;
+    static int selectedPlayerIndex = 0, selectedMonsterIndex = 0;
+    static String Skill;
     JTable table = new JTable(11, 11);
     JButton skill1, skill2,  skill3, skill4, roundEnd;//add buttons as needed
     JLabel lblClass, pClass, lblRole, role, lblStr, lblDex, lblEnd, lblwiz, str, dex, end,
-            wiz, movesLeft, lblHp, hp, skills, name, icon, dash, lblSkill1,
+            wiz, lblMoves, movesLeft, lblHp, hp, skills, name, icon, dash, lblSkill1,
             lblSkill2, lblSkill3, lblSkill4, health, phaseLbl, phase, roundLbl, round;
     JTextArea infoBox;
     String empty = "";
@@ -143,6 +145,9 @@ public class Battle extends JFrame{
                                 MiniRPG.players.get(x).getRow(),
                                 MiniRPG.players.get(x).getColumn());
                         moveCheck = false;
+                        MiniRPG.players.get(x).setMoves(
+                                MiniRPG.players.get(x).getMoves() - 1);
+                        movesLeft.setText(Integer.toString(MiniRPG.players.get(x).getMoves()));
                         System.out.println("ROW:" + MiniRPG.players.get(x).getRow() + "," + "COLUMN:" + MiniRPG.players.get(x).getColumn());
                     }
                     k.consume();
@@ -163,6 +168,9 @@ public class Battle extends JFrame{
                                 MiniRPG.players.get(x).getRow(),
                                 MiniRPG.players.get(x).getColumn());
                         moveCheck = false;
+                        MiniRPG.players.get(x).setMoves(
+                                MiniRPG.players.get(x).getMoves() - 1);
+                        movesLeft.setText(Integer.toString(MiniRPG.players.get(x).getMoves()));
                         System.out.println("ROW:" + MiniRPG.players.get(x).getRow() + "," + "COLUMN:" + MiniRPG.players.get(x).getColumn());
                     }
                     k.consume();
@@ -183,6 +191,9 @@ public class Battle extends JFrame{
                                 MiniRPG.players.get(x).getRow(),
                                 MiniRPG.players.get(x).getColumn());
                         moveCheck = false;
+                        MiniRPG.players.get(x).setMoves(
+                                MiniRPG.players.get(x).getMoves() - 1);
+                        movesLeft.setText(Integer.toString(MiniRPG.players.get(x).getMoves()));
                         System.out.println("ROW:" + MiniRPG.players.get(x).getRow() + "," + "COLUMN:" + MiniRPG.players.get(x).getColumn());
                     }
                     k.consume();
@@ -203,55 +214,76 @@ public class Battle extends JFrame{
                                 MiniRPG.players.get(x).getRow(),
                                 MiniRPG.players.get(x).getColumn());
                         moveCheck = false;
+                        MiniRPG.players.get(x).setMoves(
+                                MiniRPG.players.get(x).getMoves() - 1);
+                        movesLeft.setText(Integer.toString(MiniRPG.players.get(x).getMoves()));
                         System.out.println("ROW:" + MiniRPG.players.get(x).getRow() + "," + "COLUMN:" + MiniRPG.players.get(x).getColumn());
                     }
                     k.consume();
                 }
                 
-                else if (keyCode == KeyEvent.VK_SPACE) {
-                    if(selectedMonsterIndex == -1){
-                        System.out.println("no monster selected!!");
+                else if (keyCode == KeyEvent.VK_SPACE) 
+                {
+                    if(MiniRPG.players.get(selectedPlayerIndex).getHasAttacked() == false)
+                    {
+                        if(selectedMonsterIndex == -1)
+                        {
+                            System.out.println("no monster selected!!");
+                        }
+                        else if (MiniRPG.players.get(selectedPlayerIndex).getColumn() -1 == 
+                                monsters.get(selectedMonsterIndex).getColumn() && 
+                                MiniRPG.players.get(selectedPlayerIndex).getRow() == 
+                                monsters.get(selectedMonsterIndex).getRow()) 
+                        {
+                            damageEvent();
+                            MiniRPG.players.get(selectedPlayerIndex).setHasAttacked(true);
+                            CheckIfAlive();
+                            System.out.println("col hit left!.....on "+ monsters.get(selectedMonsterIndex).getName());
+
+                        }
+
+
+                        else  if (MiniRPG.players.get(selectedPlayerIndex).getRow() + 1 == 
+                                monsters.get(selectedMonsterIndex).getRow() && 
+                                MiniRPG.players.get(selectedPlayerIndex).getColumn() == 
+                                monsters.get(selectedMonsterIndex).getColumn()) 
+                        {
+                            damageEvent();
+                            MiniRPG.players.get(selectedPlayerIndex).setHasAttacked(true);
+                            CheckIfAlive();
+                            System.out.println("row hit down!.....on "+ monsters.get(selectedMonsterIndex).getName());
+                        }
+
+                        else if (MiniRPG.players.get(selectedPlayerIndex).getRow() - 1 == 
+                                monsters.get(selectedMonsterIndex).getRow() &&
+                                MiniRPG.players.get(selectedPlayerIndex).getColumn() == 
+                                monsters.get(selectedMonsterIndex).getColumn() ) 
+                        {
+                            damageEvent();
+                            MiniRPG.players.get(selectedPlayerIndex).setHasAttacked(true);
+                            CheckIfAlive();
+                            System.out.println("row hit up!.....on "+ monsters.get(selectedMonsterIndex).getName());
+                        }
+                        else if (MiniRPG.players.get(selectedPlayerIndex).getColumn() + 1 ==
+                                monsters.get(selectedMonsterIndex).getColumn()&& 
+                                MiniRPG.players.get(selectedPlayerIndex).getRow() == 
+                                monsters.get(selectedMonsterIndex).getRow())
+                        {
+                            damageEvent();
+                            MiniRPG.players.get(selectedPlayerIndex).setHasAttacked(true);
+                            CheckIfAlive();
+                            System.out.println("col hit right!.....on " + monsters.get(selectedMonsterIndex).getName());
+                        }
+                        else
+                        {
+                            System.out.println("dat monster bez tooooo far away!!");
+                        }
+                        k.consume();
                     }
-                    else if (MiniRPG.players.get(selectedPlayerIndex).getColumn() -1 == 
-                            monsters.get(selectedMonsterIndex).getColumn() && 
-                            MiniRPG.players.get(selectedPlayerIndex).getRow() == 
-                            monsters.get(selectedMonsterIndex).getRow()) {
-                        damageEvent();
-                        CheckIfAlive();
-                        System.out.println("col hit left!.....on "+ monsters.get(selectedMonsterIndex).getName());
-                        
+                    else
+                    {
+                        infoBox.setText(infoBox.getText() + "/n" + "You have already attacked this round.");
                     }
-                    
-                    
-                    else  if (MiniRPG.players.get(selectedPlayerIndex).getRow() + 1 == 
-                            monsters.get(selectedMonsterIndex).getRow() && 
-                            MiniRPG.players.get(selectedPlayerIndex).getColumn() == 
-                            monsters.get(selectedMonsterIndex).getColumn()) {
-                        damageEvent();
-                        CheckIfAlive();
-                        System.out.println("row hit down!.....on "+ monsters.get(selectedMonsterIndex).getName());
-                    }
-                    
-                    else if (MiniRPG.players.get(selectedPlayerIndex).getRow() - 1 == 
-                            monsters.get(selectedMonsterIndex).getRow() &&
-                            MiniRPG.players.get(selectedPlayerIndex).getColumn() == 
-                            monsters.get(selectedMonsterIndex).getColumn() ) {
-                        damageEvent();
-                        CheckIfAlive();
-                        System.out.println("row hit up!.....on "+ monsters.get(selectedMonsterIndex).getName());
-                    }
-                    else if (MiniRPG.players.get(selectedPlayerIndex).getColumn() + 1 ==
-                            monsters.get(selectedMonsterIndex).getColumn()&& 
-                            MiniRPG.players.get(selectedPlayerIndex).getRow() == 
-                            monsters.get(selectedMonsterIndex).getRow()){
-                        damageEvent();
-                        CheckIfAlive();
-                        System.out.println("col hit right!.....on " + monsters.get(selectedMonsterIndex).getName());
-                    }
-                    else{
-                        System.out.println("dat monster bez tooooo far away!!");
-                    }
-                    k.consume();
                 }
             }
         });
@@ -423,7 +455,7 @@ public class Battle extends JFrame{
 
     public void damageEvent() {
         //Sets up varibles for damage      
-        int damage = MiniRPG.players.get(selectedPlayerIndex).getBasicDamage();
+        int damage = MiniRPG.players.get(selectedPlayerIndex).getDamage();
         monsterHP = monsters.get(selectedMonsterIndex).getHp() - damage; 
         monsters.get(selectedMonsterIndex).setHp(monsterHP);
         String DamageReport = monsters.get(selectedMonsterIndex).getName() + " takes " + damage + " damage.\n"
@@ -540,7 +572,7 @@ public class Battle extends JFrame{
         c.gridy = 9;
         panel.add(wiz, c);
 
-        lblHp = new JLabel("HP");
+        lblHp = new JLabel("HP: ");
         c.gridx = 1;
         c.gridy = 10;
         panel.add(lblHp, c);
@@ -551,54 +583,65 @@ public class Battle extends JFrame{
         c.gridx = 2;
         c.gridy = 10;
         panel.add(health, c);
+        
+        lblMoves = new JLabel("Moves Left: ");
+        c.gridx = 1;
+        c.gridy = 11;
+        panel.add(lblMoves, c);
+        
+        movesLeft = new JLabel(Integer.toString(
+                MiniRPG.players.get(setupPlayerIndex).getMoves()));
+        c.gridx = 2;
+        c.gridy = 11;
+        panel.add(movesLeft, c);
 
         dash = new JLabel("--------------------SKILLS--------------------");
         c.gridwidth = 4;
         c.gridx = 1;
-        c.gridy = 11;
+        c.gridy = 12;
         panel.add(dash, c);
 
         lblSkill1 = new JLabel("Skill 1:");
         c.gridwidth = 1;
         c.gridx = 1;
-        c.gridy = 12;
+        c.gridy = 13;
         panel.add(lblSkill1, c);
 
         skill1 = new JButton(MiniRPG.players.get(setupPlayerIndex).getSkill1());
         c.gridx = 2;
-        c.gridy = 12;
+        c.gridy = 13;
         panel.add(skill1, c);
 
         lblSkill2 = new JLabel("Skill 2:");
         c.gridx = 1;
-        c.gridy = 13;
+        c.gridy = 14;
         panel.add(lblSkill2, c);
 
         skill2 = new JButton(MiniRPG.players.get(setupPlayerIndex).getSkill2());
         c.gridx = 2;
-        c.gridy = 13;
+        c.gridy = 14;
         panel.add(skill2, c);
         //skill2.setEnabled(false);
 
         lblSkill3 = new JLabel("Skill 3:");
         c.gridx = 1;
-        c.gridy = 14;
+        c.gridy = 15;
         panel.add(lblSkill3, c);
 
         skill3 = new JButton(MiniRPG.players.get(setupPlayerIndex).getSkill3());
         c.gridx = 2;
-        c.gridy = 14;
+        c.gridy = 15;
         panel.add(skill3, c);
         //skill3.setEnabled(false);
 
         lblSkill4 = new JLabel("Skill 4:");
         c.gridx = 1;
-        c.gridy = 15;
+        c.gridy = 16;
         panel.add(lblSkill4, c);
 
         skill4 = new JButton(MiniRPG.players.get(setupPlayerIndex).getSkill4());
         c.gridx = 2;
-        c.gridy = 15;
+        c.gridy = 16;
         panel.add(skill4, c);
         //skill4.setEnabled(false);
         
@@ -614,50 +657,100 @@ public class Battle extends JFrame{
     
 
     private void wMoveCheck(int x) {
-        if (MiniRPG.players.get(x).getRow() - 1 >= 0) {
-            if (table.getValueAt(
-                    MiniRPG.players.get(x).getRow() - 1,
-                    MiniRPG.players.get(x).getColumn()) == null) {
-                moveCheck = true;
+        if(MiniRPG.players.get(x).getMoves() > 0)
+        {
+            if (MiniRPG.players.get(x).getRow() - 1 >= 0) 
+            {
+                if (table.getValueAt(
+                        MiniRPG.players.get(x).getRow() - 1,
+                        MiniRPG.players.get(x).getColumn()) == null) 
+                {
+                    moveCheck = true;
+                }
+            } 
+            else 
+            {
+                System.out.println("not so legal move");
             }
-        } else {
-            System.out.println("not so legal move");
         }
+        else
+        {
+            infoBox.setText(infoBox.getText() + "\n" + "No Moves Left");
+        }
+        
     }
 
     private void sMoveCheck(int x) {
-        if (MiniRPG.players.get(x).getRow() + 1 <= table.getRowCount()-1) {
-            if (table.getValueAt(
-                    MiniRPG.players.get(x).getRow() + 1,
-                    MiniRPG.players.get(x).getColumn()) == null) {
-                moveCheck = true;
+        if(MiniRPG.players.get(x).getMoves() > 0)
+        {
+            if (MiniRPG.players.get(x).getRow() + 1 <= table.getRowCount()-1) 
+            {
+                if (table.getValueAt(
+                        MiniRPG.players.get(x).getRow() + 1,
+                        MiniRPG.players.get(x).getColumn()) == null) 
+                {
+                    moveCheck = true;
+                }
+            } 
+            else 
+            {
+                System.out.println("not so legal move");
             }
-        } else {
-            System.out.println("not so legal move");
+        }
+        else
+        {
+            String CurrentText = infoBox.getText();
+            infoBox.setText(CurrentText + "\n" + "No Moves Left");
         }
     }
     
-    private void aMoveCheck(int x) {
-        if (MiniRPG.players.get(x).getColumn() - 1 >= 0) {
-            if (table.getValueAt(
-                    MiniRPG.players.get(x).getRow(),
-                    MiniRPG.players.get(x).getColumn() - 1) == null) {
-                moveCheck = true;
+    private void aMoveCheck(int x) 
+    {
+        if(MiniRPG.players.get(x).getMoves() > 0)
+        {
+            if (MiniRPG.players.get(x).getColumn() - 1 >= 0) 
+            {
+                if (table.getValueAt(
+                        MiniRPG.players.get(x).getRow(),
+                        MiniRPG.players.get(x).getColumn() - 1) == null) 
+                {
+                    moveCheck = true;
+                }
+            } 
+            else 
+            {
+                System.out.println("not so legal move");
             }
-        } else {
-            System.out.println("not so legal move");
+        }
+        else
+        {
+            String CurrentText = infoBox.getText();
+            infoBox.setText(CurrentText + "\n" + "No Moves Left");
         }
     }
 
-    private void dMoveCheck(int x) {
-        if (MiniRPG.players.get(x).getColumn() + 1 <= table.getRowCount() - 1) {
-            if (table.getValueAt(
-                    MiniRPG.players.get(x).getRow() ,
-                    MiniRPG.players.get(x).getColumn()+ 1) == null) {
-                moveCheck = true;
+    private void dMoveCheck(int x) 
+    {
+        if(MiniRPG.players.get(x).getMoves() > 0)
+        {
+            if (MiniRPG.players.get(x).getColumn() + 1 <= table.getRowCount() - 1) 
+            {
+                if (table.getValueAt(
+                        MiniRPG.players.get(x).getRow() ,
+                        MiniRPG.players.get(x).getColumn()+ 1) == null) 
+                {
+                    moveCheck = true;
+                }
+            } 
+            else 
+            {
+                System.out.println("not so legal move");
             }
-        } else {
-            System.out.println("not so legal move");
+        }
+        else
+        {
+            String CurrentText = infoBox.getText();
+            infoBox.setText(CurrentText + "\n" + "No Moves Left");
         }
     }
 
@@ -685,8 +778,6 @@ public class Battle extends JFrame{
         }
     }
     
-    static String Skill;
-    
     public class Event implements ActionListener
     {
         
@@ -703,7 +794,8 @@ public class Battle extends JFrame{
                     //System.out.println("the skill for skill 1 button is " + Skill);
                     //System.out.println(e.getSource());
                     SA.ReadFile();
-                    //SA.TestFileRead();
+                    SA.TestFileRead();
+                    SA.HealFcn();
                     x = 4;
                 }
                 else
@@ -736,6 +828,16 @@ public class Battle extends JFrame{
     static String GetSelectedSkill()
     {
         return Skill;
+    }
+    
+    static int GetSelectedPlayer()
+    {
+        return selectedPlayerIndex;
+    }
+    
+    static int GetSelectedMonster()
+    {
+        return selectedMonsterIndex;
     }
     
     

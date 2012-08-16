@@ -7,17 +7,21 @@ public class Player {
     PlayerClassPanel PCP = new PlayerClassPanel();
     
     private String name, Class, Role, Skill1, Skill2, Skill3, Skill4;
-    private int basicDamage, hp, row, column, str, dex, end, wis, Lvl, pointsLeft = 0, stunDuration, stunCount;
+    private int basicDamage, maxDamage, maxHp, hp, row, column, str, dex, end, wis, Lvl, moves, pointsLeft = 0, stunDuration, stunCount;
+    private double Defense, MaxDefense;
     private ImageIcon icon;
     private boolean hasAttacked, isStunned;
 
     public Player() {
-        this("Steve", 0, 0, 0, 0, 15, "Tank", "Monk", "Stun", null, null, null, 1,0,0, null, 20, 10, false, false, 0, 0);
+        this("Steve", 0, 0, 0, 0, 16, "Tank", "Monk", "Stun", null, null, null, 1,0,0, null, 20, 20, 10, 10, 0.0, 0.0, 4, false, false, 0, 0);
     }
 //SetPlayerInfo m = new SetPlayerInfo();
     public Player(String name, int str, int dex, int end, int wis, 
             int pointsLeft, String Role, String Class, String Skill1,
-            String Skill2, String Skill3, String Skill4, int Lvl,int row,int column, ImageIcon icon,int hp, int basicDamage, boolean hasAttacked, boolean isStunned, int StunDuration, int stunCount) {
+            String Skill2, String Skill3, String Skill4, int Lvl,int row,int column, 
+            ImageIcon icon, int maxHp, int hp, int basicDamage, int maxDamage, double Defense, double MaxDefense, int moves,
+            boolean hasAttacked, boolean isStunned, int StunDuration, int stunCount) 
+    {
         setName(name);
         setStr(str);
         setDex(dex);
@@ -33,8 +37,13 @@ public class Player {
         setRow(row);
         setColumn(column);
         setIcon(icon);
+        setMaxHp(maxHp);
         setHp(hp);
-        setBasicDamage(basicDamage);
+        setDamage(basicDamage);
+        setMaxDamage(maxDamage);
+        setDefense(Defense);
+        setMaxDefense(MaxDefense);
+        setMoves(moves);
         setHasAttacked(hasAttacked);
         setIsStunned(isStunned);
         
@@ -204,12 +213,12 @@ public class Player {
         this.hp = hp;
     }
     
-    public int getBasicDamage()
+    public int getDamage()
     {
         return basicDamage;
     }
     
-    public void setBasicDamage(int basicDamage)
+    public void setDamage(int basicDamage)
     {
         this.basicDamage = basicDamage;
     }
@@ -253,4 +262,55 @@ public class Player {
     {
         this.stunCount = stunCount;
     }
+    
+    public int getMaxHp()
+    {
+        return maxHp;
+    }
+    
+    public void setMaxHp(int maxHp)
+    {
+        this.maxHp = maxHp;
+    }
+    
+    public double getDefense()
+    {
+        return Defense;
+    }
+    
+    public void setDefense(double Defense)
+    {
+        this.Defense = Defense;
+    }
+    
+    public double getMaxDefense()
+    {
+        return MaxDefense;
+    }
+    
+    public void setMaxDefense(double MaxDefense)
+    {
+        this.MaxDefense = MaxDefense;
+    }
+    
+    public int getMaxDamage()
+    {
+        return maxDamage;
+    }
+    
+    public void setMaxDamage(int maxDamage)
+    {
+        this.maxDamage = maxDamage;
+    }
+    
+    public int getMoves()
+    {
+        return moves;
+    }
+    
+    public void setMoves(int moves)
+    {
+        this.moves = moves;
+    }
+    
 }
