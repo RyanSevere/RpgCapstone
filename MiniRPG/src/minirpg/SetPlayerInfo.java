@@ -8,11 +8,11 @@ import javax.swing.*;
 public class SetPlayerInfo extends JPanel {
     //all gui buttons,Labels....ect
     JButton addStr, subStr, addDex, subDex, addEnd, subEnd, addWis,
-            subWis, create, edit, done, battle;
+            subWis, create, done;
     JLabel str, dex, end, wis, name, pointsLeftLabel, strTotal,
             dexTotal, endTotal, wisTotal, pointsLeftField;
     JTextField nameField;
-    String playerName = "meow", SelectedRole, SelectedClass;
+    String playerName = "", SelectedRole, SelectedClass, error;
     JComboBox listBox;
     
     int x = 0, pID = 0, battleCounter = 0, pStr, pDex, pEnd, pWis, pName, pLvl, hp, Damage, baseLineDamage;
@@ -33,6 +33,7 @@ public class SetPlayerInfo extends JPanel {
 
     //sets up and inializes layout of GUI for Stats entry
     public SetPlayerInfo(Player newGuy) {
+        //<editor-fold defaultstate="Collapsed" desc="GUI layout">
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
               
@@ -155,13 +156,6 @@ public class SetPlayerInfo extends JPanel {
         c.gridwidth = 3;
         add(create, c);
 
-        // will be deleted in cleaning
-//        edit = new JButton("Edit");       
-//        c.gridx = 2;
-//        c.gridy = 8;
-//        c.gridwidth = 2;
-//        add(edit, c);
-
         done = new JButton("Done");       
         c.gridx = 1;
         c.gridy = 9;
@@ -180,17 +174,6 @@ public class SetPlayerInfo extends JPanel {
         add(listBox, c);
         listBox.setEditable(true);
         listBox.setVisible(false);
-        
-        //only visable after 4 characters created
-        // will be deleted in cleaning
-        battle = new JButton("Battle");       
-        c.insets = new Insets(2, 2, 2, 30);
-        c.gridx = 1;
-        c.gridy = 11;
-        c.gridwidth = 2;
-        add(battle, c);
-        battle.setVisible(false);
-
 
         SetPlayerInfo.Event a = new SetPlayerInfo.Event();
         //all the listeners
@@ -203,11 +186,9 @@ public class SetPlayerInfo extends JPanel {
         addWis.addActionListener(a);
         subWis.addActionListener(a);
         create.addActionListener(a);
-//        edit.addActionListener(a);
         listBox.addActionListener(a);
         done.addActionListener(a);
-        battle.addActionListener(a);
-
+        //</editor-fold>
     }
     
     public class Event implements ActionListener {
@@ -226,7 +207,7 @@ public class SetPlayerInfo extends JPanel {
                     pointsLeftField.setText(Integer.toString(total)); //update Points left
                     strTotal.setText(Integer.toString(num));    //update Str total
                 } else if (total == 0) {   //prevents user from having negative amount of Str
-                    JOptionPane.showMessageDialog(create, "You can not go below zero"); //no popup happens to display message but user cannot go below 0
+                    JOptionPane.showMessageDialog(create, "You have run out of points to spend"); 
                     
                 }
             } else if (a.getSource() == subStr) {
@@ -238,7 +219,7 @@ public class SetPlayerInfo extends JPanel {
                     strTotal.setText(Integer.toString(num));
                     pointsLeftField.setText(Integer.toString(total));
                 } else if (num == 0) {
-                    JOptionPane.showMessageDialog(create, "You can not go below zero"); //no popup happens to display message but user cannot go below 0
+                    JOptionPane.showMessageDialog(create, "You can not go below zero"); 
                 }
             } //Setup for + and - for dex
             else if (a.getSource() == addDex) {
@@ -250,7 +231,7 @@ public class SetPlayerInfo extends JPanel {
                     pointsLeftField.setText(Integer.toString(total));
                     dexTotal.setText(Integer.toString(num));
                 } else if (total == 0) {
-                    JOptionPane.showMessageDialog(create, "You can not go below zero"); //no popup happens to display message but user cannot go below 0
+                    JOptionPane.showMessageDialog(create, "You have run out of points to spend"); 
                 }
             } else if (a.getSource() == subDex) {
                 total = Integer.parseInt(pointsLeftField.getText());
@@ -261,7 +242,7 @@ public class SetPlayerInfo extends JPanel {
                     dexTotal.setText(Integer.toString(num));
                     pointsLeftField.setText(Integer.toString(total));
                 } else if (num == 0) {
-                    JOptionPane.showMessageDialog(create, "You can not go below zero"); //no popup happens to display message but user cannot go below 0
+                    JOptionPane.showMessageDialog(create, "You can not go below zero"); 
                 }
             }
             //Setup for + and - for end
@@ -274,7 +255,7 @@ public class SetPlayerInfo extends JPanel {
                     pointsLeftField.setText(Integer.toString(total));
                     endTotal.setText(Integer.toString(num));
                 } else if (total == 0) {
-                    JOptionPane.showMessageDialog(create, "You can not go below zero"); //no popup happens to display message but user cannot go below 0
+                    JOptionPane.showMessageDialog(create, "You have run out of points to spend");
                 }
             } else if (a.getSource() == subEnd) {
                 total = Integer.parseInt(pointsLeftField.getText());
@@ -285,7 +266,7 @@ public class SetPlayerInfo extends JPanel {
                     endTotal.setText(Integer.toString(num));
                     pointsLeftField.setText(Integer.toString(total));
                 } else if (num == 0) {
-                    JOptionPane.showMessageDialog(create, "You can not go below zero"); //no popup happens to display message but user cannot go below 0
+                    JOptionPane.showMessageDialog(create, "You can not go below zero");
                 }
             }
             //Setup for + and - for wis
@@ -298,8 +279,7 @@ public class SetPlayerInfo extends JPanel {
                     pointsLeftField.setText(Integer.toString(total));
                     wisTotal.setText(Integer.toString(num));
                 } else if (total == 0) {
-                    //JOptionPane.showMessageDialog(rootPane,
-                      //      "You can not go below zero");
+                    JOptionPane.showMessageDialog(create, "You have run out of points to spend");
                 }
             } else if (a.getSource() == subWis) {
                 total = Integer.parseInt(pointsLeftField.getText());
@@ -310,8 +290,7 @@ public class SetPlayerInfo extends JPanel {
                     wisTotal.setText(Integer.toString(num));
                     pointsLeftField.setText(Integer.toString(total));
                 } else if (num == 0) {
-                    //JOptionPane.showMessageDialog(rootPane,
-                      //      "You can not go below zero");
+                    JOptionPane.showMessageDialog(create, "You can not go below zero");
                 }
             } 
             //create listener
@@ -319,22 +298,20 @@ public class SetPlayerInfo extends JPanel {
             //changes menu look the 1st time its clicked
             else if (a.getSource() == create) 
             {
-                //the check to see if all fields have been filled outbefore creating charater still buggy
-                //combobox's for Class, Role, Skill still returning null after use of getter
-                create(); //adds stat information and player name to the array list
-                show(); //makes player list box visable
+                
+                if(nameField.getText().equals("") || nameField.getText() == null)
+                {
+                    JOptionPane.showMessageDialog(create, "You must enter a player name");
+                }
+                else
+                {
+                    create(); //adds stat information and player name to the array list
+                    show(); //makes player list box visable
+                }
+
             } 
-            //edit listener
-            /* edit button moved to summery pannel
-            else if (a.getSource() == edit) {
-                edit();
-                nameField.setText(MiniRPG.players.get(listBox.getSelectedIndex()).getName());
-            }
-            */
-            //clicked after a player is done with editing a player
+            
             //changes menu look
-            /*changing the name with edit doesn't update the dropdown menu but
-            *does change the name*/
             else if (a.getSource() == done) {
                 setStr();
                 setDex();
@@ -351,17 +328,7 @@ public class SetPlayerInfo extends JPanel {
                 battleCounter = 4;
                 create();
             }
-            //makes current window disappear
-            //opens battle window
-            //Battle button moved to Summery panel
-//            else if (a.getSource() == battle) {
-//                setVisible(false);
-//                Battle gui = new Battle();
-//                gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//                gui.setSize(1000, 550);
-//                gui.setResizable(false);
-//                gui.setVisible(true);
-//            }
+            
         }
 
         
@@ -457,7 +424,7 @@ public class SetPlayerInfo extends JPanel {
         //</editor-fold>
         
         //resets all fields
-        //makes the edit and create buttons visable
+        //makes the create button visable
         //makes the listbox that holds the players visable
         public void show() 
         {
@@ -468,7 +435,6 @@ public class SetPlayerInfo extends JPanel {
             pointsLeftField.setText("15");
             nameField.setText("");
             name.setText("Character Setup");
-//            edit.setVisible(true);
             nameField.setVisible(true);
             //listBox.setVisible(true);
             create.setVisible(true);
@@ -476,40 +442,11 @@ public class SetPlayerInfo extends JPanel {
             /*the loop number is how many players need to be created before 
              * the battle can begin*/
             if (battleCounter >= 4) {
-                //battle.setVisible(true); battle button moved to Summery Panel
                 create.setEnabled(false);
                 TabGUI.activateSummeryPanel();
                 TabGUI.SummerySelected();
             }
         }
-        
-        //lets you edit the player at the index selected 
-        //chages the menu look
-        //Moved to Summery Panel
-        //<editor-fold defaultstate="collapsed" desc="edit function has been moved to Sumnmery Panel">
-        /*
-        public void edit() {
-            String setStr = Integer.toString(MiniRPG.players.get(listBox.getSelectedIndex()).getStr());
-            String setDex = Integer.toString(MiniRPG.players.get(listBox.getSelectedIndex()).getDex());
-            String setEnd = Integer.toString(MiniRPG.players.get(listBox.getSelectedIndex()).getEnd());
-            String setWis = Integer.toString(MiniRPG.players.get(listBox.getSelectedIndex()).getWis());
-            String setPointsLeft = Integer.toString(MiniRPG.players.get(listBox.getSelectedIndex()).getPointsLeft());
-            strTotal.setText(setStr);
-            dexTotal.setText(setDex);
-            endTotal.setText(setEnd);
-            wisTotal.setText(setWis);
-            pointsLeftField.setText(setPointsLeft);
-            edit.setVisible(false);
-            create.setVisible(false);
-            listBox.setVisible(false);
-            battle.setVisible(false);
-            done.setVisible(true);
-            playerName = MiniRPG.players.get(listBox.getSelectedIndex()).getName();
-            name.setText(playerName);
-            pointsLeftField.setText(Integer.toString(MiniRPG.players.get(listBox.getSelectedIndex()).getPointsLeft()));
-        }
-        */
-        //</editor-fold>
         
         //adds the player to the array list found in the main class
         public void create() 

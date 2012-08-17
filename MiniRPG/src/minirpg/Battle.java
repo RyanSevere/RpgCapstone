@@ -20,12 +20,13 @@ public class Battle extends JFrame{
     static int selectedPlayerIndex = 0, selectedMonsterIndex = 0;
     static String Skill;
     JTable table = new JTable(11, 11);
-    JButton skill1, skill2,  skill3, skill4, roundEnd;//add buttons as needed
+    JButton skill1, skill2,  skill3, skill4, roundEnd, selectedBtn;//add buttons as needed
     JLabel lblClass, pClass, lblRole, role, lblStr, lblDex, lblEnd, lblwiz, str, dex, end,
             wiz, lblMoves, movesLeft, lblHp, hp, skills, name, icon, dash, lblSkill1,
             lblSkill2, lblSkill3, lblSkill4, health, phaseLbl, phase, roundLbl, round;
     JTextArea infoBox;
     String empty = "";
+    Battle.Event e = new Battle.Event();
     
     public JTabbedPane characterInfoPane;
     
@@ -37,11 +38,11 @@ public class Battle extends JFrame{
         table.setSelectionBackground(Color.white);
         table.setRowHeight(50);
         table.setBorder(BorderFactory.createLineBorder(Color.black));
-        monsters.add(new Monster("Orc", Orc, 30, 3, 0, 3, false, 0, 0));
-        monsters.add(new Monster("Goblin", Goblin, 2,  20, 0, 7, false, 0, 0));
-        monsters.add(new Monster("Goblin", Goblin, 2, 20, 1, 0, false, 0, 0));
-        monsters.add(new Monster("Orc", Orc, 30, 3, 2, 8, false, 0, 0));
-        monsters.add(new Monster("Ogre", Ogre, 40, 5, 2, 2, false, 0, 0));
+        monsters.add(new Monster("Orc", Orc, 30, 3, 0, 3, false, 0, 0, true));
+        monsters.add(new Monster("Goblin", Goblin, 2,  20, 0, 7, false, 0, 0, true));
+        monsters.add(new Monster("Goblin", Goblin, 2, 20, 1, 0, false, 0, 0, true));
+        monsters.add(new Monster("Orc", Orc, 30, 3, 2, 8, false, 0, 0, true));
+        monsters.add(new Monster("Ogre", Ogre, 40, 5, 2, 2, false, 0, 0, true));
 
         setMap();
 
@@ -106,6 +107,7 @@ public class Battle extends JFrame{
         roundInfo.add(roundEnd, c);
         
         
+        
         JScrollPane battleTextPane = new JScrollPane(infoBox);
         Dimension battleTextPannelSize = new Dimension(800, 500);
         battleGridPane.setMinimumSize(battleTextPannelSize);
@@ -123,6 +125,7 @@ public class Battle extends JFrame{
         getContentPane().add(splitPane2);
         
         //Event a = new Event();
+        
 
         table.addKeyListener(new KeyAdapter() {
 
@@ -298,7 +301,8 @@ public class Battle extends JFrame{
                 boolean selectedMonsterRow = false;
                 boolean playerCheck = false;
                 boolean monsterCheck = false;
-                while (x <= 3) {
+                while (x <= 3) 
+                {
                     if (MiniRPG.players.get(x).getColumn() == table.getSelectedColumn()) {
                         selectedPlayerColumn = true;
                     }
@@ -311,7 +315,7 @@ public class Battle extends JFrame{
                     if (playerCheck == true) {
                         //System.out.println("Player selected" + MiniRPG.players.get(x).getName());
                         playerCheck = false;
-                        characterInfoPane.setSelectedIndex(x);
+                        //characterInfoPane.setSelectedIndex(x);
                         break;
                     }
                     x++;
@@ -643,9 +647,7 @@ public class Battle extends JFrame{
         c.gridx = 2;
         c.gridy = 16;
         panel.add(skill4, c);
-        //skill4.setEnabled(false);
-        
-        Battle.Event e = new Battle.Event();
+        //skill4.setEnabled(false);        
         
         skill1.addActionListener(e);
         skill2.addActionListener(e);
@@ -784,44 +786,83 @@ public class Battle extends JFrame{
         @Override
         public void actionPerformed(ActionEvent e) 
         {
+            int counter = 0;
+            if(e.getSource().equals(roundEnd))
+            {
+                while(MiniRPG.players.size() <= counter)
+                {
+                    if(MiniRPG.players.get(counter).getIsStunned() == true)
+                    {
+                        if(MiniRPG.players.get(counter).getStunCount() == MiniRPG.players.get(counter).getStunDuration())
+                        {
+                            MiniRPG.players.get(counter).setIsStunned(false);
+                            MiniRPG.players.get(counter).setMoves(4);
+                        }
+                        else
+                        {
+                            MiniRPG.players.get(counter).setMoves(0);
+                            MiniRPG.players.get(counter).setStunCount(MiniRPG.players.get(counter).getStunCount() + 1);
+                        }    
+                    }
+                    else
+                    {
+                        MiniRPG.players.get(counter).setMoves(4);
+                    }
+                    if(MiniRPG.players.get(counter).getDamage() > MiniRPG.players.get(counter).getMaxDamage())
+                    {
+                        MiniRPG.players.get(counter).setDamage(MiniRPG.players.get(counter).getMaxDamage());
+                    }
+                    if(MiniRPG.players.get(counter).getHasAttacked() == true)
+                    {
+                        MiniRPG.players.get(counter).setHasAttacked(false);
+                    }
+                    if(MiniRPG.players.get(counter).getDefense() != MiniRPG.players.get(counter).getMaxDefense())
+                    {
+                        MiniRPG.players.get(counter).setDefense(MiniRPG.players.get(counter).getMaxDefense());
+                    }
+                    if(monsters.get(counter).getIsStunned() == true)
+                    {
+                        if(monsters.get(counter).getStunCount() == monsters.get(counter).getStunDuration())
+                        {
+                            monsters.get(counter).setIsStunned(false);
+                        }
+                        else
+                        {
+                            monsters.get(counter).setStunCount(monsters.get(counter).getStunCount() + 1);
+                            
+                        }
+                    }
+                    //monster movement class will go here
+                }
+            }
             int x = 0;
             while(x < 4)
             {
                 if(e.getSource().toString().contains(MiniRPG.players.get(x).getSkill1()) == true)
                 {
-                    //System.out.println("you pressed the skill 1 button");
+                    
                     Skill = ((JButton)(e.getSource())).getText();
-                    //System.out.println("the skill for skill 1 button is " + Skill);
-                    //System.out.println(e.getSource());
-                    SA.ReadFile();
-                    SA.TestFileRead();
-                    SA.HealFcn();
+                    SA.SkillAttacks();
+                    infoBox.setText(infoBox.getText() + "\n" + SA.GetTextOutput());
                     x = 4;
+                }
+                else if(e.getSource().toString().contains(MiniRPG.players.get(x).getSkill2()) == true)
+                {
+                    x = 4;
+                }
+                else if(e.getSource().toString().contains(MiniRPG.players.get(x).getSkill3()) == true)
+                {
+                    x = 4;
+                }
+                else if(e.getSource().toString().contains(MiniRPG.players.get(x).getSkill3()) == true)
+                {
+                    
                 }
                 else
                 {
                     x++;
-                    System.out.println(x);
                 }
             }
-            
-            
-            if(e.getSource() == skill2)
-            {
-                System.out.println("you pressed the skill 2 button");
-            }
-            
-            if(e.getSource() == skill3)
-            {
-                System.out.println("you pressed the skill 3 button");
-            }
-            
-            if(e.getSource() == skill4)
-            {
-                System.out.println("you pressed the skill 4 button");
-            }
-            
-            //throw new UnsupportedOperationException("Not supported yet.");
         }
     }
     

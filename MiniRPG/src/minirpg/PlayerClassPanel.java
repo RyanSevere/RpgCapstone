@@ -24,7 +24,7 @@ public class PlayerClassPanel extends JPanel {
 
        
     //establish Buttons, Drop boxes, Labels
-    JButton btnDone, btnAdd;
+    JButton btnDone;
     JLabel lblClass, lblRole, lblTitle, lblName, lblSkills, lblspacer;
     JTextArea txtbxDescription;
     JComboBox comboClass, comboRole, comboName, comboSkills;
@@ -36,7 +36,7 @@ public class PlayerClassPanel extends JPanel {
             //Skill Description variables
             SelectedSkill, //where the selected skill will go for the file read function
             SkillDescription, //where the description from the file will be stored for output
-            Class, Role, Skill1 = "", Skill2 = "", Skill3 = "", Skill4 = "";
+            Class = "", Role = "", Skill1 = "", Skill2 = "", Skill3 = "", Skill4 = "", error;
     boolean isValid = false;
     
        
@@ -187,81 +187,97 @@ public class PlayerClassPanel extends JPanel {
                 {
                     txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(BarbarianSkills));
+                    SetSkills();
                 }
                 else if("Monk".equals(selectedClass))
                 {
                     txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(MonkSkills));
+                    SetSkills();
                 }
                 else if("Paladin".equals(selectedClass))
                 {
                     txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(PaladinSkills));
+                    SetSkills();
                 }
                 else if("Warrior".equals(selectedClass))
                 {
                     txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(WarriorSkills));
+                    SetSkills();
                 }
                 else if("Cleric".equals(selectedClass))
                 {
                     txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(ClaricSkills));
+                    SetSkills();
                 }
                 else if("Priest".equals(selectedClass))
                 {
                     txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(PriestSkills));
+                    SetSkills();
                 }
                 else if("Shaman".equals(selectedClass))
                 {
                     txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(ShamanSkills));
+                    SetSkills();
                 }
                 else if("Bard".equals(selectedClass))
                 {
                     txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(BardSkills));
+                    SetSkills();
                 }
                 else if("Wizard".equals(selectedClass))
                 {
                     txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(WizardSkills));
+                    SetSkills();
                 }
                 else if("Druid".equals(selectedClass))
                 {
                     txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(DruidSkills));
+                    SetSkills();
                 }
                 else if("Warlock".equals(selectedClass))
                 {
                     txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(WarlockSkills));
+                    SetSkills();
                 }
                 else if("Pyromancer".equals(selectedClass))
                 {
                     txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(PyroSkills));
+                    SetSkills();
                 }
                 else if("Swashbuckler".equals(selectedClass))
                 {
                     txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(SwashSkills));
+                    SetSkills();
                 }
                 else if("Thief".equals(selectedClass))
                 {
                     txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(ThiefSkills));
+                    SetSkills();
                 }
                 else if("Ranger".equals(selectedClass))
                 {
                     txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(RangerSkills));
+                    SetSkills();
                 }
                 else if("Assassin".equals(selectedClass))
                 {
                     txtbxDescription.setText("");
                     comboSkills.setModel(new DefaultComboBoxModel(AssassinSkills));
+                    SetSkills();
                 }
                 else if("".equals(selectedClass))
                 {
@@ -292,10 +308,7 @@ public class PlayerClassPanel extends JPanel {
                 }
                 if(comboSkills.getItemCount() > 0)
                 {
-                    Skill1 = comboSkills.getItemAt(1).toString();
-                    Skill2 = comboSkills.getItemAt(2).toString();
-                    Skill3 = comboSkills.getItemAt(3).toString();
-                    Skill4 = comboSkills.getItemAt(4).toString();
+                    SetSkills();
                 }
                 //System.out.println(Skill);
                 
@@ -309,18 +322,45 @@ public class PlayerClassPanel extends JPanel {
         
    }
     
+    public void SetSkills()
+    {
+        Skill1 = comboSkills.getItemAt(1).toString();
+        Skill2 = comboSkills.getItemAt(2).toString();
+        Skill3 = comboSkills.getItemAt(3).toString();
+        Skill4 = comboSkills.getItemAt(4).toString();
+    }
+    
     public void checkValid()
     {
-        if(!"".equals(Role) || Role != null)
+        if(Role.equals("") || Role == null)
         {
-            if(!"".equals(Class) || Class != null)
-            {
-                if(!"".equals(Skill1) || Skill1 != null)
-                {
-                    isValid = true;
-                }
-            }
+            error = "You must Select a Role";
         }
+        else if(Class.equals("") || Class == null)        
+        {
+            error = "You must Select a Class";
+        }
+        else if(Skill1.equals("") || Skill1 == null)
+        {
+            error = "Error Adding Skill 1";
+        }
+        else if(Skill2.equals("") || Skill2 == null)
+        {
+            error = "Error Adding Skill 2";
+        }
+        else if(Skill3.equals("") || Skill3 == null)
+        {
+             error = "Error Adding Skill 3";
+        }
+        else if(Skill4.equals("") || Skill4 == null)
+        {
+            error = "Error Adding Skill 4";
+        }
+        else
+        {
+            isValid = true;
+        }
+ 
     }
    
     
@@ -399,15 +439,18 @@ public class PlayerClassPanel extends JPanel {
             {
                 if(e.getSource() == btnDone)
                 {
-                    TabGUI.activateStatPanel();
-                    
-                    checkValid();
+                    checkValid(); 
                     if (isValid == true)
                     {
                         TabGUI.comboSelection.add(new ComboSelection(Role, Class, Skill1, Skill2, Skill3, Skill4));
                         isValid = false;
+                        TabGUI.activateStatPanel();
                         TabGUI.disableClassPanel();
                         TabGUI.FowardStatPanel();
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(btnDone, error);
                     }
                 }
             }

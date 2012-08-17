@@ -6,13 +6,13 @@ public class Monster {
 
     private String name;
     private int hp, row, column, damage, stunDuration, stunCount;
-    private boolean isDead, isStunned;
+    private boolean isDead, isStunned, canMove;
     private ImageIcon icon = new ImageIcon("Redx.png");
 
     public Monster() {
-        this("Monster",null , 20, 1, 0,0, false, 0, 0);
+        this("Monster",null , 20, 1, 0,0, false, 0, 0, true);
     }
-    public Monster(String name,ImageIcon icon, int hp,int damage, int row,int column, boolean isStunned, int stunDuration, int stunCount) {
+    public Monster(String name,ImageIcon icon, int hp,int damage, int row,int column, boolean isStunned, int stunDuration, int stunCount, boolean canMove) {
         setName(name);
         setIcon(icon);
         setHp(hp);
@@ -20,6 +20,7 @@ public class Monster {
         setRow(row);
         setColumn(column);
         setIsDead(false);
+        setIsStunned(isStunned);
         setStunDuration(stunDuration);
         setStunCount(stunCount);
     }
@@ -85,7 +86,7 @@ public class Monster {
         return isStunned;
     }
     
-    public void getIsStunned(boolean isStunned)
+    public void setIsStunned(boolean isStunned)
     {
         this.isStunned = isStunned;
     }
@@ -109,4 +110,15 @@ public class Monster {
     {
         this.stunCount = stunCount;
     }
+    
+    public boolean getCanMove()
+    {
+        return canMove;
+    }
+    
+    public void setCanMove(boolean canMove)
+    {
+        this.canMove = canMove;
+    }
+    
 }

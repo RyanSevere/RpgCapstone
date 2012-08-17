@@ -19,10 +19,10 @@ public class SkillAttacks {
     int Range, Damage, CurrentDamage, MaxDamage, StunDuration, StunCount, 
             CurrentHp, MaxHp, Target, SelectedPlayer = Battle.GetSelectedPlayer();
     double Heal, DefenseBoost, DefenseReduction, DamageBoost, CurrentDefense, MaxDefense;
-    boolean IfStuned;
-    String TextOutput;
+    boolean IfStuned, CurrentStunStatus, skillSucessful;
+    static String TextOutput;
     
-    public SkillAttacks()
+    public void SkillAttacks()
     {
         //<editor-fold defaultstate="collapsed" desc="Tank Skills">
         //<editor-fold defaultstate="collapsed" desc="Barbarian Skills">
@@ -341,7 +341,6 @@ public class SkillAttacks {
     //<editor-fold defaultstate="collapsed" desc="Barbarian Skill Functions">
     public void Rush()
     {
-        //needs movement limitor set up to allow for additional movements
         ReadFile();
     }
     
@@ -364,66 +363,66 @@ public class SkillAttacks {
     //<editor-fold defaultstate="collapsed" desc="Monk Skill Functions">
     public void Meditate()
     {
-        
+        ReadFile();
     }
     
     public void FocusStrike()
     {
-        
+        ReadFile();
     }
     
     public void Stun()
     {
-        
+        ReadFile();
     }            
     
     public void Roundhouse()
     {
-        
+        ReadFile();
     }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Paladin Skill Functions">
     public void LayOnHands()
     {
-        
+        ReadFile();
     }
     
     public void Banish()
     {
-        
+        ReadFile();
     }
     
     public void HolyStrike()
     {
-        
+        ReadFile();
     }
     
     public void RighteousRage()
     {
-        
+        ReadFile();
     }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Warior Skill Functions">
     public void ShieldBash()
     {
-        
+        ReadFile();
     }
     
     public void TacticalStrike()
     {
-        
+        ReadFile();
     }
     
     public void PowerAttack()
     {
-        
+        ReadFile();
     }
     
     public void Rally()
     {
-        
+        ReadFile();
     }
     //</editor-fold>
     //</editor-fold>
@@ -432,88 +431,88 @@ public class SkillAttacks {
     //<editor-fold defaultstate="collapsed" desc="Cleric Skill Functions">
     public void DivineIntervention()
     {
-        
+        ReadFile();
     }
     
     public void Prayer()
     {
-        
+        ReadFile();
     }
     
     public void HolyBash()
     {
-        
+        ReadFile();
     }
     
     public void HolyAura()
     {
-        
+        ReadFile();
     }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Priest Skill Functions">
     public void HealTarget()
     {
-        
+        ReadFile();
     }
     
     public void HealAll()
     {
-        
+        ReadFile();
     }
     
     public void HolyFire()
     {
-        
+        ReadFile();
     }
     
     public void ActOfGOD()
     {
-        
+        ReadFile();
     }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Shaman Skill Functions">
     public void Curse()
     {
-        
+        ReadFile();
     }
     
     public void Heal()
     {
-        
+        ReadFile();
     }
     
     public void MagicWeapon()
     {
-        
+        ReadFile();
     }
     
     public void Protection()
     {
-        
+        ReadFile();
     }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Bard Skill Functions">
     public void Inspiration()
     {
-        
+        ReadFile();
     }
     
     public void Renewal()
     {
-        
+        ReadFile();
     }
     
     public void ThrowDagger()
     {
-        
+        ReadFile();
     }
     
     public void Fascinate()
     {
-        
+        ReadFile();
     }
     //</editor-fold>
     //</editor-fold>
@@ -522,88 +521,88 @@ public class SkillAttacks {
     //<editor-fold defaultstate="collapsed" desc="Wizard Skill Functions">
     public void Fireball()
     {
-        
+        ReadFile();
     }
     
     public void MagicMissle()
     {
-        
+        ReadFile();
     }
     
     public void LightningBolt()
     {
-        
+        ReadFile();
     }
     
     public void FrostShard()
     {
-        
+        ReadFile();
     }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Warlock Skill Functions">
     public void SummonDemon()
     {
-        
+        ReadFile();
     }
     
     public void ShadowBolt()
     {
-        
+        ReadFile();
     }
     
     public void Fear()
     {
-        
+        ReadFile();
     }
     
     public void DrainLife()
     {
-        
+        ReadFile();
     }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Druid Skill Functions">
     public void Entanglement()
     {
-        
+        ReadFile();
     }
     
     public void SummonDireWolf()
     {
-        
+        ReadFile();
     }
     
     public void NaturesTouch()
     {
-        
+        ReadFile();
     }
     
     public void WildShape()
     {
-        
+        ReadFile();
     }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Pyromancer Skill Functions">
     public void FireBlast()
     {
-        
+        ReadFile();
     }
     
     public void Blaze()
     {
-        
+        ReadFile();
     }
     
     public void Incinerate()
     {
-        
+        ReadFile();
     }
     
     public void MindFire()
     {
-        
+        ReadFile();
     }
     //</editor-fold>
     //</editor-fold>
@@ -612,95 +611,104 @@ public class SkillAttacks {
     //<editor-fold defaultstate="collapsed" desc="Swashbuckler Skill Functions">
     public void PistolShot()
     {
-        
+        ReadFile();
     }
     
     public void Repose()
     {
-        
+        ReadFile();
     }
     
     public void Pillage()
     {
-        
+        ReadFile();
     }
     
     public void DirtyTrick()
     {
-        
+        ReadFile();
     }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Thief Skill Functions">
     public void BackStab()
     {
-        
+        ReadFile();
     }
     
     public void Stealth()
     {
-        
+        ReadFile();
     }
     
     public void Poison()
     {
-        
+        ReadFile();
     }
     
     public void Steal()
     {
-        
+        ReadFile();
     }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Ranger Skill Functions">
     public void AimedShot()
     {
-        
+        ReadFile();
     }
     
     public void RainofArrows()
     {
-        
+        ReadFile();
     }
     
     public void BowStrike()
     {
-        
+        ReadFile();
     }
     
     public void ArrowStab()
     {
-        
+        ReadFile();
     }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Assassin Skill Functions">
     public void Garrote()
     {
-        
+        ReadFile();
     }
     
     public void ThrowingKnife()
     {
-        
+        ReadFile();
     }
     
     public void KidneyStab()
     {
-        
+        ReadFile();
     }
     
     public void Assassinate()
     {
-        
+        ReadFile();
     }
     //</editor-fold>
     //</editor-fold>
-    
-    public void StunFcn()
-    {
         
+    public void MakeStunned()
+    {
+        CurrentStunStatus = MiniRPG.players.get(Target).getIsStunned();
+        
+        if(CurrentStunStatus == false)
+        {
+            MiniRPG.players.get(Target).setIsStunned(true);
+        }
+        else
+        {
+            TextOutput = "Target is already Stunned";
+        }
     }
     
     public void HealFcn()
@@ -709,7 +717,16 @@ public class SkillAttacks {
         MaxHp = MiniRPG.players.get(Target).getMaxHp();
         int AmountHealed = (int) (MaxHp * Heal);
         CurrentHp = CurrentHp + AmountHealed;
-        MiniRPG.players.get(Target).setHp(CurrentHp);       
+        if(CurrentHp < MaxHp)
+        {
+            MiniRPG.players.get(Target).setHp(CurrentHp);
+        }
+        else if(CurrentHp >= MaxHp)
+        {
+            MiniRPG.players.get(Target).setHp(MaxHp);
+            TextOutput = "Player is already at Max Health";
+        }
+        
     }
     
     public void DefenseBoost()
@@ -808,6 +825,12 @@ public class SkillAttacks {
         System.out.println(StunDuration);
         System.out.println(TextOutput);
     }
+    
+    static String GetTextOutput()
+    {
+        return TextOutput;
+    }
+    
 }
 
 

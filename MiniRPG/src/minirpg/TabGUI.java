@@ -87,17 +87,19 @@ public class TabGUI extends JFrame {
     
     static void SummerySelected()
     {
-        int x = 0;
-        int count = 0; 
+        int x = 0, y = 1;
+        int count = 0;
+        PSUMP.Players[0] = "Select Player";
         while(count <= MiniRPG.players.size() - 1)
             {
                 
-                PSUMP.Players[x] = MiniRPG.players.get(x).getName();
+                PSUMP.Players[y] = MiniRPG.players.get(x).getName();
 //                System.out.println("x: " + x);
 //                System.out.println("count: " + count);
 //                System.out.println("size of Player Array: " + MiniRPG.players.size());
 //                System.out.println("Player " + x + " is " + MiniRPG.players.get(x).getName());
                 x++;
+                y ++;
                 count++;
             }
         PSUMP.comboPlayerList.setModel(new DefaultComboBoxModel(PSUMP.Players));
