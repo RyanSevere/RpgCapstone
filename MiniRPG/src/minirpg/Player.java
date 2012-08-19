@@ -6,21 +6,24 @@ public class Player {
 
     PlayerClassPanel PCP = new PlayerClassPanel();
     
-    private String name, Class, Role, Skill1, Skill2, Skill3, Skill4;
+    private String name, Class, Role, Skill1, Skill2, Skill3, Skill4, SkillText;
     private int basicDamage, maxDamage, maxHp, hp, row, column, str, dex, end, wis, Lvl, moves, pointsLeft = 0, stunDuration, stunCount;
     private double Defense, MaxDefense;
     private ImageIcon icon;
-    private boolean hasAttacked, isStunned;
+    private boolean hasAttacked, isStunned, Skill1Used, Skill2Used, Skill3Used, Skill4Used;
 
     public Player() {
-        this("Steve", 0, 0, 0, 0, 16, "Tank", "Monk", "Stun", null, null, null, 1,0,0, null, 20, 20, 10, 10, 0.0, 0.0, 4, false, false, 0, 0);
+        this("Steve", 0, 0, 0, 0, 16, "Tank", "Monk", "Stun", null, null, null, 
+                1,0,0, null, 20, 20, 10, 10, 0.0, 0.0, 4, false, false, 0, 0, false, false, false, false);
     }
 //SetPlayerInfo m = new SetPlayerInfo();
     public Player(String name, int str, int dex, int end, int wis, 
             int pointsLeft, String Role, String Class, String Skill1,
             String Skill2, String Skill3, String Skill4, int Lvl,int row,int column, 
-            ImageIcon icon, int maxHp, int hp, int basicDamage, int maxDamage, double Defense, double MaxDefense, int moves,
-            boolean hasAttacked, boolean isStunned, int StunDuration, int stunCount) 
+            ImageIcon icon, int maxHp, int hp, int basicDamage, int maxDamage, 
+            double Defense, double MaxDefense, int moves, boolean hasAttacked, 
+            boolean isStunned, int StunDuration, int stunCount, 
+            boolean Skill1Used, boolean Skill2Used, boolean Skill3Used, boolean Skill4Used) 
     {
         setName(name);
         setStr(str);
@@ -46,6 +49,10 @@ public class Player {
         setMoves(moves);
         setHasAttacked(hasAttacked);
         setIsStunned(isStunned);
+        setSkill1Used(Skill1Used);
+        setSkill2Used(Skill2Used);
+        setSkill3Used(Skill3Used);
+        setSkill4Used(Skill4Used);
         
         
 
@@ -313,4 +320,44 @@ public class Player {
         this.moves = moves;
     }
     
+    public boolean getSkill1Used()
+    {
+        return Skill1Used;
+    }
+    
+    public void setSkill1Used(boolean Skill1Used)
+    {
+        this.Skill1Used = Skill1Used;
+    }
+    
+    public boolean getSkill2Used()
+    {
+        return Skill2Used;
+    }
+    
+    public void setSkill2Used(boolean Skill2Used)
+    {
+        this.Skill2Used = Skill2Used;
+    }
+    
+    public boolean getSkill3Used()
+    {
+        return Skill3Used;
+    }
+    
+    public void setSkill3Used(boolean Skill3Used)
+    {
+        this.Skill3Used = Skill3Used;
+    }
+    
+    public boolean getSkill4Used()
+    {
+        return Skill4Used;
+    }
+    
+    public void setSkill4Used(boolean Skill4Used)
+    {
+        this.Skill4Used = Skill4Used;
+    }
+        
 }

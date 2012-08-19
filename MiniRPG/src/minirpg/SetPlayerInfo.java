@@ -432,7 +432,7 @@ public class SetPlayerInfo extends JPanel {
             dexTotal.setText("0");
             endTotal.setText("0");
             wisTotal.setText("0");
-            pointsLeftField.setText("15");
+            pointsLeftField.setText("16");
             nameField.setText("");
             name.setText("Character Setup");
             nameField.setVisible(true);
@@ -480,7 +480,8 @@ public class SetPlayerInfo extends JPanel {
             double PlayerDefense = getDefense();
             MiniRPG.players.add(new Player(playerName, pStr, pDex, pEnd, pWis, p, 
                     SelectedRole, SelectedClass, Skill1, Skill2, Skill3, Skill4, pLvl,0,0, icon,
-                    playerHp, playerHp, basicDamage, basicDamage, PlayerDefense, PlayerDefense, 4, false, false, 0, 0));
+                    playerHp, playerHp, basicDamage, basicDamage, PlayerDefense, PlayerDefense, 4, false, false, 0, 0,
+                    false, false, false, false));
             pID++;
             name.setText(nameField.getText());
             listBox.addItem(playerName);

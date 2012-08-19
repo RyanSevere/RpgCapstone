@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,14 +17,17 @@ import java.io.InputStreamReader;
 public class SkillAttacks {
     
     String SelectedSkill = "";
-    int Range, Damage, CurrentDamage, MaxDamage, StunDuration, StunCount, 
-            CurrentHp, MaxHp, Target, SelectedPlayer = Battle.GetSelectedPlayer();
-    double Heal, DefenseBoost, DefenseReduction, DamageBoost, CurrentDefense, MaxDefense;
-    boolean IfStuned, CurrentStunStatus, skillSucessful;
     static String TextOutput;
+    int Range, Damage, CurrentDamage, MaxDamage, StunDuration, StunCount, 
+            CurrentHp, MaxHp, Target, SelectedPlayer = Battle.getSelectedPlayer();
+    double Heal, DefenseBoost, DefenseReduction, DamageBoost, CurrentDefense, MaxDefense;
+    boolean IfStuned, CurrentStunStatus, inRange;
+    static boolean skillSuccessful;
+    
     
     public void SkillAttacks()
     {
+        SelectedSkill = Battle.Skill;
         //<editor-fold defaultstate="collapsed" desc="Tank Skills">
         //<editor-fold defaultstate="collapsed" desc="Barbarian Skills">
         if(SelectedSkill.equals("Rush"))
@@ -454,11 +458,28 @@ public class SkillAttacks {
     public void HealTarget()
     {
         ReadFile();
+        if(Battle.isPlayer == true)
+        {
+            Target = Battle.getSelectedPlayer();
+            HealFcn();
+        }
+        else
+        {
+            TextOutput = "Invalid Target only other players can be healed";
+        }
     }
     
     public void HealAll()
     {
         ReadFile();
+        int count = 0;
+        while(MiniRPG.players.size() <= count)
+        {
+            Target = count;
+            HealFcn();
+            count ++;
+        }
+        
     }
     
     public void HolyFire()
@@ -720,11 +741,13 @@ public class SkillAttacks {
         if(CurrentHp < MaxHp)
         {
             MiniRPG.players.get(Target).setHp(CurrentHp);
+            skillSuccessful = true;
         }
         else if(CurrentHp >= MaxHp)
         {
             MiniRPG.players.get(Target).setHp(MaxHp);
             TextOutput = "Player is already at Max Health";
+            skillSuccessful = false;
         }
         
     }
@@ -826,9 +849,19 @@ public class SkillAttacks {
         System.out.println(TextOutput);
     }
     
-    static String GetTextOutput()
+    public void RangeCheck()
+    {
+        
+    }
+    
+    static String getTextOutput()
     {
         return TextOutput;
+    }
+    
+    static boolean getSkillSuccess()
+    {
+        return skillSuccessful;
     }
     
 }
