@@ -5,14 +5,14 @@ import javax.swing.ImageIcon;
 public class Monster {
 
     private String name;
-    private int hp, row, column, damage, stunDuration, stunCount;
+    private int hp, row, column, damage, stunDuration, stunCount, movesLeft;
     private boolean isDead, isStunned, canMove;
     private ImageIcon icon = new ImageIcon("Redx.png");
 
     public Monster() {
-        this("Monster",null , 20, 1, 0,0, false, 0, 0, true);
+        this("Monster",null , 20, 1, 0,0, false, 0, 0, true,4);
     }
-    public Monster(String name,ImageIcon icon, int hp,int damage, int row,int column, boolean isStunned, int stunDuration, int stunCount, boolean canMove) {
+    public Monster(String name,ImageIcon icon, int hp,int damage, int row,int column, boolean isStunned, int stunDuration, int stunCount, boolean canMove, int movesLeft) {
         setName(name);
         setIcon(icon);
         setHp(hp);
@@ -23,6 +23,7 @@ public class Monster {
         setIsStunned(isStunned);
         setStunDuration(stunDuration);
         setStunCount(stunCount);
+        setMovesLeft(movesLeft);
     }
     
     public ImageIcon getIcon()
@@ -119,6 +120,13 @@ public class Monster {
     public void setCanMove(boolean canMove)
     {
         this.canMove = canMove;
+    }
+    public int getMovesLeft() {
+        return movesLeft;
+    }
+
+    public void setMovesLeft(int movesLeft) {
+        this.movesLeft = movesLeft;
     }
     
 }

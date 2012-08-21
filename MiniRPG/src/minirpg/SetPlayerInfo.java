@@ -301,7 +301,9 @@ public class SetPlayerInfo extends JPanel {
                 
                 if(nameField.getText().equals("") || nameField.getText() == null)
                 {
-                    JOptionPane.showMessageDialog(create, "You must enter a player name");
+                    //JOptionPane.showMessageDialog(create, "You must enter a player name");
+                    create(); //adds stat information and player name to the array list
+                    show();
                 }
                 else
                 {
