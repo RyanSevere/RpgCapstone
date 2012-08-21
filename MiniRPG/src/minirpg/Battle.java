@@ -20,11 +20,11 @@ public class Battle extends JFrame {
     public static ArrayList<Monster> monsters = new ArrayList<Monster>();
     boolean moveCheck = false, isStunned;
     int monsterIndex, monsterHP, setupPlayerIndex = 0, stunDuration, stunCount;
-    static int selectedPlayerIndex = 0, selectedMonsterIndex = 0, SelectedPlayer;
+    static int selectedPlayerIndex = 0, selectedMonsterIndex = 0, SelectedPlayer, PlayerSelf;
     static String Skill;
-    static boolean isPlayer, isMonster;
     static JTable table = new JTable(11, 11);
-    JButton skill1, skill2, skill3, skill4, endPhase;//add buttons as needed
+    static boolean isPlayer, isMonster, inMeleeRange, inRange;
+    JButton skill1, skill2,  skill3, skill4, endPhase;//add buttons as needed
     JLabel lblClass, pClass, lblRole, role, lblStr, lblDex, lblEnd, lblwiz, str, dex, end,
             wiz, lblMoves, movesLeft, lblHp, hp, skills, name, icon, dash, lblSkill1,
             lblSkill2, lblSkill3, lblSkill4, health, phaseLbl, phase, roundLbl, round;
@@ -64,7 +64,7 @@ public class Battle extends JFrame {
 
         JSplitPane splitPane1 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
                 true, battleGridPane, characterInfoPane);
-
+        //<editor-fold defaultstate="Collapsed" desc="Round Info Pane GUI">
         JPanel roundInfo = new JPanel();
         //Dimension m = new Dimension(200, 111);
         //roundInfo.setMinimumSize(m);
@@ -110,6 +110,7 @@ public class Battle extends JFrame {
 
         endPhase.addActionListener(e);
 
+        //</editor-fold>
         JScrollPane battleTextPane = new JScrollPane(infoBox);
         Dimension battleTextPannelSize = new Dimension(800, 500);
         battleGridPane.setMinimumSize(battleTextPannelSize);
@@ -232,6 +233,7 @@ public class Battle extends JFrame {
                                 == monsters.get(selectedMonsterIndex).getRow()) {
                             damageEvent();
                             MiniRPG.players.get(selectedPlayerIndex).setHasAttacked(true);
+                            inMeleeRange = true;
                             CheckIfAlive();
                             System.out.println("col hit left!.....on " + monsters.get(selectedMonsterIndex).getName());
 
@@ -241,6 +243,7 @@ public class Battle extends JFrame {
                                 == monsters.get(selectedMonsterIndex).getColumn()) {
                             damageEvent();
                             MiniRPG.players.get(selectedPlayerIndex).setHasAttacked(true);
+                            inMeleeRange = true;
                             CheckIfAlive();
                             System.out.println("row hit down!.....on " + monsters.get(selectedMonsterIndex).getName());
                         } else if (MiniRPG.players.get(selectedPlayerIndex).getRow() - 1
@@ -249,6 +252,7 @@ public class Battle extends JFrame {
                                 == monsters.get(selectedMonsterIndex).getColumn()) {
                             damageEvent();
                             MiniRPG.players.get(selectedPlayerIndex).setHasAttacked(true);
+                            inMeleeRange = true;
                             CheckIfAlive();
                             System.out.println("row hit up!.....on " + monsters.get(selectedMonsterIndex).getName());
                         } else if (MiniRPG.players.get(selectedPlayerIndex).getColumn() + 1
@@ -257,6 +261,7 @@ public class Battle extends JFrame {
                                 == monsters.get(selectedMonsterIndex).getRow()) {
                             damageEvent();
                             MiniRPG.players.get(selectedPlayerIndex).setHasAttacked(true);
+                            inMeleeRange = true;
                             CheckIfAlive();
                             System.out.println("col hit right!.....on " + monsters.get(selectedMonsterIndex).getName());
                         } else {
@@ -794,39 +799,48 @@ public class Battle extends JFrame {
                     Skill = ((JButton) (e.getSource())).getText();
                     //SelectedPlayer = x;
                     SA.SkillAttacks();
-                    infoBox.setText(infoBox.getText() + "\n" + SA.getTextOutput());
+                    infoBox.setText(infoBox.getText() + "\n" + SkillAttacks.getTextOutput());
                     x = 4;
                 } else if (e.getSource().toString().contains(MiniRPG.players.get(x).getSkill2()) == true) {
                     Skill = ((JButton) (e.getSource())).getText();
                     //SelectedPlayer = x;
                     SA.SkillAttacks();
-                    infoBox.setText(infoBox.getText() + "\n" + SA.getTextOutput());
-                    if (true == true) {
+                    infoBox.setText(infoBox.getText() + "\n" + SkillAttacks.getTextOutput());
+                    if(true == true)
+                    {
                         MiniRPG.players.get(characterInfoPane.getSelectedIndex()).setSkill2Used(true);
-                    } else {
-                        infoBox.setText(infoBox.getText() + "\n" + SA.getTextOutput());
+                    }
+                    else
+                    {
+                        infoBox.setText(infoBox.getText() + "\n" + SkillAttacks.getTextOutput());
                     }
                     x = 4;
                 } else if (e.getSource().toString().contains(MiniRPG.players.get(x).getSkill3()) == true) {
                     Skill = ((JButton) (e.getSource())).getText();
                     //SelectedPlayer = x;
                     SA.SkillAttacks();
-                    infoBox.setText(infoBox.getText() + "\n" + SA.getTextOutput());
-                    if (true == true) {
+                    infoBox.setText(infoBox.getText() + "\n" + SkillAttacks.getTextOutput());
+                    if(true == true)
+                    {
                         MiniRPG.players.get(characterInfoPane.getSelectedIndex()).setSkill3Used(true);
-                    } else {
-                        infoBox.setText(infoBox.getText() + "\n" + SA.getTextOutput());
+                    }
+                    else
+                    {
+                        infoBox.setText(infoBox.getText() + "\n" + SkillAttacks.getTextOutput());
                     }
                     x = 4;
                 } else if (e.getSource().toString().contains(MiniRPG.players.get(x).getSkill4()) == true) {
                     Skill = ((JButton) (e.getSource())).getText();
                     //SelectedPlayer = x;
                     SA.SkillAttacks();
-                    infoBox.setText(infoBox.getText() + "\n" + SA.getTextOutput());
-                    if (true == true) {
+                    infoBox.setText(infoBox.getText() + "\n" + SkillAttacks.getTextOutput());
+                    if(true == true)
+                    {
                         MiniRPG.players.get(characterInfoPane.getSelectedIndex()).setSkill4Used(true);
-                    } else {
-                        infoBox.setText(infoBox.getText() + "\n" + SA.getTextOutput());
+                    }
+                    else
+                    {
+                        infoBox.setText(infoBox.getText() + "\n" + SkillAttacks.getTextOutput());
                     }
                     x = 4;
                 } else {
@@ -870,4 +884,15 @@ public class Battle extends JFrame {
                 monsters.get(i).getRow(),
                 monsters.get(i).getColumn());
     }    
+    
+    static int getPlayerSelf()
+    {
+        return PlayerSelf;
+    }
+    
+    static boolean getInMeleeRange()
+    {
+        return inMeleeRange;
+    }
+    
 }

@@ -19,7 +19,7 @@ public class SkillAttacks {
     String SelectedSkill = "";
     static String TextOutput;
     int Range, Damage, CurrentDamage, MaxDamage, StunDuration, StunCount, 
-            CurrentHp, MaxHp, Target, SelectedPlayer = Battle.getSelectedPlayer();
+            CurrentHp, MaxHp, Target, SelectedPlayer = Battle.getSelectedPlayer(), Self;
     double Heal, DefenseBoost, DefenseReduction, DamageBoost, CurrentDefense, MaxDefense;
     boolean IfStuned, CurrentStunStatus, inRange;
     static boolean skillSuccessful;
@@ -346,11 +346,21 @@ public class SkillAttacks {
     public void Rush()
     {
         ReadFile();
+        Self = Battle.getPlayerSelf();
+        MiniRPG.players.get(Self).setMoves(MiniRPG.players.get(Self).getMoves() + 1);
+        Target = Battle.GetSelectedMonster();
+        if(Battle.getInMeleeRange() == true)
+        {
+            Battle.monsters.get(Target).setHp(Battle.monsters.get(Target).getHp() - Damage);
+        }
     }
     
     public void Rage()
     {
         ReadFile();
+        Self = Battle.getPlayerSelf();
+        DamageBoost();
+        DefenseRdn();
     }
     
     public void Spin()
@@ -754,31 +764,31 @@ public class SkillAttacks {
     
     public void DefenseBoost()
     {
-        CurrentDefense = MiniRPG.players.get(Target).getDefense();
+        CurrentDefense = MiniRPG.players.get(Self).getDefense();
         CurrentDefense = CurrentDefense + DefenseBoost;
-        MiniRPG.players.get(Target).setDefense(CurrentDefense);
+        MiniRPG.players.get(Self).setDefense(CurrentDefense);
     }
     
     public void DamageBoost()
     {
-        CurrentDamage = MiniRPG.players.get(Target).getDamage();
+        CurrentDamage = MiniRPG.players.get(Self).getDamage();
         int DamageBonus = (int) (CurrentDamage * DamageBoost);
         CurrentDamage = CurrentDamage + DamageBonus;
-        MiniRPG.players.get(Target).setDamage(CurrentDamage);
+        MiniRPG.players.get(Self).setDamage(CurrentDamage);
     }
     
     public void DefenseRdn()
     {
-        CurrentDefense = MiniRPG.players.get(Target).getDefense();
+        CurrentDefense = MiniRPG.players.get(Self).getDefense();
         CurrentDefense = CurrentDefense - DefenseBoost;
         if(CurrentDefense < 0)
         {
             CurrentDefense = 0;
-            MiniRPG.players.get(Target).setDefense(CurrentDefense);
+            MiniRPG.players.get(Self).setDefense(CurrentDefense);
         }
         else
         {
-            MiniRPG.players.get(Target).setDefense(CurrentDefense);
+            MiniRPG.players.get(Self).setDefense(CurrentDefense);
         }
     }
     
