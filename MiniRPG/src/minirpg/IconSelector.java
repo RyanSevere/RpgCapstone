@@ -1,15 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+//Created by Ryan Severe and Sean Forman
 package minirpg;
 
 import javax.swing.ImageIcon;
 
-/**
- *
- * @author LordShadow
- */
 public class IconSelector {
     
     ImageIcon PlayerIcon = new ImageIcon();

@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+//Created by Ryan Severe and Sean Forman
 package minirpg;
 
 import java.io.BufferedReader;
@@ -349,10 +346,8 @@ public class SkillAttacks {
         Self = Battle.getPlayerSelf();
         MiniRPG.players.get(Self).setMoves(MiniRPG.players.get(Self).getMoves() + 1);
         Target = Battle.GetSelectedMonster();
-        if(Battle.getInMeleeRange() == true)
-        {
-            Battle.monsters.get(Target).setHp(Battle.monsters.get(Target).getHp() - Damage);
-        }
+        MiniRPG.players.get(Self).setDamage(Damage);
+        skillSuccessful = true;
     }
     
     public void Rage()
@@ -828,21 +823,7 @@ public class SkillAttacks {
             catch (Exception e) 
             {
                 System.err.println("Error: "+ e.getMessage());        
-            }
-        
-        /*  data layout
-            name
-            Range
-            Damage fixed
-            Heal %
-            Defense boost %
-            Damage boost %
-            Defense Reduction %
-            if stuns 
-            stun duration
-            text output
-         */
-        
+            }        
     }
     
     public void TestFileRead()

@@ -1,4 +1,5 @@
-//created by Sean Forman
+//Created by Sean Forman and Ryan Severe
+
 package minirpg;
 
 import java.awt.*;
@@ -123,12 +124,8 @@ public class Battle extends JFrame {
         splitPane1.setDividerSize(1);
         splitPane2.setDividerSize(1);
         splitPane3.setDividerSize(1);
-
-
+        
         getContentPane().add(splitPane2);
-
-        //Event a = new Event();
-
 
         table.addKeyListener(new KeyAdapter() {
 
@@ -337,14 +334,6 @@ public class Battle extends JFrame {
 
     }
 
-    //deals with player attack use later also uncomment event
-    /*
-     * public class Event implements ActionListener {
-     *
-     * public void actionPerformed(ActionEvent a) { if (a.getSource() == moveP1)
-     * { p1MoveCheck = true; } else if (a.getSource() == attackP1) {
-     * p1AttackCheck = true; } } }
-     */
     public void setMap() {
         //Sets Players
         MiniRPG.players.get(0).setColumn(3);
@@ -400,32 +389,7 @@ public class Battle extends JFrame {
         Object col = Integer.toString(table.getSelectedColumn());
         return col;
     }
-
-//    public void getMonsterIndex() {
-//        boolean mc = false;
-//        boolean rc = false;
-//        boolean cc = false;
-//        int i = 0;
-//        int rowInt = table.getSelectedRow();
-//        int colInt = table.getSelectedColumn();
-//        ListIterator<Monster> li = monsters.listIterator();
-//        while (li.hasNext() && mc == false) {
-//            Object meow = li.next();
-//            for (int x = 0; x < 9; x++) {
-//                if (monsters.get(i).getRow() == rowInt && rc == false) {
-//                    rc = true;
-//                }
-//                if (monsters.get(i).getColumn() == colInt && cc == false) {
-//                    cc = true;
-//                }
-//                if (cc == true && rc == true) {
-//                    monsterIndex = i;
-//                    mc = true;
-//                }
-//            }
-//            i++;
-//        }
-//    }
+    
     public void checkMap() {
         ListIterator<Monster> li = monsters.listIterator();
         int monsterskilled = 0;
@@ -611,7 +575,7 @@ public class Battle extends JFrame {
         c.gridx = 2;
         c.gridy = 14;
         panel.add(skill2, c);
-        //skill2.setEnabled(false);
+        skill2.setEnabled(false);
 
         lblSkill3 = new JLabel("Skill 3:");
         c.gridx = 1;
@@ -622,7 +586,7 @@ public class Battle extends JFrame {
         c.gridx = 2;
         c.gridy = 15;
         panel.add(skill3, c);
-        //skill3.setEnabled(false);
+        skill3.setEnabled(false);
 
         lblSkill4 = new JLabel("Skill 4:");
         c.gridx = 1;
@@ -633,7 +597,7 @@ public class Battle extends JFrame {
         c.gridx = 2;
         c.gridy = 16;
         panel.add(skill4, c);
-        //skill4.setEnabled(false);        
+        skill4.setEnabled(false);        
 
         skill1.addActionListener(e);
         skill2.addActionListener(e);
@@ -783,8 +747,11 @@ public class Battle extends JFrame {
 
                         }
                     }
+                    else
+                    {
+                        monsters.get(counter).setMovesLeft(4);
+                    }
 
-                    //monster movement class will go here
                     counter++;
                 }
                 MonsterAttackPhase.findPlayerToAttack();
@@ -794,16 +761,23 @@ public class Battle extends JFrame {
 
             int x = 0;
             while (x < 4) {
-                if (e.getSource().toString().contains(MiniRPG.players.get(x).getSkill1()) == true) {
-
+                if (e.getSource().toString().contains(MiniRPG.players.get(x).getSkill1()) == true) 
+                {
+                    
                     Skill = ((JButton) (e.getSource())).getText();
-                    //SelectedPlayer = x;
-                    SA.SkillAttacks();
-                    infoBox.setText(infoBox.getText() + "\n" + SkillAttacks.getTextOutput());
+                    if(SkillAttacks.getSkillSuccess() == false)
+                    {
+                        SA.SkillAttacks();
+                        MiniRPG.players.get(selectedPlayerIndex).setSkill1Used(true);
+                    }
+                    else
+                    {
+                        infoBox.setText(infoBox.getText() + "\n" + "You have already used that skill this round");
+                    }
                     x = 4;
-                } else if (e.getSource().toString().contains(MiniRPG.players.get(x).getSkill2()) == true) {
+                }
+                    else if (e.getSource().toString().contains(MiniRPG.players.get(x).getSkill2()) == true) {
                     Skill = ((JButton) (e.getSource())).getText();
-                    //SelectedPlayer = x;
                     SA.SkillAttacks();
                     infoBox.setText(infoBox.getText() + "\n" + SkillAttacks.getTextOutput());
                     if(true == true)
@@ -817,7 +791,6 @@ public class Battle extends JFrame {
                     x = 4;
                 } else if (e.getSource().toString().contains(MiniRPG.players.get(x).getSkill3()) == true) {
                     Skill = ((JButton) (e.getSource())).getText();
-                    //SelectedPlayer = x;
                     SA.SkillAttacks();
                     infoBox.setText(infoBox.getText() + "\n" + SkillAttacks.getTextOutput());
                     if(true == true)
@@ -831,7 +804,6 @@ public class Battle extends JFrame {
                     x = 4;
                 } else if (e.getSource().toString().contains(MiniRPG.players.get(x).getSkill4()) == true) {
                     Skill = ((JButton) (e.getSource())).getText();
-                    //SelectedPlayer = x;
                     SA.SkillAttacks();
                     infoBox.setText(infoBox.getText() + "\n" + SkillAttacks.getTextOutput());
                     if(true == true)
