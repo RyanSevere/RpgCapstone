@@ -933,41 +933,42 @@ public class Battle extends JFrame {
             //System.out.println("col distance is " + distanceBetweenCol);
             //System.out.println("row distance is " + distanceBetweenRow); 
             System.out.println(monsters.get(i).getName() + " should attack " + MiniRPG.players.get(x).getName());
-            if (distanceBetweenCol < distanceBetweenRow /*
-                     * && distanceBetweenCol != 0
-                     */) {
+            if (distanceBetweenCol < distanceBetweenRow && monsters.get(i).getColumn() != MiniRPG.players.get(x).getColumn()) {
                 if (monsters.get(i).getColumn() < MiniRPG.players.get(x).getColumn()) {
+                   // System.out.println("Move Check Right");
                     monsterMoveCheck(1, i);
                     if (mmc == true) {
                         monsterMoveRight();
                         monsterCheckAttack();
-
                     }
-                } else if (monsters.get(i).getColumn() > MiniRPG.players.get(x).getColumn()) {
+                }
+                if (monsters.get(i).getColumn() > MiniRPG.players.get(x).getColumn()) {
+                   // System.out.println("Move Check Left");
                     monsterMoveCheck(2, i);
                     if (mmc == true) {
                         monsterMoveLeft();
                         monsterCheckAttack();
                     }
                 }
-            } else if (distanceBetweenCol > distanceBetweenRow /*
-                     * && distanceBetweenRow != 0
-                     */) {
+            }
+            if (monsters.get(i).getRow() < MiniRPG.players.get(x).getRow()) {
+               // System.out.println("Move Check Down");
+                monsterMoveCheck(3, i);
+                if (mmc == true) {
+                    monsterMoveDown();
+                    monsterCheckAttack();
 
-                if (monsters.get(i).getRow() < MiniRPG.players.get(x).getRow()) {
-                    monsterMoveCheck(3, i);
-                    if (mmc == true) {
-                        monsterMoveDown();
-                        monsterCheckAttack();
-                    }
-                } else if (monsters.get(i).getRow() > MiniRPG.players.get(x).getRow()) {
-                    monsterMoveCheck(4, i);
-                    if (mmc == true) {
-                        monsterMoveUp();
-                        monsterCheckAttack();
-                    }
                 }
             }
+            if (monsters.get(i).getRow() > MiniRPG.players.get(x).getRow()) {
+                //System.out.println("Move Check Up");
+                monsterMoveCheck(4, i);
+                if (mmc == true) {
+                    monsterMoveUp();
+                    monsterCheckAttack();
+                }
+            }
+
         }
         // System.out.println("all ifs failed"); 
         if (hasRun == false) {
