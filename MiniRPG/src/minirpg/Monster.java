@@ -6,13 +6,13 @@ public class Monster {
 
     private String name;
     private int hp, row, column, damage, stunDuration, stunCount, movesLeft;
-    private boolean isDead, isStunned, canMove;
+    private boolean isDead, isStunned, canMove, hasAttacked;
     private ImageIcon icon = new ImageIcon("Redx.png");
 
     public Monster() {
-        this("Monster",null , 20, 1, 0,0, false, 0, 0, true,4);
+        this("Monster",null , 20, 1, 0,0, false, 0, 0, true,4,false);
     }
-    public Monster(String name,ImageIcon icon, int hp,int damage, int row,int column, boolean isStunned, int stunDuration, int stunCount, boolean canMove, int movesLeft) {
+    public Monster(String name,ImageIcon icon, int hp,int damage, int row,int column, boolean isStunned, int stunDuration, int stunCount, boolean canMove, int movesLeft,boolean hasAttacked) {
         setName(name);
         setIcon(icon);
         setHp(hp);
@@ -24,6 +24,7 @@ public class Monster {
         setStunDuration(stunDuration);
         setStunCount(stunCount);
         setMovesLeft(movesLeft);
+        setHasAttacked(hasAttacked);
     }
     
     public ImageIcon getIcon()
@@ -127,6 +128,15 @@ public class Monster {
 
     public void setMovesLeft(int movesLeft) {
         this.movesLeft = movesLeft;
+    }
+    public void setHasAttacked(boolean hasAttacked)
+    {
+        this.hasAttacked = hasAttacked;
+    }
+    
+    public boolean getHasAttacked()
+    {
+        return hasAttacked;
     }
     
 }
