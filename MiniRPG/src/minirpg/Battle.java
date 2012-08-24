@@ -19,17 +19,17 @@ public class Battle extends JFrame {
     public boolean mmc;
     public boolean mca;
     public int attackingMonsterIndex;
-    SkillAttacks SA = new SkillAttacks();
+    static SkillAttacks SA = new SkillAttacks();
     IconSelector IS = new IconSelector();
     ImageIcon Orc = IS.getOrc(), Ogre = IS.getOgre(), Goblin = IS.getGoblin();
     Random rand = new Random();
     public static ArrayList<Monster> monsters = new ArrayList<Monster>();
     boolean moveCheck = false, isStunned, hasRun = false;
     int monsterIndex, monsterHP, setupPlayerIndex = 0, stunDuration, stunCount;
-    static int selectedPlayerIndex = 0, selectedMonsterIndex = 0, SelectedPlayer, PlayerSelf;
+    static int selectedPlayerIndex = 0, selectedMonsterIndex = 0, SelectedPlayer, PlayerSelf, range;
     static String Skill;
     public JTable table = new JTable(11, 11);
-    static boolean isPlayer, isMonster, inMeleeRange, inRange;
+    static boolean isPlayer, isMonster, inMeleeRange, inRange, isRanged;
     JButton skill1, skill2, skill3, skill4, endPhase;//add buttons as needed
     JLabel lblClass, pClass, lblRole, role, lblStr, lblDex, lblEnd, lblwiz, str, dex, end,
             wiz, lblMoves, movesLeft, lblHp, hp, skills, name, icon, dash, lblSkill1,
@@ -935,7 +935,7 @@ public class Battle extends JFrame {
             System.out.println(monsters.get(i).getName() + " should attack " + MiniRPG.players.get(x).getName());
             if (distanceBetweenCol < distanceBetweenRow && monsters.get(i).getColumn() != MiniRPG.players.get(x).getColumn()) {
                 if (monsters.get(i).getColumn() < MiniRPG.players.get(x).getColumn()) {
-                   // System.out.println("Move Check Right");
+                    // System.out.println("Move Check Right");
                     monsterMoveCheck(1, i);
                     if (mmc == true) {
                         monsterMoveRight();
@@ -943,7 +943,7 @@ public class Battle extends JFrame {
                     }
                 }
                 if (monsters.get(i).getColumn() > MiniRPG.players.get(x).getColumn()) {
-                   // System.out.println("Move Check Left");
+                    // System.out.println("Move Check Left");
                     monsterMoveCheck(2, i);
                     if (mmc == true) {
                         monsterMoveLeft();
@@ -952,7 +952,7 @@ public class Battle extends JFrame {
                 }
             }
             if (monsters.get(i).getRow() < MiniRPG.players.get(x).getRow()) {
-               // System.out.println("Move Check Down");
+                // System.out.println("Move Check Down");
                 monsterMoveCheck(3, i);
                 if (mmc == true) {
                     monsterMoveDown();
@@ -1247,6 +1247,59 @@ public class Battle extends JFrame {
         for (int x = 0; x <= 4; x++) {
             monsters.get(x).setMovesLeft(4);
             monsters.get(x).setHasAttacked(false);
+        }
+    }
+
+    static boolean rangedAttack(int distance) {
+        int d = distance;
+      if(d == 3){
+          checkRange(d);
+          d --;
+      }
+      if(d == 2 && inRange ==false){
+          checkRange(d);
+          d --;
+      }
+       if(d == 1 && inRange ==false){
+        checkRange(d);
+          d --;
+      }
+        return inRange;
+    }
+
+    static void checkRange(int distance) {
+        int d = distance;
+        if (monsters.get(selectedMonsterIndex).getColumn() >= 3) {
+            if (MiniRPG.players.get(selectedPlayerIndex).getColumn() - d
+                    == monsters.get(selectedMonsterIndex).getColumn()
+                    && MiniRPG.players.get(selectedPlayerIndex).getRow()
+                    == monsters.get(selectedMonsterIndex).getRow()) {
+                inRange = true;
+            }
+        }
+        if (monsters.get(selectedMonsterIndex).getColumn() <= 7) {
+            if (MiniRPG.players.get(selectedPlayerIndex).getRow() + d
+                    == monsters.get(selectedMonsterIndex).getRow()
+                    && MiniRPG.players.get(selectedPlayerIndex).getColumn()
+                    == monsters.get(selectedMonsterIndex).getColumn()) {
+                inRange = true;
+            }
+        }
+        if (monsters.get(selectedMonsterIndex).getRow() >= 3) {
+            if (MiniRPG.players.get(selectedPlayerIndex).getRow() - d
+                    == monsters.get(selectedMonsterIndex).getRow()
+                    && MiniRPG.players.get(selectedPlayerIndex).getColumn()
+                    == monsters.get(selectedMonsterIndex).getColumn()) {
+                inRange = true;
+            }
+        }
+        if (monsters.get(selectedMonsterIndex).getRow() <= 7) {
+            if (MiniRPG.players.get(selectedPlayerIndex).getColumn() + d
+                    == monsters.get(selectedMonsterIndex).getColumn()
+                    && MiniRPG.players.get(selectedPlayerIndex).getRow()
+                    == monsters.get(selectedMonsterIndex).getRow()) {
+                inRange = true;
+            }
         }
     }
 }

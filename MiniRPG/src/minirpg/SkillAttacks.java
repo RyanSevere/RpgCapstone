@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author Shadow
  */
-public class SkillAttacks {
+public class SkillAttacks{
     
     String SelectedSkill = "";
     static String TextOutput;
@@ -24,8 +24,7 @@ public class SkillAttacks {
     boolean IfStuned, CurrentStunStatus, inRange;
     static boolean skillSuccessful;
     
-    
-    public void SkillAttacks()
+    public void SkillAttacks ()
     {
         SelectedSkill = Battle.Skill;
         //<editor-fold defaultstate="collapsed" desc="Tank Skills">
@@ -471,6 +470,7 @@ public class SkillAttacks {
         if(Battle.isPlayer == true)
         {
             Target = Battle.getSelectedPlayer();
+            
             HealFcn();
         }
         else
@@ -553,6 +553,24 @@ public class SkillAttacks {
     public void Fireball()
     {
         ReadFile();
+        Target = Battle.GetSelectedMonster();
+        System.out.println("HP" + Battle.monsters.get(Target).getHp());
+        System.out.println(Battle.monsters.get(Target).getName());
+//        System.out.println(Range);
+//        inRange = Battle.rangedAttack(Range);
+//        System.out.println("in range = " +inRange);
+//        if(inRange = true)
+//        {
+//            Battle.monsters.get(Target).setHp(Battle.monsters.get(Target).getHp() - Damage);
+//            skillSuccessful = true;
+//            Battle.inRange = false;
+//        }
+//        else
+//        {
+//            TextOutput = "Monster is out of range";
+//            skillSuccessful = false;
+//        }
+        
     }
     
     public void MagicMissle()
