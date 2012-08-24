@@ -47,11 +47,13 @@ public class Battle extends JFrame {
         table.setSelectionBackground(Color.white);
         table.setRowHeight(50);
         table.setBorder(BorderFactory.createLineBorder(Color.black));
+
         monsters.add(new Monster("Orc 1", Orc, 30, 3, 0, 3, false, 0, 0, true, 4, false));
-        monsters.add(new Monster("Goblin 1", Goblin, 2, 20, 0, 7, false, 0, 0, true, 4, false));
-        monsters.add(new Monster("Goblin 2", Goblin, 2, 20, 1, 0, false, 0, 0, true, 4, false));
+        monsters.add(new Monster("Goblin 1", Goblin, 20, 2, 0, 7, false, 0, 0, true, 4, false));
+        monsters.add(new Monster("Goblin 2", Goblin, 20, 2, 1, 0, false, 0, 0, true, 4, false));
         monsters.add(new Monster("Orc 2", Orc, 30, 3, 2, 8, false, 0, 0, true, 4, false));
         monsters.add(new Monster("Ogre", Ogre, 40, 5, 2, 2, false, 0, 0, true, 4, false));
+
 
         setMap();
 

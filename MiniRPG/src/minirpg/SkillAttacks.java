@@ -751,7 +751,7 @@ public class SkillAttacks {
         else if(CurrentHp >= MaxHp)
         {
             MiniRPG.players.get(Target).setHp(MaxHp);
-            TextOutput = "Player is already at Max Health";
+            TextOutput = Target + " is already at Max Health";
             skillSuccessful = false;
         }
         
