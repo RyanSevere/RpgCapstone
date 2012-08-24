@@ -40,8 +40,8 @@ public class Battle extends JFrame{
         table.setRowHeight(50);
         table.setBorder(BorderFactory.createLineBorder(Color.black));
         monsters.add(new Monster("Orc", Orc, 30, 3, 0, 3, false, 0, 0, true));
-        monsters.add(new Monster("Goblin", Goblin, 2,  20, 0, 7, false, 0, 0, true));
-        monsters.add(new Monster("Goblin", Goblin, 2, 20, 1, 0, false, 0, 0, true));
+        monsters.add(new Monster("Goblin", Goblin, 20, 2, 0, 7, false, 0, 0, true));
+        monsters.add(new Monster("Goblin", Goblin, 20, 2, 1, 0, false, 0, 0, true));
         monsters.add(new Monster("Orc", Orc, 30, 3, 2, 8, false, 0, 0, true));
         monsters.add(new Monster("Ogre", Ogre, 40, 5, 2, 2, false, 0, 0, true));
 
