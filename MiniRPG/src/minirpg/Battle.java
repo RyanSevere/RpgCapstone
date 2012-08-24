@@ -1,4 +1,5 @@
-//created by Sean Forman
+//Created by Sean Forman and Ryan Severe
+
 package minirpg;
 
 import java.awt.*;
@@ -46,11 +47,13 @@ public class Battle extends JFrame {
         table.setSelectionBackground(Color.white);
         table.setRowHeight(50);
         table.setBorder(BorderFactory.createLineBorder(Color.black));
+
         monsters.add(new Monster("Orc 1", Orc, 30, 3, 0, 3, false, 0, 0, true, 4, false));
-        monsters.add(new Monster("Goblin 1", Goblin, 2, 20, 0, 7, false, 0, 0, true, 4, false));
-        monsters.add(new Monster("Goblin 2", Goblin, 2, 20, 1, 0, false, 0, 0, true, 4, false));
+        monsters.add(new Monster("Goblin 1", Goblin, 20, 2, 0, 7, false, 0, 0, true, 4, false));
+        monsters.add(new Monster("Goblin 2", Goblin, 20, 2, 1, 0, false, 0, 0, true, 4, false));
         monsters.add(new Monster("Orc 2", Orc, 30, 3, 2, 8, false, 0, 0, true, 4, false));
         monsters.add(new Monster("Ogre", Ogre, 40, 5, 2, 2, false, 0, 0, true, 4, false));
+
 
         setMap();
 
@@ -129,12 +132,8 @@ public class Battle extends JFrame {
         splitPane1.setDividerSize(1);
         splitPane2.setDividerSize(1);
         splitPane3.setDividerSize(1);
-
-
+        
         getContentPane().add(splitPane2);
-
-        //Event a = new Event();
-
 
         table.addKeyListener(new KeyAdapter() {
 
@@ -349,14 +348,6 @@ public class Battle extends JFrame {
 
     }
 
-    //deals with player attack use later also uncomment event
-    /*
-     * public class Event implements ActionListener {
-     *
-     * public void actionPerformed(ActionEvent a) { if (a.getSource() == moveP1)
-     * { p1MoveCheck = true; } else if (a.getSource() == attackP1) {
-     * p1AttackCheck = true; } } }
-     */
     public void setMap() {
         //Sets Players
         MiniRPG.players.get(0).setColumn(3);
@@ -598,7 +589,7 @@ public class Battle extends JFrame {
         c.gridx = 2;
         c.gridy = 14;
         panel.add(skill2, c);
-        //skill2.setEnabled(false);
+        skill2.setEnabled(false);
 
         lblSkill3 = new JLabel("Skill 3:");
         c.gridx = 1;
@@ -609,7 +600,7 @@ public class Battle extends JFrame {
         c.gridx = 2;
         c.gridy = 15;
         panel.add(skill3, c);
-        //skill3.setEnabled(false);
+        skill3.setEnabled(false);
 
         lblSkill4 = new JLabel("Skill 4:");
         c.gridx = 1;
@@ -620,7 +611,7 @@ public class Battle extends JFrame {
         c.gridx = 2;
         c.gridy = 16;
         panel.add(skill4, c);
-        //skill4.setEnabled(false);        
+        skill4.setEnabled(false);        
 
         skill1.addActionListener(e);
         skill2.addActionListener(e);
@@ -764,16 +755,17 @@ public class Battle extends JFrame {
                         if (monsters.get(counter).getStunCount() == monsters.get(counter).getStunDuration()) //if a monster is stunned determines if it has met the stun duration
                         {
                             monsters.get(counter).setIsStunned(false); // if duration has been met removes stun
-                        } else //if stun duration hasnt been met increases stun counter
+                        } 
+                        else //if stun duration hasnt been met increases stun counter
                         {
                             monsters.get(counter).setStunCount(monsters.get(counter).getStunCount() + 1);
 
                         }
-                    } else {
+                    } 
+                    else 
+                    {
                         resetMonsterStuff();
                     }
-
-                    //monster movement class will go here
                     counter++;
                 }
                 findPlayerToAttack();
@@ -783,16 +775,23 @@ public class Battle extends JFrame {
 
             int x = 0;
             while (x < 4) {
-                if (e.getSource().toString().contains(MiniRPG.players.get(x).getSkill1()) == true) {
-
+                if (e.getSource().toString().contains(MiniRPG.players.get(x).getSkill1()) == true) 
+                {
+                    
                     Skill = ((JButton) (e.getSource())).getText();
-                    //SelectedPlayer = x;
-                    SA.SkillAttacks();
-                    infoBox.setText(infoBox.getText() + "\n" + SkillAttacks.getTextOutput());
+                    if(SkillAttacks.getSkillSuccess() == false)
+                    {
+                        SA.SkillAttacks();
+                        MiniRPG.players.get(selectedPlayerIndex).setSkill1Used(true);
+                    }
+                    else
+                    {
+                        infoBox.setText(infoBox.getText() + "\n" + "You have already used that skill this round");
+                    }
                     x = 4;
-                } else if (e.getSource().toString().contains(MiniRPG.players.get(x).getSkill2()) == true) {
+                }
+                    else if (e.getSource().toString().contains(MiniRPG.players.get(x).getSkill2()) == true) {
                     Skill = ((JButton) (e.getSource())).getText();
-                    //SelectedPlayer = x;
                     SA.SkillAttacks();
                     infoBox.setText(infoBox.getText() + "\n" + SkillAttacks.getTextOutput());
                     if (true == true) {
@@ -803,7 +802,6 @@ public class Battle extends JFrame {
                     x = 4;
                 } else if (e.getSource().toString().contains(MiniRPG.players.get(x).getSkill3()) == true) {
                     Skill = ((JButton) (e.getSource())).getText();
-                    //SelectedPlayer = x;
                     SA.SkillAttacks();
                     infoBox.setText(infoBox.getText() + "\n" + SkillAttacks.getTextOutput());
                     if (true == true) {
@@ -814,7 +812,6 @@ public class Battle extends JFrame {
                     x = 4;
                 } else if (e.getSource().toString().contains(MiniRPG.players.get(x).getSkill4()) == true) {
                     Skill = ((JButton) (e.getSource())).getText();
-                    //SelectedPlayer = x;
                     SA.SkillAttacks();
                     infoBox.setText(infoBox.getText() + "\n" + SkillAttacks.getTextOutput());
                     if (true == true) {
@@ -828,7 +825,7 @@ public class Battle extends JFrame {
                 }
             }
         }
-    }
+}
 
     static String GetSelectedSkill() {
         return Skill;
@@ -1242,7 +1239,8 @@ public class Battle extends JFrame {
         run();
     }
 
-    public void resetMonsterStuff() {
+    public void resetMonsterStuff() 
+    {
         attackingMonsterIndex = 0;
         for (int x = 0; x <= 4; x++) {
             monsters.get(x).setMovesLeft(4);

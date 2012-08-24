@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+//Created by Ryan Severe and Sean Forman
 package minirpg;
 
 
@@ -13,10 +10,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import javax.swing.*;
 
-/**
- *
- * @author LordShadow
- */
 public class PlayerSummeryPanel extends JPanel {
     
     JLabel lblClass, lblpClass, lblRole, lblpRole, lblStr, lblStatStr, lblDex, lblStatDex,

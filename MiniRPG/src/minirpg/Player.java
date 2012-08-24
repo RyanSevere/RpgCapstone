@@ -1,3 +1,5 @@
+//Created by Sean Formen and Ryan Severe
+
 package minirpg;
 
 import javax.swing.ImageIcon;

@@ -1,3 +1,6 @@
+//Created By Sean Forman and Ryan Severe
+//This class has been Cleansed
+
 package minirpg;
 
 import java.util.ArrayList;
@@ -10,11 +13,9 @@ public class MiniRPG {
     String Class, Role, Skill;
     public static ArrayList<Player> players = new ArrayList<Player>();
     
-    //Player playerList = new Player();
     public static void main(String[] args) {
         
         TabGUI gui = new TabGUI();      
-        //SetPlayerInfo gui = new SetPlayerInfo();
         gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gui.setVisible(true); //now set in NewTabGUI
         gui.setSize(325, 355);; //now set in NewTabGUI

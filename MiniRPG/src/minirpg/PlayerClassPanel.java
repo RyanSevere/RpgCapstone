@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+//Created by Ryan Severe and Sean Forman
 package minirpg;
 
 import java.awt.GridBagConstraints;
@@ -16,10 +13,6 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import javax.swing.*;
 
-/**
- *
- * @author LordShadow
- */
 public class PlayerClassPanel extends JPanel {
 
        
@@ -330,7 +323,7 @@ public class PlayerClassPanel extends JPanel {
         Skill4 = comboSkills.getItemAt(4).toString();
     }
     
-    public void checkValid()
+    public void checkValid() //commented out for testing purposes
     {
 //        if(Role.equals("") || Role == null)
 //        {
@@ -365,7 +358,6 @@ public class PlayerClassPanel extends JPanel {
    
     
     //attempts to do get information from role, class, skill to SetPlayerInfo 
-    //some where between the ItemListener and the Getters the Value of Class, Role, and Skill are being set back to null;
     public String getPlayerClass()
         {                         
             return Class;            

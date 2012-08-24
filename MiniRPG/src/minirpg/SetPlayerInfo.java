@@ -1,3 +1,4 @@
+//Created by Sean Forman and Ryan Severe
 package minirpg;
 
 import java.awt.*;
@@ -299,11 +300,11 @@ public class SetPlayerInfo extends JPanel {
             else if (a.getSource() == create) 
             {
                 
-                if(nameField.getText().equals("") || nameField.getText() == null)
+                if(nameField.getText().equals("") || nameField.getText() == null) 
                 {
-                    //JOptionPane.showMessageDialog(create, "You must enter a player name");
-                    create(); //adds stat information and player name to the array list
-                    show();
+                    //JOptionPane.showMessageDialog(create, "You must enter a player name"); commented out for testing
+                    create(); //added for testing
+                    show(); //added for testing
                 }
                 else
                 {
@@ -461,16 +462,12 @@ public class SetPlayerInfo extends JPanel {
             pLvl = 1;
             playerName = nameField.getText();
             SelectedRole = TabGUI.comboSelection.get(x).getRole();
-            //System.out.println("The selected Role is: " + SelectedRole);
-            SelectedClass = TabGUI.comboSelection.get(x).getclass();
-            //System.out.println("The selcted Class is: "+ SelectedClass);                    
+            SelectedClass = TabGUI.comboSelection.get(x).getclass();                    
             String Skill1 = TabGUI.comboSelection.get(x).getSkill1();
             String Skill2 = TabGUI.comboSelection.get(x).getSkill2();
             String Skill3 = TabGUI.comboSelection.get(x).getSkill3();
             String Skill4 = TabGUI.comboSelection.get(x).getSkill4();
-            //System.out.println("The selcted Skill is: "+ SelectedSkill);
             x++;
-            //System.out.println(x);
             //adds all the information from the menus into the player array creating the player info
             IS.IconSelector();
             icon = IS.getPlayerIcon();
@@ -490,7 +487,6 @@ public class SetPlayerInfo extends JPanel {
             //listBox.setVisible(true);
 
             battleCounter++;
-            //System.out.println(battleCounter);
             if(battleCounter < 4)
             {
                 TabGUI.activateClassPanel();
@@ -505,7 +501,6 @@ public class SetPlayerInfo extends JPanel {
     {
         //int modifyer = pEnd/2;
         hp = 20 + (pEnd/2);
-        System.out.println(hp);
     }
     
     public void Damage()

@@ -1,17 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+//Created by Ryan Severe and Sean Forman
 package minirpg;
 
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
-/**
- *
- * @author LordShadow
- */
 public class TabGUI extends JFrame {
     
     //creates tabbed pane for tabs to attach to
@@ -94,10 +87,6 @@ public class TabGUI extends JFrame {
             {
                 
                 PSUMP.Players[y] = MiniRPG.players.get(x).getName();
-//                System.out.println("x: " + x);
-//                System.out.println("count: " + count);
-//                System.out.println("size of Player Array: " + MiniRPG.players.size());
-//                System.out.println("Player " + x + " is " + MiniRPG.players.get(x).getName());
                 x++;
                 y ++;
                 count++;
