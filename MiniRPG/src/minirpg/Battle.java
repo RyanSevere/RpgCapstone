@@ -764,7 +764,6 @@ public class Battle extends JFrame {
                     {
                         resetMonsterStuff();
                     }
-
                     counter++;
                 }
                 findPlayerToAttack();
