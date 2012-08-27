@@ -302,9 +302,7 @@ public class SetPlayerInfo extends JPanel {
                 
                 if(nameField.getText().equals("") || nameField.getText() == null) 
                 {
-                    //JOptionPane.showMessageDialog(create, "You must enter a player name"); commented out for testing
-                    create(); //added for testing
-                    show(); //added for testing
+                    JOptionPane.showMessageDialog(create, "You must enter a player name");
                 }
                 else
                 {
@@ -549,7 +547,7 @@ public class SetPlayerInfo extends JPanel {
             Defense = Modifyer / 100;
         }
         else if(SelectedRole == "Healer")
-        {
+        { 
             Modifyer= 2 + (pEnd / 2);
             Defense = Modifyer / 100;
         }

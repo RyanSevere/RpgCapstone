@@ -22,7 +22,7 @@ Rush
 0
 0
 0
-You Rushed
+Your Rush gives you an Extra Move and Raised your attack
 
 Rage
 0
