@@ -11,7 +11,7 @@ public class SetPlayerInfo extends JPanel {
     JButton addStr, subStr, addDex, subDex, addEnd, subEnd, addWis,
             subWis, create, done;
     JLabel str, dex, end, wis, name, pointsLeftLabel, strTotal,
-            dexTotal, endTotal, wisTotal, pointsLeftField;
+            dexTotal, endTotal, wisTotal, pointsLeftField, lblName;
     JTextField nameField;
     String playerName = "", SelectedRole, SelectedClass, error;
     JComboBox listBox;
@@ -142,11 +142,17 @@ public class SetPlayerInfo extends JPanel {
         c.gridy = 5;
         add(pointsLeftField, c);
         
-        nameField = new JTextField();       
-        //c.insets = new Insets(2, 7, 2, 2);
+        lblName = new JLabel("Name: ");       
         c.gridx = 0;
         c.gridy = 7;
-        c.gridwidth = 3;
+        c.gridwidth = 2;
+        add(lblName, c);
+        
+        nameField = new JTextField();       
+        //c.insets = new Insets(2, 7, 2, 2);
+        c.gridx = 1;
+        c.gridy = 7;
+        c.gridwidth = 2;
         add(nameField, c);
         
         //adds the buttons the the GUI
@@ -155,14 +161,7 @@ public class SetPlayerInfo extends JPanel {
         c.gridx = 1;
         c.gridy = 8;
         c.gridwidth = 3;
-        add(create, c);
-
-        done = new JButton("Done");       
-        c.gridx = 1;
-        c.gridy = 9;
-        c.gridwidth = 3;
-        add(done, c);
-        done.setVisible(false);
+        add(create, c);        
         
         //combobox lists already created players by name in order of creation
         //only visiable after inital character creation
@@ -188,7 +187,6 @@ public class SetPlayerInfo extends JPanel {
         subWis.addActionListener(a);
         create.addActionListener(a);
         listBox.addActionListener(a);
-        done.addActionListener(a);
         //</editor-fold>
     }
     

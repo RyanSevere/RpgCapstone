@@ -20,6 +20,7 @@ public class MonsterAttackPhase extends Battle {
     public MonsterAttackPhase() {
     }
 
+    @Override
     public void findPlayerToAttack() {
         int i = attackingMonsterIndex;
         if (attackingMonsterIndex <= 4 && attackingMonsterIndex != -1) {

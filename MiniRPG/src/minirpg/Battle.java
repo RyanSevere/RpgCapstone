@@ -412,7 +412,7 @@ public class Battle extends JFrame {
         while (li.hasNext()) {
             i++;
             Object meow = li.next();
-            if (monsters.get(i).isIsDead() == true) {
+            if (monsters.get(i).getIsDead() == true) {
                 monsterskilled++;
             }
         }
@@ -435,12 +435,16 @@ public class Battle extends JFrame {
     }
 
     public void CheckIfAlive() {
-        if (monsterHP <= 0) {
-            monsters.get(selectedMonsterIndex).setIsDead(true);
-            String Kill = monsters.get(selectedMonsterIndex).getName() + "Has Died";
-            infoBox.append("\n" + Kill);
-
+        if(selectedMonsterIndex != -1)
+        {
+            if (monsters.get(selectedMonsterIndex).getHp() <= 0) {
+                monsters.get(selectedMonsterIndex).setIsDead(true);
+                String Kill = monsters.get(selectedMonsterIndex).getName() + "Has Died";
+                infoBox.append("\n" + Kill);
+                table.setValueAt(null, monsters.get(selectedMonsterIndex).getRow(), monsters.get(selectedMonsterIndex).getColumn());
+            }
         }
+        
     }
 
     private void wMoveCheck(int x) {
@@ -543,7 +547,6 @@ public class Battle extends JFrame {
             int counter = 0;
             if (e.getSource().equals(endPhase)) //end of player phase button
             {
-                phase.setText("Monster Phase");
                     if (monsters.get(counter).getIsStunned() == true) // determins if a monster is stunned
                     {
                         if (monsters.get(counter).getStunCount() == monsters.get(counter).getStunDuration()) //if a monster is stunned determines if it has met the stun duration
@@ -560,11 +563,15 @@ public class Battle extends JFrame {
                     {
                         resetMonsterStuff();
                     }
+                    if (monsters.get(counter).getIsDead() == true)
+                    {
+                        table.setValueAt(null, monsters.get(counter).getRow(), monsters.get(counter).getColumn());
+                    }
                     
                 findPlayerToAttack();
                 table.repaint();
                 table.updateUI();
-                phase.setText("Player Phase");
+                
                 
                 while (counter <= MiniRPG.players.size() - 1) //loops through all players
                 {
@@ -618,9 +625,10 @@ public class Battle extends JFrame {
                         infoBox.append("\n" + SkillAttacks.TextOutput);
                         if(SkillAttacks.skillSuccessful == true)
                         {
-                        MiniRPG.players.get(x).setSkill1Used(true);
-                        textPanes[x].setHP(MiniRPG.players.get(x).getHp());
-                        textPanes[x].setMovesLeft(MiniRPG.players.get(x).getMoves());
+                            CheckIfAlive();
+                            MiniRPG.players.get(x).setSkill1Used(true);
+                            textPanes[x].setHP(MiniRPG.players.get(x).getHp());
+                            textPanes[x].setMovesLeft(MiniRPG.players.get(x).getMoves());
                         }
                     }
                     else
@@ -761,7 +769,10 @@ public class Battle extends JFrame {
             //System.out.println("attacking monster index is " + i);
 
 
-            if (attackingMonsterIndex < 5 && monsters.get(attackingMonsterIndex).getMovesLeft() != 0) {
+            if (attackingMonsterIndex < 5 && monsters.get(attackingMonsterIndex).getMovesLeft() != 0 
+                    && monsters.get(attackingMonsterIndex).getIsStunned() == false 
+                    && monsters.get(attackingMonsterIndex).getIsDead() == false) 
+            {
                 monsterAttack(attackingMonsterIndex);
                 //System.out.println("if"); 
             } else if (attackingMonsterIndex < 5 && monsters.get(attackingMonsterIndex).getMovesLeft() == 0) {
@@ -854,58 +865,79 @@ public class Battle extends JFrame {
         int d = direction;
         int i = attackingMonsterIndex;
         mmc = false;
-        if (d == 1) {
+        if (d == 1) 
+        {
             if (table.getValueAt(monsters.get(i).getRow(), monsters.get(i).getColumn() + 1) == null /*
                      * || table.getValueAt(monsters.get(i).getRow(),
                      * monsters.get(i).getColumn() + 1) == ""
-                     */) {
+                     */) 
+            {
                 mmc = true;
-            } else {
+            } 
+            else 
+            {
                 //monsterMoveCheck2(2, i);
                 monsters.get(i).setMovesLeft(0);
                 monsterCheckAttack();
                 attackingMonsterIndex++;
-                if (hasRun == false) {
+                if (hasRun == false) 
+                {
                     run();
-                } else {
+                } 
+                else 
+                {
                     hasRun = false;
 
                 }
             }
         }
-        if (d == 2) {
+        if (d == 2) 
+        {
             if (table.getValueAt(monsters.get(i).getRow(), monsters.get(i).getColumn() - 1) == null /*
                      * || table.getValueAt(monsters.get(i).getRow(),
                      * monsters.get(i).getColumn() - 1) == ""
-                     */) {
+                     */) 
+            {
                 mmc = true;
-            } else {
+            } 
+            else 
+            {
                 //monsterMoveCheck2(3, i);
                 monsters.get(i).setMovesLeft(0);
                 monsterCheckAttack();
                 attackingMonsterIndex++;
-                if (hasRun == false) {
+                if (hasRun == false) 
+                {
                     run();
-                } else {
+                } 
+                else 
+                {
                     hasRun = false;
 
                 }
             }
         }
-        if (d == 3) {
+        if (d == 3) 
+        {
             if (table.getValueAt(monsters.get(i).getRow() + 1, monsters.get(i).getColumn()) == null /*
                      * || table.getValueAt(monsters.get(i).getRow() + 1,
                      * monsters.get(i).getColumn()) == ""
-                     */) {
+                     */) 
+            {
                 mmc = true;
-            } else {
+            } 
+            else 
+            {
                 //monsterMoveCheck2(4, i);
                 monsters.get(i).setMovesLeft(0);
                 monsterCheckAttack();
                 attackingMonsterIndex++;
-                if (hasRun == false) {
+                if (hasRun == false) 
+                {
                     run();
-                } else {
+                } 
+                else 
+                {
                     hasRun = false;
 
                 }
@@ -915,16 +947,22 @@ public class Battle extends JFrame {
             if (table.getValueAt(monsters.get(i).getRow() - 1, monsters.get(i).getColumn()) == null /*
                      * || table.getValueAt(monsters.get(i).getRow() - 1,
                      * monsters.get(i).getColumn()) == ""
-                     */) {
+                     */) 
+            {
                 mmc = true;
-            } else {
+            } 
+            else 
+            {
                 //monsterMoveCheck2(0, i);
                 monsters.get(i).setMovesLeft(0);
                 monsterCheckAttack();
                 attackingMonsterIndex++;
-                if (hasRun == false) {
+                if (hasRun == false) 
+                {
                     run();
-                } else {
+                } 
+                else 
+                {
                     hasRun = false;
 
                 }
@@ -1375,5 +1413,10 @@ public class Battle extends JFrame {
         health.setText(Integer.toString(value));
     }
 
+    }
+    
+    public boolean isCellEditable(int rowIndex, int colIndex)
+    {
+        return false;
     }
 }

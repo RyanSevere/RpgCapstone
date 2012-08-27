@@ -18,7 +18,7 @@ public class SkillAttacks{
     int Range, Damage, CurrentDamage, MaxDamage, StunDuration, StunCount, ModifyedHp, 
             CurrentHp, MaxHp, Target, SelectedPlayer = Battle.getSelectedPlayer(), Self;
     double Heal, DefenseBoost, DefenseReduction, DamageBoost, CurrentDefense, MaxDefense;
-    boolean IfStuned, CurrentStunStatus, inRange;
+    boolean IfStuned, CurrentStunStatus, inRange, validTarget;
     static boolean skillSuccessful = false;
     
     public void SkillAttacks ()
@@ -380,7 +380,11 @@ public class SkillAttacks{
         ReadFile();
         Target = Battle.GetSelectedMonster();
         inRange = Battle.CheckMeleeRange();
-        Damage();
+        CheckTarget();
+        if(validTarget == true)
+        {
+            Damage();
+        }
     }
     
     public void Stun()
@@ -388,10 +392,12 @@ public class SkillAttacks{
         ReadFile();
         Target = Battle.GetSelectedMonster();
         inRange = Battle.CheckMeleeRange();
-        if(inRange == true)
+        CheckTarget();
+        if(validTarget == true)
         {
             MakeStunned();
         }
+        
                   
     }            
     
@@ -430,7 +436,11 @@ public class SkillAttacks{
         ReadFile();
         Target = Battle.GetSelectedMonster();
         inRange = Battle.CheckMeleeRange();
-        Damage();
+        CheckTarget();
+        if(validTarget == true)
+        {
+            Damage();
+        }
     }
     
     public void RighteousRage()
@@ -447,11 +457,16 @@ public class SkillAttacks{
         ReadFile();
         Target = Battle.GetSelectedMonster();
         inRange = Battle.CheckMeleeRange();
-        Damage();
-        if(skillSuccessful == true)
+        CheckTarget();
+        if(validTarget == true)
         {
-            MakeStunned();
+            Damage();
+            if(skillSuccessful == true)
+            {
+                MakeStunned();
+            }
         }
+        
         
     }
     
@@ -460,7 +475,11 @@ public class SkillAttacks{
         ReadFile();
         Target = Battle.GetSelectedMonster();
         inRange = Battle.CheckMeleeRange();
-        Damage();
+        CheckTarget();
+        if(validTarget == true)
+        {
+            Damage();
+        }
     }
     
     public void PowerAttack()
@@ -485,6 +504,12 @@ public class SkillAttacks{
     public void Prayer()
     {
         ReadFile();
+        Target = Battle.getSelectedPlayer();
+        CheckTarget();
+        if(validTarget == true)
+        {
+            HealFcn();
+        }
     }
     
     public void HolyBash()
@@ -492,7 +517,11 @@ public class SkillAttacks{
         ReadFile();
         inRange = Battle.CheckMeleeRange();
         Target = Battle.GetSelectedMonster();
-        Damage();
+        CheckTarget();
+        if(validTarget == true)
+        {
+            Damage();
+        }
     }
     
     public void HolyAura()
@@ -506,7 +535,11 @@ public class SkillAttacks{
     {
         ReadFile();
         Target = Battle.getSelectedPlayer();
-        HealFcn();
+        CheckTarget();
+        if(validTarget == true)
+        {
+            HealFcn();
+        }
     }
     
     public void HealAll()
@@ -543,7 +576,11 @@ public class SkillAttacks{
     {
         ReadFile();
         Target = Battle.getSelectedPlayer();
-        HealFcn();
+        CheckTarget();
+        if(validTarget == true)
+        {
+            HealFcn();
+        }
     }
     
     public void MagicWeapon()
@@ -611,15 +648,11 @@ public class SkillAttacks{
     {
         ReadFile();
         Target = Battle.GetSelectedMonster();
-        if(Target != -1)
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
         {
-            inRange = Battle.rangedAttack(Range);
             Damage();
-        }
-        else
-        {
-            TextOutput = "You Must Select a Target";
-            skillSuccessful = false;
         }
         
     }
@@ -627,16 +660,12 @@ public class SkillAttacks{
     public void MagicMissle()
     {
         ReadFile();
-       Target = Battle.GetSelectedMonster();
-        if(Target != -1)
+        Target = Battle.GetSelectedMonster();
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
         {
-            inRange = Battle.rangedAttack(Range);
             Damage();
-        }
-        else
-        {
-            TextOutput = "You Must Select a Target";
-            skillSuccessful = false;
         }
     }
     
@@ -644,15 +673,11 @@ public class SkillAttacks{
     {
         ReadFile();
         Target = Battle.GetSelectedMonster();
-        if(Target != -1)
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
         {
-            inRange = Battle.rangedAttack(Range);
             Damage();
-        }
-        else
-        {
-            TextOutput = "You Must Select a Target";
-            skillSuccessful = false;
         }
         if(skillSuccessful == true)
         {
@@ -664,15 +689,11 @@ public class SkillAttacks{
     {
         ReadFile();
         Target = Battle.GetSelectedMonster();
-        if(Target != -1)
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
         {
-            inRange = Battle.rangedAttack(Range);
             Damage();
-        }
-        else
-        {
-            TextOutput = "You Must Select a Target";
-            skillSuccessful = false;
         }
         if(skillSuccessful == true)
         {
@@ -691,15 +712,11 @@ public class SkillAttacks{
     {
         ReadFile();
         Target = Battle.GetSelectedMonster();
-        if(Target != -1)
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
         {
-            inRange = Battle.rangedAttack(Range);
             Damage();
-        }
-        else
-        {
-            TextOutput = "You Must Select a Target";
-            skillSuccessful = false;
         }
     }
     
@@ -707,15 +724,11 @@ public class SkillAttacks{
     {
         ReadFile();
         Target = Battle.GetSelectedMonster();
-        if(Target != -1)
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
         {
-            inRange = Battle.rangedAttack(Range);
             MakeStunned();
-        }
-        else
-        {
-            TextOutput = "You Must Select a Target";
-            skillSuccessful = false;
         }
     }
     
@@ -730,15 +743,11 @@ public class SkillAttacks{
     {
         ReadFile();
         Target = Battle.GetSelectedMonster();
-        if(Target != -1)
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
         {
-            inRange = Battle.rangedAttack(Range);
             MakeStunned();
-        }
-        else
-        {
-            TextOutput = "You Must Select a Target";
-            skillSuccessful = false;
         }
     }
     
@@ -763,15 +772,11 @@ public class SkillAttacks{
     {
         ReadFile();
         Target = Battle.GetSelectedMonster();
-        if(Target != -1)
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
         {
-            inRange = Battle.rangedAttack(Range);
             Damage();
-        }
-        else
-        {
-            TextOutput = "You Must Select a Target";
-            skillSuccessful = false;
         }
     }
     
@@ -784,15 +789,11 @@ public class SkillAttacks{
     {
         ReadFile();
         Target = Battle.GetSelectedMonster();
-        if(Target != -1)
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
         {
-            inRange = Battle.rangedAttack(Range);
             Damage();
-        }
-        else
-        {
-            TextOutput = "You Must Select a Target";
-            skillSuccessful = false;
         }
     }
     
@@ -809,15 +810,11 @@ public class SkillAttacks{
     {
         ReadFile();
         Target = Battle.GetSelectedMonster();
-        if(Target != -1)
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
         {
-            inRange = Battle.rangedAttack(Range);
             Damage();
-        }
-        else
-        {
-            TextOutput = "You Must Select a Target";
-            skillSuccessful = false;
         }
     }
     
@@ -845,7 +842,11 @@ public class SkillAttacks{
         ReadFile();
         inRange = Battle.CheckMeleeRange();
         Target = Battle.GetSelectedMonster();
-        Damage();
+        CheckTarget();
+        if(validTarget == true)
+        {
+            Damage();
+        }
     }
     
     public void Stealth()
@@ -869,15 +870,11 @@ public class SkillAttacks{
     {
         ReadFile();
         Target = Battle.GetSelectedMonster();
-        if(Target != -1)
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
         {
-            inRange = Battle.rangedAttack(Range);
             Damage();
-        }
-        else
-        {
-            TextOutput = "You Must Select a Target";
-            skillSuccessful = false;
         }
         
     }
@@ -891,8 +888,12 @@ public class SkillAttacks{
     {
         ReadFile();
         Target = Battle.GetSelectedMonster();
-        inRange = Battle.getInMeleeRange();
-        Damage();
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
+        {
+            Damage();
+        }
         if(skillSuccessful == true)
         {
             MakeStunned();
@@ -921,17 +922,17 @@ public class SkillAttacks{
         ReadFile();
         inRange = Battle.CheckMeleeRange();
         Target = Battle.GetSelectedMonster();
-        System.out.println(Battle.monsters.get(Target).getName());
-        if(inRange = true)
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
         {
-            Battle.monsters.get(Target).setHp(Battle.monsters.get(Target).getHp() - Damage);
-            MakeStunned();
+            Damage();
+            if(skillSuccessful == true)
+            {
+                MakeStunned();
+            }
         }
-        else
-        {
-            TextOutput = Battle.monsters.get(Target).getName() + " is not in Range";
-            skillSuccessful = false;
-        }
+       
     }
     
     public void Assassinate()
@@ -942,6 +943,19 @@ public class SkillAttacks{
     //</editor-fold>
     
     //functitions for common skill events
+    public void CheckTarget()
+    {
+        if(Target == -1)
+        {
+            TextOutput = " You must select a target";
+            skillSuccessful = false;
+        }
+        else
+        {
+            validTarget = true;
+        }
+    }
+    
     public void Damage()
     {
         System.out.println("is in Range " + inRange);
@@ -972,16 +986,24 @@ public class SkillAttacks{
         }
         else if(Battle.isMonster == true)
         {
-            if(CurrentStunStatus == false)
+            if(inRange == true)
             {
-                Battle.monsters.get(Target).setIsStunned(true);
-                Battle.monsters.get(Target).setStunDuration(StunDuration);
-                TextOutput = FileText + " " + Battle.monsters.get(Target).getName() + " stunning them for " + StunDuration + " rounds";
-                skillSuccessful = true;
+                if(CurrentStunStatus == false)
+                {
+                    Battle.monsters.get(Target).setIsStunned(true);
+                    Battle.monsters.get(Target).setStunDuration(StunDuration);
+                    TextOutput = FileText + " " + Battle.monsters.get(Target).getName() + " stunning them for " + StunDuration + " rounds";
+                    skillSuccessful = true;
+                }
+                else
+                {
+                    TextOutput = "Target is already Stunned";
+                    skillSuccessful = false;
+                }
             }
             else
             {
-                TextOutput = "Target is already Stunned";
+                TextOutput = "Target is out of Range";
                 skillSuccessful = false;
             }
         }
