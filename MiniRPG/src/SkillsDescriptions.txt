@@ -38,7 +38,7 @@ Holy Strike
 Strong Attack
 
 Righteous Rage
-Boosts attack 20% for 2 rounds
+Boosts attack 20%
 
 Warrior
 
@@ -59,7 +59,7 @@ Mage uses Wiz (skills are also the attacks)
 Wizard
 
 Fireball
-Medium range high damage, lowers monster defense 15%
+Medium range high damage
 
 Magic Missile
 Long range medium damage
@@ -68,7 +68,7 @@ Lightning Bolt
 Long range high damage, stuns monster 1 round
 
 Frost Shard
-Short range medium damage, slows monster for 1 round
+Short range medium damage, stuns monster for 1 round
 
 Druid
 

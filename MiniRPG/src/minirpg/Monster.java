@@ -68,7 +68,7 @@ public class Monster {
         this.row = row;
     }
 
-    public boolean isIsDead() {
+    public boolean getIsDead() {
         return isDead;
     }
 

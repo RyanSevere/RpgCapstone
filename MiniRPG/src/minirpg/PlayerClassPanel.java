@@ -132,7 +132,6 @@ public class PlayerClassPanel extends JPanel {
                    
                     if (e.getStateChange() == ItemEvent.SELECTED)
                         {
-                            //tank();
                             if ("Tank".equals(selectedRole))
                             {
                                 resetSelection();
@@ -303,8 +302,6 @@ public class PlayerClassPanel extends JPanel {
                 {
                     SetSkills();
                 }
-                //System.out.println(Skill);
-                
             }
         };
         
@@ -325,34 +322,34 @@ public class PlayerClassPanel extends JPanel {
     
     public void checkValid() //commented out for testing purposes
     {
-//        if(Role.equals("") || Role == null)
-//        {
-//            error = "You must Select a Role";
-//        }
-//        else if(Class.equals("") || Class == null)        
-//        {
-//            error = "You must Select a Class";
-//        }
-//        else if(Skill1.equals("") || Skill1 == null)
-//        {
-//            error = "Error Adding Skill 1";
-//        }
-//        else if(Skill2.equals("") || Skill2 == null)
-//        {
-//            error = "Error Adding Skill 2";
-//        }
-//        else if(Skill3.equals("") || Skill3 == null)
-//        {
-//             error = "Error Adding Skill 3";
-//        }
-//        else if(Skill4.equals("") || Skill4 == null)
-//        {
-//            error = "Error Adding Skill 4";
-//        }
-//        else
-//        {
+        if(Role.equals("") || Role == null)
+        {
+            error = "You must Select a Role";
+        }
+        else if(Class.equals("") || Class == null)        
+        {
+            error = "You must Select a Class";
+        }
+        else if(Skill1.equals("") || Skill1 == null)
+        {
+            error = "Error Adding Skill 1";
+        }
+        else if(Skill2.equals("") || Skill2 == null)
+        {
+            error = "Error Adding Skill 2";
+        }
+        else if(Skill3.equals("") || Skill3 == null)
+        {
+             error = "Error Adding Skill 3";
+        }
+        else if(Skill4.equals("") || Skill4 == null)
+        {
+            error = "Error Adding Skill 4";
+        }
+        else
+        {
             isValid = true;
-//        }
+        }
  
     }
    
@@ -482,7 +479,7 @@ public class PlayerClassPanel extends JPanel {
     String[] SwashSkills = {"", "Repose", "Dirty Trick", "Pistol Shot", "Pillage"};
     String[] ThiefSkills = {"", "Back Stab", "Poison", "Stealth", "Steal"};
     String[] RangerSkills = {"", "Aimed Shot", "Bow Strike", "Arrow Stab", "Rain of Arrows"};
-    String[] AssassinSkills = {"", "Garrote", "Throwing Knife", "Kidney Stab", "Assassinate"};
+    String[] AssassinSkills = {"", "Kidney Stab", "Throwing Knife", "Garrote", "Assassinate"};
     
     String[] empty = {""};
     //</editor-fold>

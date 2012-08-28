@@ -13,13 +13,13 @@ import java.util.ArrayList;
  */
 public class SkillAttacks{
     
-    String SelectedSkill = "";
+    String SelectedSkill = "", FileText;
     static String TextOutput;
-    int Range, Damage, CurrentDamage, MaxDamage, StunDuration, StunCount, 
+    int Range, Damage, CurrentDamage, MaxDamage, StunDuration, StunCount, ModifyedHp, 
             CurrentHp, MaxHp, Target, SelectedPlayer = Battle.getSelectedPlayer(), Self;
     double Heal, DefenseBoost, DefenseReduction, DamageBoost, CurrentDefense, MaxDefense;
-    boolean IfStuned, CurrentStunStatus, inRange;
-    static boolean skillSuccessful;
+    boolean IfStuned, CurrentStunStatus, inRange, validTarget;
+    static boolean skillSuccessful = false;
     
     public void SkillAttacks ()
     {
@@ -346,6 +346,7 @@ public class SkillAttacks{
         MiniRPG.players.get(Self).setMoves(MiniRPG.players.get(Self).getMoves() + 1);
         Target = Battle.GetSelectedMonster();
         MiniRPG.players.get(Self).setDamage(Damage);
+        TextOutput = FileText;
         skillSuccessful = true;
     }
     
@@ -377,11 +378,27 @@ public class SkillAttacks{
     public void FocusStrike()
     {
         ReadFile();
+        Target = Battle.GetSelectedMonster();
+        inRange = Battle.CheckMeleeRange();
+        CheckTarget();
+        if(validTarget == true)
+        {
+            Damage();
+        }
     }
     
     public void Stun()
     {
         ReadFile();
+        Target = Battle.GetSelectedMonster();
+        inRange = Battle.CheckMeleeRange();
+        CheckTarget();
+        if(validTarget == true)
+        {
+            MakeStunned();
+        }
+        
+                  
     }            
     
     public void Roundhouse()
@@ -394,6 +411,19 @@ public class SkillAttacks{
     public void LayOnHands()
     {
         ReadFile();
+        Target = Battle.getSelectedPlayer();
+        inRange = Battle.CheckMeleeRange();
+        if(inRange == true || Target == Battle.getPlayerSelf())
+        {
+            HealFcn();
+            skillSuccessful = true;
+        }
+        else 
+        {
+            TextOutput = "You must get closer to heal that target";
+            skillSuccessful = false;
+        }    
+
     }
     
     public void Banish()
@@ -404,11 +434,20 @@ public class SkillAttacks{
     public void HolyStrike()
     {
         ReadFile();
+        Target = Battle.GetSelectedMonster();
+        inRange = Battle.CheckMeleeRange();
+        CheckTarget();
+        if(validTarget == true)
+        {
+            Damage();
+        }
     }
     
     public void RighteousRage()
     {
         ReadFile();
+        Self = Battle.getPlayerSelf();
+        DamageBoost();
     }
     //</editor-fold>
     
@@ -416,11 +455,31 @@ public class SkillAttacks{
     public void ShieldBash()
     {
         ReadFile();
+        Target = Battle.GetSelectedMonster();
+        inRange = Battle.CheckMeleeRange();
+        CheckTarget();
+        if(validTarget == true)
+        {
+            Damage();
+            if(skillSuccessful == true)
+            {
+                MakeStunned();
+            }
+        }
+        
+        
     }
     
     public void TacticalStrike()
     {
         ReadFile();
+        Target = Battle.GetSelectedMonster();
+        inRange = Battle.CheckMeleeRange();
+        CheckTarget();
+        if(validTarget == true)
+        {
+            Damage();
+        }
     }
     
     public void PowerAttack()
@@ -445,11 +504,24 @@ public class SkillAttacks{
     public void Prayer()
     {
         ReadFile();
+        Target = Battle.getSelectedPlayer();
+        CheckTarget();
+        if(validTarget == true)
+        {
+            HealFcn();
+        }
     }
     
     public void HolyBash()
     {
         ReadFile();
+        inRange = Battle.CheckMeleeRange();
+        Target = Battle.GetSelectedMonster();
+        CheckTarget();
+        if(validTarget == true)
+        {
+            Damage();
+        }
     }
     
     public void HolyAura()
@@ -462,15 +534,11 @@ public class SkillAttacks{
     public void HealTarget()
     {
         ReadFile();
-        if(Battle.isPlayer == true)
+        Target = Battle.getSelectedPlayer();
+        CheckTarget();
+        if(validTarget == true)
         {
-            Target = Battle.getSelectedPlayer();
-            
             HealFcn();
-        }
-        else
-        {
-            TextOutput = "Invalid Target only other players can be healed";
         }
     }
     
@@ -507,6 +575,12 @@ public class SkillAttacks{
     public void Heal()
     {
         ReadFile();
+        Target = Battle.getSelectedPlayer();
+        CheckTarget();
+        if(validTarget == true)
+        {
+            HealFcn();
+        }
     }
     
     public void MagicWeapon()
@@ -524,16 +598,41 @@ public class SkillAttacks{
     public void Inspiration()
     {
         ReadFile();
+        int count = 0;
+        while(MiniRPG.players.size() <= count)
+        {
+            Target = count;
+            MiniRPG.players.get(Target).setMoves(MiniRPG.players.get(Target).getMoves() + 2);
+            count ++;
+        }
     }
     
     public void Renewal()
     {
         ReadFile();
+        int count = 0;
+        while(MiniRPG.players.size() <= count)
+        {
+            Target = count;
+            HealFcn();
+            count ++;
+        }
     }
     
     public void ThrowDagger()
     {
         ReadFile();
+        Target = Battle.GetSelectedMonster();
+        if(Target != -1)
+        {
+            inRange = Battle.rangedAttack(Range);
+            Damage();
+        }
+        else
+        {
+            TextOutput = "You Must Select a Target";
+            skillSuccessful = false;
+        }
     }
     
     public void Fascinate()
@@ -549,38 +648,57 @@ public class SkillAttacks{
     {
         ReadFile();
         Target = Battle.GetSelectedMonster();
-        System.out.println("HP" + Battle.monsters.get(Target).getHp());
-        System.out.println(Battle.monsters.get(Target).getName());
-//        System.out.println(Range);
-//        inRange = Battle.rangedAttack(Range);
-//        System.out.println("in range = " +inRange);
-//        if(inRange = true)
-//        {
-//            Battle.monsters.get(Target).setHp(Battle.monsters.get(Target).getHp() - Damage);
-//            skillSuccessful = true;
-//            Battle.inRange = false;
-//        }
-//        else
-//        {
-//            TextOutput = "Monster is out of range";
-//            skillSuccessful = false;
-//        }
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
+        {
+            Damage();
+        }
         
     }
     
     public void MagicMissle()
     {
         ReadFile();
+        Target = Battle.GetSelectedMonster();
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
+        {
+            Damage();
+        }
     }
     
     public void LightningBolt()
     {
         ReadFile();
+        Target = Battle.GetSelectedMonster();
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
+        {
+            Damage();
+        }
+        if(skillSuccessful == true)
+        {
+            MakeStunned();
+        }
     }
     
     public void FrostShard()
     {
         ReadFile();
+        Target = Battle.GetSelectedMonster();
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
+        {
+            Damage();
+        }
+        if(skillSuccessful == true)
+        {
+            MakeStunned();
+        }
     }
     //</editor-fold>
     
@@ -593,11 +711,25 @@ public class SkillAttacks{
     public void ShadowBolt()
     {
         ReadFile();
+        Target = Battle.GetSelectedMonster();
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
+        {
+            Damage();
+        }
     }
     
     public void Fear()
     {
         ReadFile();
+        Target = Battle.GetSelectedMonster();
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
+        {
+            MakeStunned();
+        }
     }
     
     public void DrainLife()
@@ -610,6 +742,13 @@ public class SkillAttacks{
     public void Entanglement()
     {
         ReadFile();
+        Target = Battle.GetSelectedMonster();
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
+        {
+            MakeStunned();
+        }
     }
     
     public void SummonDireWolf()
@@ -632,6 +771,13 @@ public class SkillAttacks{
     public void FireBlast()
     {
         ReadFile();
+        Target = Battle.GetSelectedMonster();
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
+        {
+            Damage();
+        }
     }
     
     public void Blaze()
@@ -642,6 +788,13 @@ public class SkillAttacks{
     public void Incinerate()
     {
         ReadFile();
+        Target = Battle.GetSelectedMonster();
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
+        {
+            Damage();
+        }
     }
     
     public void MindFire()
@@ -656,11 +809,20 @@ public class SkillAttacks{
     public void PistolShot()
     {
         ReadFile();
+        Target = Battle.GetSelectedMonster();
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
+        {
+            Damage();
+        }
     }
     
     public void Repose()
     {
         ReadFile();
+        Self = Battle.getPlayerSelf();
+        DefenseBoost();
     }
     
     public void Pillage()
@@ -678,6 +840,13 @@ public class SkillAttacks{
     public void BackStab()
     {
         ReadFile();
+        inRange = Battle.CheckMeleeRange();
+        Target = Battle.GetSelectedMonster();
+        CheckTarget();
+        if(validTarget == true)
+        {
+            Damage();
+        }
     }
     
     public void Stealth()
@@ -700,6 +869,14 @@ public class SkillAttacks{
     public void AimedShot()
     {
         ReadFile();
+        Target = Battle.GetSelectedMonster();
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
+        {
+            Damage();
+        }
+        
     }
     
     public void RainofArrows()
@@ -710,6 +887,17 @@ public class SkillAttacks{
     public void BowStrike()
     {
         ReadFile();
+        Target = Battle.GetSelectedMonster();
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
+        {
+            Damage();
+        }
+        if(skillSuccessful == true)
+        {
+            MakeStunned();
+        }
     }
     
     public void ArrowStab()
@@ -732,6 +920,19 @@ public class SkillAttacks{
     public void KidneyStab()
     {
         ReadFile();
+        inRange = Battle.CheckMeleeRange();
+        Target = Battle.GetSelectedMonster();
+        inRange = Battle.rangedAttack(Range);
+        CheckTarget();
+        if(validTarget == true)
+        {
+            Damage();
+            if(skillSuccessful == true)
+            {
+                MakeStunned();
+            }
+        }
+       
     }
     
     public void Assassinate()
@@ -740,36 +941,108 @@ public class SkillAttacks{
     }
     //</editor-fold>
     //</editor-fold>
-        
-    public void MakeStunned()
+    
+    //functitions for common skill events
+    public void CheckTarget()
     {
-        CurrentStunStatus = MiniRPG.players.get(Target).getIsStunned();
-        
-        if(CurrentStunStatus == false)
+        if(Target == -1)
         {
-            MiniRPG.players.get(Target).setIsStunned(true);
+            TextOutput = " You must select a target";
+            skillSuccessful = false;
         }
         else
         {
-            TextOutput = "Target is already Stunned";
+            validTarget = true;
+        }
+    }
+    
+    public void Damage()
+    {
+        System.out.println("is in Range " + inRange);
+        if(inRange == true)
+        {
+            Battle.monsters.get(Target).setHp(Battle.monsters.get(Target).getHp() - Damage);
+            TextOutput = FileText + " " + Battle.monsters.get(Target).getName() + " for " + Damage + " damage";
+            skillSuccessful = true;
+        }
+        else
+        {
+            TextOutput = Battle.monsters.get(Target).getName() + " is out of Range";
+            skillSuccessful = false;
+        }
+    }
+    
+    public void MakeStunned()
+    {
+        CurrentStunStatus = MiniRPG.players.get(Target).getIsStunned();
+        if(Battle.isPlayer == true)
+        {
+            if(CurrentStunStatus == false)
+            {
+                MiniRPG.players.get(Target).setIsStunned(true);
+                MiniRPG.players.get(Target).setStunDuration(StunDuration);
+                skillSuccessful = true;
+            }
+        }
+        else if(Battle.isMonster == true)
+        {
+            if(inRange == true)
+            {
+                if(CurrentStunStatus == false)
+                {
+                    Battle.monsters.get(Target).setIsStunned(true);
+                    Battle.monsters.get(Target).setStunDuration(StunDuration);
+                    TextOutput = FileText + " " + Battle.monsters.get(Target).getName() + " stunning them for " + StunDuration + " rounds";
+                    skillSuccessful = true;
+                }
+                else
+                {
+                    TextOutput = "Target is already Stunned";
+                    skillSuccessful = false;
+                }
+            }
+            else
+            {
+                TextOutput = "Target is out of Range";
+                skillSuccessful = false;
+            }
         }
     }
     
     public void HealFcn()
     {
-        CurrentHp = MiniRPG.players.get(Target).getHp();
-        MaxHp = MiniRPG.players.get(Target).getMaxHp();
-        int AmountHealed = (int) (MaxHp * Heal);
-        CurrentHp = CurrentHp + AmountHealed;
-        if(CurrentHp < MaxHp)
+        if(Battle.isPlayer == true)
         {
-            MiniRPG.players.get(Target).setHp(CurrentHp);
-            skillSuccessful = true;
+            CurrentHp = MiniRPG.players.get(Target).getHp();
+            MaxHp = MiniRPG.players.get(Target).getMaxHp();
+            int AmountHealed = (int) (MaxHp * Heal);
+            System.out.println("Current HP" + CurrentHp);
+            System.out.println("MaxHp" + MaxHp);
+            if(CurrentHp < MaxHp)
+            {
+                ModifyedHp = CurrentHp + AmountHealed;
+                if(ModifyedHp > MaxHp)
+                {
+                    MiniRPG.players.get(Target).setHp(MaxHp);
+                    TextOutput = FileText + " " + MiniRPG.players.get(Target).getName() + " back to full health";
+                }
+                else
+                {
+                    MiniRPG.players.get(Target).setHp(ModifyedHp);
+                    TextOutput = FileText + MiniRPG.players.get(Target).getName() + " For " + AmountHealed;
+                }
+                skillSuccessful = true;
+            }
+            else if(CurrentHp >= MaxHp)
+            {
+                MiniRPG.players.get(Target).setHp(MaxHp);
+                TextOutput = Target + " is already at Max Health";
+                skillSuccessful = false;
+            }
         }
-        else if(CurrentHp >= MaxHp)
+        else
         {
-            MiniRPG.players.get(Target).setHp(MaxHp);
-            TextOutput = Target + " is already at Max Health";
+            TextOutput = "Invalid Target only other players can be healed";
             skillSuccessful = false;
         }
         
@@ -831,7 +1104,7 @@ public class SkillAttacks{
                         DefenseReduction = Double.parseDouble(reader.readLine());
                         IfStuned = Boolean.getBoolean(reader.readLine());
                         StunDuration = Integer.parseInt(reader.readLine());
-                        TextOutput = reader.readLine();
+                        FileText = reader.readLine();
                         
                     }
                 }
@@ -856,11 +1129,6 @@ public class SkillAttacks{
         System.out.println(IfStuned);
         System.out.println(StunDuration);
         System.out.println(TextOutput);
-    }
-    
-    public void RangeCheck()
-    {
-        
     }
     
     static String getTextOutput()
