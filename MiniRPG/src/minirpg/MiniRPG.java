@@ -5,6 +5,7 @@ package minirpg;
 
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 public class MiniRPG {
 
@@ -52,5 +53,5 @@ public class MiniRPG {
         Role = players.get(num).getRole();
         return Role;
     }
-    
+            
 }

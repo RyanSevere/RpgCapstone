@@ -961,9 +961,12 @@ public class SkillAttacks{
         System.out.println("is in Range " + inRange);
         if(inRange == true)
         {
-            Battle.monsters.get(Target).setHp(Battle.monsters.get(Target).getHp() - Damage);
-            TextOutput = FileText + " " + Battle.monsters.get(Target).getName() + " for " + Damage + " damage";
-            skillSuccessful = true;
+            try {
+                Battle.monsters.get(Target).setHp(Battle.monsters.get(Target).getHp() - Damage);
+                TextOutput = FileText + " " + Battle.monsters.get(Target).getName() + " for " + Damage + " damage";
+                skillSuccessful = true;
+            } catch (ArrayIndexOutOfBoundsException e) {
+            }
         }
         else
         {
