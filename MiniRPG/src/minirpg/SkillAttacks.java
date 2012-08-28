@@ -954,7 +954,7 @@ public class SkillAttacks{
         {
             validTarget = true;
         }
-    }
+    } 
     
     public void Damage()
     {
@@ -963,7 +963,8 @@ public class SkillAttacks{
         {
             try {
                 Battle.monsters.get(Target).setHp(Battle.monsters.get(Target).getHp() - Damage);
-                TextOutput = FileText + " " + Battle.monsters.get(Target).getName() + " for " + Damage + " damage";
+                TextOutput = FileText + " " + Battle.monsters.get(Target).getName() + " for " + Damage + " damage"
+                         + Battle.monsters.get(Target).getName() + " is down to " + Battle.monsters.get(Target).getHp() + " health.";
                 skillSuccessful = true;
             } catch (ArrayIndexOutOfBoundsException e) {
             }
