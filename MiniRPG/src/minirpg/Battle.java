@@ -46,11 +46,11 @@ public class Battle extends JFrame {
         table.setRowHeight(50);
         table.setBorder(BorderFactory.createLineBorder(Color.black));
 
-        monsters.add(new Monster("Orc 1", Orc, 30, 3, 0, 1, false, 0, 0, true, 4, false));
-        monsters.add(new Monster("Goblin 1", Goblin, 20, 2, 0, 3, false, 0, 0, true, 4, false));
-        monsters.add(new Monster("Goblin 2", Goblin, 20, 2, 0, 5, false, 0, 0, true, 4, false));
+        monsters.add(new Monster("Orc 1", Orc, 30, 3, 0, 3, false, 0, 0, true, 4, false));
+        monsters.add(new Monster("Goblin 1", Goblin, 20, 2, 0, 1, false, 0, 0, true, 4, false));
+        monsters.add(new Monster("Goblin 2", Goblin, 20, 2, 0, 9, false, 0, 0, true, 4, false));
         monsters.add(new Monster("Orc 2", Orc, 30, 3, 0, 7, false, 0, 0, true, 4, false));
-        monsters.add(new Monster("Ogre", Ogre, 40, 5, 0, 9, false, 0, 0, true, 4, false));
+        monsters.add(new Monster("Ogre", Ogre, 40, 5, 0, 5, false, 0, 0, true, 4, false));
 
 
         setMap();
@@ -276,7 +276,7 @@ public class Battle extends JFrame {
                             //System.out.println("dat monster bez tooooo far away!!");
                             infoBox.append("\n" + "Monster to far away");
                         }
-                        //k.consume();
+                        k.consume();
                     } else {
                         infoBox.append("\n" + "You have already attacked this round.");
                     }
@@ -378,11 +378,11 @@ public class Battle extends JFrame {
         table.setValueAt(MiniRPG.players.get(3).getName(), 10, 6);
 
         //Sets Monsters
-        monsters.get(0).setColumn(1);
-        monsters.get(1).setColumn(3);
-        monsters.get(2).setColumn(5);
+        monsters.get(0).setColumn(3);
+        monsters.get(1).setColumn(1);
+        monsters.get(2).setColumn(9);
         monsters.get(3).setColumn(7);
-        monsters.get(4).setColumn(9);
+        monsters.get(4).setColumn(5);
 
         monsters.get(0).setRow(0);
         monsters.get(1).setRow(0);
@@ -390,11 +390,11 @@ public class Battle extends JFrame {
         monsters.get(3).setRow(0);
         monsters.get(3).setRow(0);
 
-        table.setValueAt(monsters.get(0).getName(), 0, 1);
-        table.setValueAt(monsters.get(1).getName(), 0, 3);
-        table.setValueAt(monsters.get(2).getName(), 0, 5);
+        table.setValueAt(monsters.get(0).getName(), 0, 3);
+        table.setValueAt(monsters.get(1).getName(), 0, 1);
+        table.setValueAt(monsters.get(2).getName(), 0, 9);
         table.setValueAt(monsters.get(3).getName(), 0, 7);
-        table.setValueAt(monsters.get(4).getName(), 0, 9);
+        table.setValueAt(monsters.get(4).getName(), 0, 5);
     }
 
     public void clear() {
@@ -443,13 +443,16 @@ public class Battle extends JFrame {
         String DamageReport = monsters.get(selectedMonsterIndex).getName() + " takes " + damage + " damage.\n"
                 + monsters.get(selectedMonsterIndex).getName() + " is down to " + monsterHP + " Hp";
         infoBox.append("\n" + DamageReport);
+        CheckIfAlive();
     }
 
     public void CheckIfAlive() {
         if (selectedMonsterIndex != -1) {
             if (monsters.get(selectedMonsterIndex).getHp() <= 0) {
                 monsters.get(selectedMonsterIndex).setIsDead(true);
-                String Kill = monsters.get(selectedMonsterIndex).getName() + "Has Died";
+                System.out.println(monsters.get(selectedMonsterIndex).getName());
+                System.out.println(monsters.get(selectedMonsterIndex).getIsDead());
+                String Kill = monsters.get(selectedMonsterIndex).getName() + " Has Died";
                 infoBox.append("\n" + Kill);
                 table.setValueAt(null, monsters.get(selectedMonsterIndex).getRow(), monsters.get(selectedMonsterIndex).getColumn());
             }
@@ -966,15 +969,15 @@ public class Battle extends JFrame {
         int i = attackingMonsterIndex;
         int x = 0;
         mca = false;
-        System.out.println("monstercheck");
+        //System.out.println("monstercheck");
         while (x < 4) {
-            System.out.println("monstercheck 1");
+            //System.out.println("monstercheck 1");
             if (monsters.get(i).getColumn() + 1 < table.getColumnCount()) {
-                System.out.println("monstercheck 2");
+                //System.out.println("monstercheck 2");
                 if (table.getValueAt(monsters.get(i).getRow(), monsters.get(i).getColumn() + 1) != null && monsters.get(i).getHasAttacked() == false) {
-                    System.out.println("monstercheck 3");
+                    //System.out.println("monstercheck 3");
                     if (table.getValueAt(monsters.get(i).getRow(), monsters.get(i).getColumn() + 1).equals(MiniRPG.players.get(x).getName())) {
-                        System.out.println("monstercheck 4");
+                        //System.out.println("monstercheck 4");
                         mca = true;
                         //System.out.println(monsters.get(i).getName() + " attacks");
                         playerToAttack = x;
@@ -1071,7 +1074,7 @@ public class Battle extends JFrame {
          System.out.println("monsterHit");
         int i = attackingMonsterIndex;
         int x = playerToAttack;
-        int Damage = (int) (monsters.get(i).getDamage() - MiniRPG.players.get(x).getDefense());
+        int Damage = (int) monsters.get(i).getDamage();
         //System.out.println(x);
         MiniRPG.players.get(x).setHp(MiniRPG.players.get(x).getHp() - Damage);
         infoBox.append("\n" + MiniRPG.players.get(x).getName() + " takes " + Damage + " damage. \n"
@@ -1363,7 +1366,4 @@ public class Battle extends JFrame {
         }
     }
 
-    public boolean isCellEditable(int rowIndex, int colIndex) {
-        return false;
-    }
 }

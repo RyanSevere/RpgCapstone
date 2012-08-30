@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class SkillAttacks{
     
     String SelectedSkill = "", FileText;
-    static String TextOutput;
+    static String TextOutput = "";
     int Range, Damage, CurrentDamage, MaxDamage, StunDuration, StunCount, ModifyedHp, 
             CurrentHp, MaxHp, Target, SelectedPlayer = Battle.getSelectedPlayer(), Self;
     double Heal, DefenseBoost, DefenseReduction, DamageBoost, CurrentDefense, MaxDefense;
@@ -964,7 +964,7 @@ public class SkillAttacks{
             try {
                 Battle.monsters.get(Target).setHp(Battle.monsters.get(Target).getHp() - Damage);
                 TextOutput = FileText + " " + Battle.monsters.get(Target).getName() + " for " + Damage + " damage"
-                         + Battle.monsters.get(Target).getName() + " is down to " + Battle.monsters.get(Target).getHp() + " health.";
+                         + " " + Battle.monsters.get(Target).getName() + " is down to " + Battle.monsters.get(Target).getHp() + " health.";
                 skillSuccessful = true;
             } catch (ArrayIndexOutOfBoundsException e) {
             }
@@ -978,9 +978,10 @@ public class SkillAttacks{
     
     public void MakeStunned()
     {
-        CurrentStunStatus = MiniRPG.players.get(Target).getIsStunned();
+        
         if(Battle.isPlayer == true)
         {
+            CurrentStunStatus = MiniRPG.players.get(Target).getIsStunned();
             if(CurrentStunStatus == false)
             {
                 MiniRPG.players.get(Target).setIsStunned(true);
@@ -996,7 +997,7 @@ public class SkillAttacks{
                 {
                     Battle.monsters.get(Target).setIsStunned(true);
                     Battle.monsters.get(Target).setStunDuration(StunDuration);
-                    TextOutput = FileText + " " + Battle.monsters.get(Target).getName() + " stunning them for " + StunDuration + " rounds";
+                    TextOutput = TextOutput + "\n" + FileText + " " + Battle.monsters.get(Target).getName() + " stunning them for " + StunDuration + " rounds";
                     skillSuccessful = true;
                 }
                 else
